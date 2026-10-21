@@ -1,8 +1,10 @@
 name: Deploy Alpha 2 to GitHub Pages
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 concurrency:
@@ -16,16 +18,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Import the approved Alpha 2 source
-        if: hashFiles('bootstrap-source.zip') != ''
-        run: |
-          for archive in bootstrap-*.zip; do unzip -oq "$archive"; done
-          rm bootstrap-*.zip
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git commit -m 'Import Alpha 2 source and game assets'
-          git push
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
