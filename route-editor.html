@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101916" />
+    <title>Desna — розмітка маршруту</title>
+  </head>
+  <body>
+    <main class="editor-shell">
+      <header class="editor-header">
+        <div>
+          <a class="back-link" href="./">← До гри</a>
+          <p class="eyebrow">DESNA · МАРШРУТ</p>
+          <h1>Покажи, де має проходити стежка</h1>
+          <p class="intro">Бірюзовим — зона, де зараз дозволено стояти персонажу. Намалюй правильний маршрут поверх і збережи PNG, щоб передати правки.</p>
+        </div>
+        <span class="draft-badge" id="draft-status" role="status">Чернетка зберігається у браузері</span>
+      </header>
+
+      <section class="toolbar" aria-label="Інструменти розмітки">
+        <div class="tool-group" role="group" aria-label="Режим курсора">
+          <button id="pen-tool" class="selected" type="button" aria-pressed="true">✎ Малювати</button>
+          <button id="pan-tool" type="button" aria-pressed="false">↔ Пересувати мапу</button>
+        </div>
+        <label class="range-control">Товщина <output id="width-value" for="pen-width">10</output>
+          <input id="pen-width" type="range" min="3" max="28" step="1" value="10" />
+        </label>
+        <button id="undo" type="button" disabled>↶ Скасувати штрих</button>
+        <button id="clear" type="button" disabled>Очистити мої правки</button>
+        <div class="export-group">
+          <button id="export-png" class="primary" type="button" disabled>Зберегти PNG ↓</button>
+          <button id="export-json" type="button" disabled title="Координати намальованих ліній для наступної ітерації">Координати JSON ↓</button>
+        </div>
+      </section>
+
+      <section class="view-controls" aria-label="Відображення маршруту">
+        <label class="checkbox-control"><input id="show-area" type="checkbox" checked /> Дозволена зона</label>
+        <label class="range-control">Прозорість <output id="opacity-value" for="area-opacity">42%</output>
+          <input id="area-opacity" type="range" min="10" max="80" step="1" value="42" />
+        </label>
+        <label class="checkbox-control"><input id="show-centerlines" type="checkbox" /> Осі маршрутів</label>
+        <label class="range-control zoom-control">Масштаб <output id="zoom-value" for="map-zoom">100%</output>
+          <input id="map-zoom" type="range" min="40" max="200" step="5" value="100" />
+        </label>
+        <button id="fit-map" type="button">Вмістити мапу</button>
+      </section>
+
+      <div class="legend" aria-label="Умовні позначення">
+        <span><i class="swatch walkable"></i> Дозволена зона для точки під ногами</span>
+        <span><i class="swatch obstacle"></i> Непрохідний камінь</span>
+        <span><i class="swatch encounter"></i> Зона початку бою</span>
+        <span><i class="swatch start"></i> Старт</span>
+        <span><i class="swatch annotation"></i> Твої правки</span>
+      </div>
+      <div class="map-viewport" id="map-viewport" aria-label="Мапа для малювання">
+        <canvas id="route-canvas" width="1402" height="1122" aria-label="Поточна мапа, дозволений маршрут і твої намальовані правки">Для розмітки потрібен браузер із підтримкою Canvas.</canvas>
+      </div>
+      <p class="map-status" id="map-status" role="status">Завантажую мапу та перевіряю дозволені координати…</p>
+      <footer>
+        <p>Маска враховує ширину стежок, розмір персонажа й камінь із поточної логіки гри. Це зона для <strong>точки під ногами</strong>, а не для всього зображення персонажа.</p>
+        <p>Правки залишаються лише на цьому полотні. PNG зберігає видимі шари; JSON — координати штрихів. На телефоні для прокручування мапи вибери «Пересувати мапу».</p>
+      </footer>
+    </main>
+    <script type="module" src="/src/route-editor.js"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+{
+  "file": "rusalka-idle-v1.png",
+  "width": 1254,
+  "height": 1254,
+  "columns": 2,
+  "rows": 2,
+  "frameCount": 4,
+  "frameWidth": 627,
+  "frameHeight": 627,
+  "frameRate": 4,
+  "origin": [
+    0.5,
+    0.88
+  ],
+  "originRole": "requested runtime anchor; artwork alignment varies",
+  "animation": "idle",
+  "loop": true,
+  "status": "review-candidate",
+  "requestedDimensions": [
+    1024,
+    1024
+  ],
+  "alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "fullyTransparentFraction": 0.56413
+  },
+  "source": "/Users/andrii/.codex/generated_images/01a15036-fbb6-7950-89bc-3ced965ad70c/exec-13275e8e-27f7-4bcc-8ce2-4bd47263e63b.png",
+  "sha256": "4a8d9ea647a44c74320451674626f36351c22aa025ca02f8bbca1bb96f19435e",
+  "frames": [
+    {
+      "index": 0,
+      "alphaBounds": [
+        0,
+        15,
+        627,
+        627
+      ],
+      "solidAlphaBounds": [
+        113,
+        77,
+        574,
+        595
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        343.5,
+        595
+      ]
+    },
+    {
+      "index": 1,
+      "alphaBounds": [
+        0,
+        15,
+        611,
+        627
+      ],
+      "solidAlphaBounds": [
+        122,
+        74,
+        593,
+        595
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        357.5,
+        595
+      ]
+    },
+    {
+      "index": 2,
+      "alphaBounds": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "solidAlphaBounds": [
+        119,
+        75,
+        587,
+        589
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        353.0,
+        589
+      ]
+    },
+    {
+      "index": 3,
+      "alphaBounds": [
+        0,
+        0,
+        624,
+        627
+      ],
+      "solidAlphaBounds": [
+        119,
+        71,
+        601,
+        593
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        360.0,
+        593
+      ]
+    }
+  ],
+  "distinctFrameCount": 4,
+  "warnings": [
+    "Generated canvas is 1254x1254 instead of requested 1024x1024. Use actual frame size 627x627.",
+    "Requested 15% gutters and stable origin are not consistently met; inspect animated preview and apply per-frame offsets if needed.",
+    "Low-opacity residue exists outside the main silhouettes; originals have not been cleaned or resampled.",
+    "These are review candidates, not validated production-ready animation sheets.",
+    "Retained first generation. A targeted style refinement was rejected because its top-row tails cross the cell midpoint. The retained art remains more detailed than a strict 64-pixel sprite."
+  ]
+}

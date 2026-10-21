@@ -1,0 +1,123 @@
+{
+  "file": "moth-idle-v1.png",
+  "width": 1254,
+  "height": 1254,
+  "columns": 2,
+  "rows": 2,
+  "frameCount": 4,
+  "frameWidth": 627,
+  "frameHeight": 627,
+  "frameRate": 6,
+  "origin": [
+    0.5,
+    0.88
+  ],
+  "originRole": "requested runtime anchor; artwork alignment varies",
+  "animation": "idle",
+  "loop": true,
+  "status": "review-candidate",
+  "requestedDimensions": [
+    1024,
+    1024
+  ],
+  "alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "fullyTransparentFraction": 0.62283
+  },
+  "source": "/Users/andrii/.codex/generated_images/01a15362-7b88-75f2-bf5e-b24e6a151f13/exec-a03d300c-c2f4-4085-b525-d5ef3eba2811.png",
+  "sha256": "230e02ad8a20d3abfda0b2d28dc54b9cd92854c3b61ae9a2ad6cac42abaf06f4",
+  "frames": [
+    {
+      "index": 0,
+      "alphaBounds": [
+        0,
+        52,
+        627,
+        627
+      ],
+      "solidAlphaBounds": [
+        17,
+        98,
+        627,
+        607
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        322.0,
+        607
+      ]
+    },
+    {
+      "index": 1,
+      "alphaBounds": [
+        0,
+        26,
+        626,
+        627
+      ],
+      "solidAlphaBounds": [
+        0,
+        104,
+        587,
+        611
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        293.5,
+        611
+      ]
+    },
+    {
+      "index": 2,
+      "alphaBounds": [
+        0,
+        1,
+        627,
+        627
+      ],
+      "solidAlphaBounds": [
+        146,
+        49,
+        548,
+        559
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        347.0,
+        559
+      ]
+    },
+    {
+      "index": 3,
+      "alphaBounds": [
+        0,
+        0,
+        613,
+        627
+      ],
+      "solidAlphaBounds": [
+        8,
+        78,
+        591,
+        571
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        299.5,
+        571
+      ]
+    }
+  ],
+  "warnings": [
+    "Generated canvas is 1254x1254 instead of requested 1024x1024. Use actual frame size 627x627.",
+    "Requested 15% gutters are not consistently met.",
+    "Requested stable origin is not guaranteed; inspect animation and apply consistent-scale per-frame offsets if needed.",
+    "Low-opacity edge residue exists outside the main silhouettes. Originals are not cleaned or resampled.",
+    "These are review candidates, not validated production-ready animation sheets.",
+    "Frame 0 wing reaches the central column boundary; a small part can bleed into frame 1 when sliced."
+  ]
+}

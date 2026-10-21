@@ -1,0 +1,53 @@
+{
+  "verifiedOn": "2026-10-20",
+  "fonts": [
+    {
+      "file": "public/fonts/roboto/Roboto-Variable.woff2",
+      "bytes": 222568,
+      "sha256": "f1c3c80f3026c0aea26bcbb91e6dd40941f5e1c09495029dda02ab5285ea428a",
+      "family": "Roboto",
+      "italicAngle": 0.0,
+      "axes": [
+        {
+          "tag": "wght",
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        },
+        {
+          "tag": "wdth",
+          "min": 75.0,
+          "default": 100.0,
+          "max": 100.0
+        }
+      ],
+      "requiredCharacters": "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюяABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789’ʼ'«»—–…!?.,:;()",
+      "missingCharacters": [],
+      "sourceTtf": "docs/concepts/references/ui-fonts/roboto/Roboto-Variable.ttf",
+      "sourceTtfSha256": "d7598e12c5dbef095ff8272cfc55da0250bd07fbdecbac8a530b9b277872a134",
+      "sourceUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/roboto/Roboto%5Bwdth,wght%5D.ttf",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "file": "public/fonts/roboto-condensed/RobotoCondensed-Variable.woff2",
+      "bytes": 169216,
+      "sha256": "697fed973774d46c63e00b8155fcc8834ae4f96200fde1a1656e6f8d597b28b1",
+      "family": "Roboto Condensed",
+      "italicAngle": 0.0,
+      "axes": [
+        {
+          "tag": "wght",
+          "min": 100.0,
+          "default": 400.0,
+          "max": 900.0
+        }
+      ],
+      "requiredCharacters": "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюяABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789’ʼ'«»—–…!?.,:;()",
+      "missingCharacters": [],
+      "sourceTtf": "docs/concepts/references/ui-fonts/roboto-condensed/RobotoCondensed-Variable.ttf",
+      "sourceTtfSha256": "dace262afcee68a5276f200d8026c57221735c0118ab5fda8c2c0d3dc409a8d0",
+      "sourceUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/robotocondensed/RobotoCondensed%5Bwght%5D.ttf",
+      "license": "SIL Open Font License 1.1"
+    }
+  ]
+}

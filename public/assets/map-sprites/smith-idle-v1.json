@@ -1,0 +1,123 @@
+{
+  "file": "smith-idle-v1.png",
+  "width": 1254,
+  "height": 1254,
+  "columns": 2,
+  "rows": 2,
+  "frameCount": 4,
+  "frameWidth": 627,
+  "frameHeight": 627,
+  "frameRate": 4,
+  "origin": [
+    0.5,
+    0.88
+  ],
+  "originRole": "requested runtime anchor; artwork alignment varies",
+  "animation": "idle",
+  "loop": true,
+  "status": "review-candidate",
+  "requestedDimensions": [
+    1024,
+    1024
+  ],
+  "alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "fullyTransparentFraction": 0.80708
+  },
+  "source": "/Users/andrii/.codex/generated_images/01a15036-fbb6-7950-89bc-3ced965ad70c/exec-9d47b7e5-4642-4bcb-9aaa-c2f9e07071e3.png",
+  "sha256": "03e86b23456414b31f5a4877bad5066b09951ad1cf9e5f9daefeba9337dffa6b",
+  "frames": [
+    {
+      "index": 0,
+      "alphaBounds": [
+        25,
+        31,
+        627,
+        625
+      ],
+      "solidAlphaBounds": [
+        278,
+        111,
+        464,
+        614
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        371.0,
+        614
+      ]
+    },
+    {
+      "index": 1,
+      "alphaBounds": [
+        1,
+        33,
+        603,
+        627
+      ],
+      "solidAlphaBounds": [
+        201,
+        111,
+        386,
+        614
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        293.5,
+        614
+      ]
+    },
+    {
+      "index": 2,
+      "alphaBounds": [
+        0,
+        5,
+        627,
+        607
+      ],
+      "solidAlphaBounds": [
+        278,
+        65,
+        465,
+        578
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        371.5,
+        578
+      ]
+    },
+    {
+      "index": 3,
+      "alphaBounds": [
+        1,
+        3,
+        613,
+        627
+      ],
+      "solidAlphaBounds": [
+        200,
+        77,
+        386,
+        578
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        293.0,
+        578
+      ]
+    }
+  ],
+  "distinctFrameCount": 4,
+  "warnings": [
+    "Generated canvas is 1254x1254 instead of requested 1024x1024. Use actual frame size 627x627.",
+    "Requested 15% gutters and stable origin are not consistently met; inspect animated preview and apply per-frame offsets if needed.",
+    "Low-opacity residue exists outside the main silhouettes; originals have not been cleaned or resampled.",
+    "These are review candidates, not validated production-ready animation sheets.",
+    "The generated smith appears to face down-right. Horizontal runtime reflection can align him with down-left actors; source pixels are preserved."
+  ]
+}

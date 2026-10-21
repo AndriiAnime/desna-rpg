@@ -1,0 +1,44 @@
+.battle-choice-icon { width: 50px; height: 42px; flex: 0 0 50px; fill: #d8dfcc; overflow: visible; }
+.battle-icon-muted { fill: #6e7d65; }
+.battle-icon-target { fill: #e1e6d7; }
+.battle-icon-cutout { fill: #202c22; }
+.battle-icon-grip { fill: #bdc6aa; }
+.battle-icon-blade-edge { fill: #f2f2e8; }
+/* An outer SVG group places the grip; this inner group only rotates around it.
+   Translating the weapon on hover would make it appear to emerge from the body. */
+.battle-icon-blade { transform-box: view-box; transform-origin: 0px 0px; }
+.battle-icon-blade--head { transform: rotate(-42deg); }
+.battle-icon-blade--body { transform: rotate(-28deg); }
+.battle-icon-swing-arc { fill: none; stroke: #b9c9a7; stroke-width: 1; stroke-dasharray: 2 3; opacity: .2; }
+.battle-icon-contact { fill: #eee6b7; opacity: 0; }
+.battle-icon-shield { transform-box: fill-box; transform-origin: center; }
+
+.battle-choice:is(:hover, :focus-visible):not(:disabled) .battle-icon-blade--head { animation: battle-left-head-swing 1s infinite; }
+.battle-choice:is(:hover, :focus-visible):not(:disabled) .battle-icon-blade--body { animation: battle-left-body-swing 1s infinite; }
+.battle-choice:is(:hover, :focus-visible):not(:disabled) .battle-icon-swing-arc { opacity: .55; }
+.battle-choice:is(:hover, :focus-visible):not(:disabled) .battle-icon-contact { animation: battle-left-impact 1s steps(1, end) infinite; }
+.battle-choice:is(:hover, :focus-visible):not(:disabled) .battle-icon-shield { animation: battle-shield-bob .8s steps(3, end) infinite; }
+
+@keyframes battle-left-head-swing {
+  0%, 12% { transform: rotate(-76deg); animation-timing-function: cubic-bezier(.4, 0, .8, .6); }
+  42%, 54% { transform: rotate(-32deg); animation-timing-function: ease-out; }
+  88%, 100% { transform: rotate(-76deg); }
+}
+@keyframes battle-left-body-swing {
+  0%, 12% { transform: rotate(-72deg); animation-timing-function: cubic-bezier(.4, 0, .8, .6); }
+  42%, 54% { transform: rotate(-18deg); animation-timing-function: ease-out; }
+  88%, 100% { transform: rotate(-72deg); }
+}
+@keyframes battle-left-impact {
+  0%, 41% { opacity: 0; }
+  42%, 54% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+@keyframes battle-shield-bob {
+  0%, 100% { transform: translateY(1px); }
+  50% { transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .battle-choice .battle-icon-blade, .battle-choice .battle-icon-shield, .battle-choice .battle-icon-contact { animation: none !important; }
+  .battle-choice:is(:hover, :focus-visible):not(:disabled) .battle-icon-contact { opacity: .45; }
+}

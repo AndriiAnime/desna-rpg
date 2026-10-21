@@ -1,0 +1,32 @@
+.review-workshop { max-width: 1440px; margin: 90px auto 0; padding: 48px 32px 80px; border-top: 1px solid #52624e; background: #101a15; color: #d8dfcf; scroll-margin-top: 20px; font-family: 'Desna Battle Roboto', Arial, sans-serif; }
+.review-heading h2,.review-idle-heading h2 { font: 500 clamp(24px, 3vw, 36px)/1.2 'Desna Battle Roboto', Arial, sans-serif; margin: 0 0 12px; }
+.review-workshop h3 { font: 500 15px/1.35 'Desna Battle Roboto', Arial, sans-serif; margin: 0; }
+.review-heading>p,.review-idle-heading p,.review-idle-card p { color: #a9b6a1; max-width: 780px; font-size: 14px; line-height: 1.6; }
+.review-workshop button { cursor: pointer; font: inherit; border-radius: 0; color: inherit; }
+.review-workshop button:focus-visible { outline: 2px solid #d1e9ac; outline-offset: 3px; }
+.review-backgrounds { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin: 30px 0; }
+.review-backgrounds button { padding: 0; border: 1px solid #465343; background: #18241b; overflow: hidden; text-align: left; }
+.review-backgrounds button[aria-pressed=true] { border-color: #d6e8b2; box-shadow: 0 0 0 1px #d6e8b2; }
+.review-backgrounds img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.review-backgrounds span { display: block; padding: 12px; font-size: 13px; }
+.review-framings { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.review-card { border: 1px solid #45513f; min-width: 0; background: #121d16; }
+.review-card > header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; padding: 16px 14px; align-items: center; }
+.review-card > header span { font-size: 10px; color: #a4b58e; }
+.review-battle-preview { position: relative; height: 360px; }
+.review-try { display: block; padding: 13px 16px; width: 100%; min-height: 46px; background: #283725; border: 0; text-align: left; font-size: 13px !important; }
+.review-try:hover { background: #3c5032; }
+.review-try:disabled { opacity: .45; cursor: default; }
+.review-idle-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 64px; }
+.review-pause { padding: 12px 17px; border: 1px solid #728367; background: #22301e; flex-shrink: 0; font-size: 13px !important; }
+.review-idles { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; min-height: 280px; }
+.review-idle-card { padding: 0 16px 16px; background: linear-gradient(135deg,#27372a,#18261e); border: 1px solid #3e503e; min-width: 0; }
+.review-idle-card canvas { width: 100%; height: auto; display: block; }
+.review-idle-card p { margin-bottom: 0; font-size: 12px; }
+.review-trial { width: min(1120px,calc(100vw - 24px)); max-width: none; max-height: calc(100dvh - 24px); height: min(860px,calc(100dvh - 24px)); padding: 0; border: 1px solid #9ba98c; background: #111c15; color: #dce5d0; }
+.review-trial::backdrop { background: #050b08d9; }
+.review-trial-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; height: 56px; gap: 12px; font-size: 13px; }
+.review-trial-close { padding: 8px 12px; min-height: 40px; border: 1px solid #728367; background: #263520; }
+.review-trial-stage { position: relative; height: calc(100% - 56px); min-height: 380px; }
+@media(max-width:1050px) { .review-framings { grid-template-columns: 1fr; } .review-battle-preview { height: 460px; } .review-idles { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+@media(max-width:650px) { .review-workshop { margin-top: 40px; padding: 28px 14px 48px; } .review-backgrounds { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; } .review-backgrounds span { padding: 9px; font-size: 11px; } .review-battle-preview { height: 410px; } .review-idles { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; } .review-idle-card { padding: 0 9px 13px; } .review-idle-card h3 { font-size: 13px; } .review-idle-heading { align-items: flex-start; flex-direction: column; gap: 4px; margin: 42px 0 18px; } .review-trial { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); height: calc(100dvh - 12px); } .review-trial-header { font-size: 11px; } }

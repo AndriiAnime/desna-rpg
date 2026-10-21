@@ -1,0 +1,147 @@
+{
+  "file": "moth-idle-v2.png",
+  "width": 1254,
+  "height": 1254,
+  "columns": 2,
+  "rows": 2,
+  "frameCount": 4,
+  "frameWidth": 627,
+  "frameHeight": 627,
+  "frameRate": 6,
+  "origin": [
+    0.5,
+    0.88
+  ],
+  "originRole": "requested runtime anchor; artwork alignment varies",
+  "animation": "idle",
+  "loop": true,
+  "status": "review-candidate",
+  "supersedes": "moth-idle-v1.png",
+  "alpha": {
+    "mode": "RGBA",
+    "range": [
+      0,
+      255
+    ],
+    "fullyTransparentFraction": 0.70302
+  },
+  "source": "/Users/andrii/.codex/generated_images/01a15362-7b88-75f2-bf5e-b24e6a151f13/exec-83d05085-35ee-4219-9eae-2021ce4d7838.png",
+  "sha256": "6b4f3a97e99641af2df5c6324b39569545c79d74d9f980ad8e10ad76bc696e9f",
+  "frames": [
+    {
+      "index": 0,
+      "alphaBounds": [
+        0,
+        15,
+        627,
+        627
+      ],
+      "solidAlphaBounds": [
+        59,
+        143,
+        604,
+        563
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        331.5,
+        563
+      ],
+      "solidMargins": [
+        59,
+        143,
+        23,
+        64
+      ],
+      "solidTouchesCellBoundary": false
+    },
+    {
+      "index": 1,
+      "alphaBounds": [
+        1,
+        20,
+        603,
+        625
+      ],
+      "solidAlphaBounds": [
+        76,
+        143,
+        551,
+        563
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        313.5,
+        563
+      ],
+      "solidMargins": [
+        76,
+        143,
+        76,
+        64
+      ],
+      "solidTouchesCellBoundary": false
+    },
+    {
+      "index": 2,
+      "alphaBounds": [
+        33,
+        5,
+        627,
+        613
+      ],
+      "solidAlphaBounds": [
+        166,
+        91,
+        537,
+        514
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        351.5,
+        514
+      ],
+      "solidMargins": [
+        166,
+        91,
+        90,
+        113
+      ],
+      "solidTouchesCellBoundary": false
+    },
+    {
+      "index": 3,
+      "alphaBounds": [
+        1,
+        7,
+        621,
+        627
+      ],
+      "solidAlphaBounds": [
+        30,
+        103,
+        573,
+        518
+      ],
+      "solidAlphaThreshold": 32,
+      "suggestedBoundsBottomAnchor": [
+        301.5,
+        518
+      ],
+      "solidMargins": [
+        30,
+        103,
+        54,
+        109
+      ],
+      "solidTouchesCellBoundary": false
+    }
+  ],
+  "warnings": [
+    "Sprite silhouettes now fit individual equal quadrants without solid alpha crossing boundaries.",
+    "10% margin is still not consistently met; consult solidMargins.",
+    "Requested stable origin is not guaranteed; apply consistent-scale per-frame offsets if needed.",
+    "Low-opacity edge residue remains outside main silhouettes.",
+    "Review candidate; animation alignment must be checked in preview."
+  ]
+}

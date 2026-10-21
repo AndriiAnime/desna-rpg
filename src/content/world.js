@@ -1,0 +1,60 @@
+export const WALKABLE_TILES = new Set([".", ",", "=", "#"]);
+
+export const WORLD = {
+  id: "desna-glade",
+  name: "Наддеснянська галявина",
+  subtitle: "Околиці села Верболози",
+  width: 24,
+  height: 16,
+  tileLegend: {
+    ".": { type: "grass", walkable: true },
+    ",": { type: "meadow", walkable: true },
+    "=": { type: "path", walkable: true },
+    "~": { type: "water", walkable: false },
+    T: { type: "birch", walkable: false },
+    P: { type: "pine", walkable: false },
+    "^": { type: "rock", walkable: false },
+    "#": { type: "bridge", walkable: true },
+  },
+  tiles: [
+    "TTTTTTTTTTTTTTTTTTTT~~TT",
+    "TT.TT...T.TT...P.PP.~~.T",
+    "T...T.T^...T.PP...P.~~.T",
+    "T.TT...T^TT...P.PPP.~~.T",
+    "T.^T.TT...T.PP^..P..~~.T",
+    "TTT...T.TT...P.PP.P.~~.T",
+    "T.TTT,,,,,,,,,,,PPP.~~.T",
+    "T...T,,,,,,,,,,,....~~.T",
+    "TTT..,,,,,==========##==",
+    "T.T..,,,,,=,,,,,..P.~~.T",
+    "T...=,,,,,=,,,,,....~~.T",
+    "T...=,,,,,=,,,,,PP..~~.T",
+    "T..========.....^...~~.T",
+    "TT............P...P.~~.T",
+    "T.TT....T..^.P.P.P..~~.T",
+    "TTTTTTTTTTTTTTTTTTTT~~TT",
+  ],
+  spawn: { x: 4, y: 12 },
+  entities: [
+    {
+      id: "blud",
+      name: "Блуд",
+      type: "enemy",
+      x: 19,
+      y: 8,
+      description: "Лісовий дух, що збиває мандрівників зі стежки.",
+      interactionText:
+        "«Шукаєш переправу? Спершу знайди власну дорогу». Блуд заступає міст.",
+    },
+    {
+      id: "signpost",
+      name: "Старий дороговказ",
+      type: "npc",
+      x: 7,
+      y: 11,
+      description: "Потемніла дошка на межі сільських городів і лісу.",
+      interactionText:
+        "← Верболози · Переправа →\n«За березами стежці вір, а голосам — ні».",
+    },
+  ],
+};

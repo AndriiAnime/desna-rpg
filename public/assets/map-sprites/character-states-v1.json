@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "status": "review-candidates",
+  "assetRoot": "assets/",
+  "entries": {
+    "heroWalkNE": {
+      "file": "map-sprites/hero-ne-walk-v3.png",
+      "columns": 2,
+      "rows": 2,
+      "width": 1254,
+      "height": 1254,
+      "frameRate": 8,
+      "referenceFrameHeight": 627,
+      "displayHeight": 97,
+      "frameRects": [
+        {
+          "x": 103,
+          "y": 49,
+          "width": 414,
+          "height": 570
+        },
+        {
+          "x": 686,
+          "y": 53,
+          "width": 410,
+          "height": 566
+        },
+        {
+          "x": 94,
+          "y": 657,
+          "width": 449,
+          "height": 542
+        },
+        {
+          "x": 685,
+          "y": 650,
+          "width": 416,
+          "height": 551
+        }
+      ],
+      "frameOrigins": [
+        [
+          0.6835748792270532,
+          0.987719298245614
+        ],
+        [
+          0.6926829268292682,
+          0.9946996466431095
+        ],
+        [
+          0.6503340757238307,
+          1.0387453874538746
+        ],
+        [
+          0.6971153846153846,
+          1.0217785843920144
+        ]
+      ],
+      "animations": {
+        "NE": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "strideDistance": 64
+    },
+    "heroIdle": {
+      "file": "map-sprites/hero-standing-idle-v1.png",
+      "columns": 2,
+      "rows": 4,
+      "width": 1254,
+      "height": 1254,
+      "frameRate": 1.5,
+      "referenceFrameHeight": 314,
+      "displayHeight": 84,
+      "frameRects": [
+        {
+          "x": 373,
+          "y": 7,
+          "width": 249,
+          "height": 330
+        },
+        {
+          "x": 704,
+          "y": 7,
+          "width": 258,
+          "height": 330
+        },
+        {
+          "x": 304,
+          "y": 338,
+          "width": 238,
+          "height": 328
+        },
+        {
+          "x": 627,
+          "y": 338,
+          "width": 248,
+          "height": 328
+        },
+        {
+          "x": 379,
+          "y": 668,
+          "width": 246,
+          "height": 310
+        },
+        {
+          "x": 709,
+          "y": 668,
+          "width": 240,
+          "height": 310
+        },
+        {
+          "x": 317,
+          "y": 980,
+          "width": 233,
+          "height": 274
+        },
+        {
+          "x": 644,
+          "y": 980,
+          "width": 232,
+          "height": 274
+        }
+      ],
+      "frameOrigins": [
+        [
+          0.29685590594270495,
+          0.990909090909091
+        ],
+        [
+          0.31210960134389626,
+          0.990909090909091
+        ],
+        [
+          0.6667269327108357,
+          0.9908536585365854
+        ],
+        [
+          0.6630952911273079,
+          0.9908536585365854
+        ],
+        [
+          0.304175571434274,
+          0.9903225806451613
+        ],
+        [
+          0.3190885018572691,
+          0.9903225806451613
+        ],
+        [
+          0.685359413111256,
+          0.9890510948905109
+        ],
+        [
+          0.6825556340062702,
+          0.9890510948905109
+        ]
+      ],
+      "animations": {
+        "SW": [
+          0,
+          1
+        ],
+        "SE": [
+          2,
+          3
+        ],
+        "NW": [
+          4,
+          5
+        ],
+        "NE": [
+          6,
+          7
+        ]
+      },
+      "frameScaleMultipliers": [
+        1,
+        1,
+        1.0061728395061729,
+        1.0061728395061729,
+        1.0618892508143323,
+        1.0584415584415585,
+        1.1985294117647058,
+        1.2029520295202951
+      ]
+    },
+    "bludCalm": {
+      "file": "map-sprites/blud-calm-idle-v1.png",
+      "columns": 2,
+      "rows": 2,
+      "width": 1254,
+      "height": 1254,
+      "frameRate": 4,
+      "referenceFrameHeight": 627,
+      "displayHeight": 141,
+      "frameRects": [
+        {
+          "x": 172,
+          "y": 94,
+          "width": 418,
+          "height": 510
+        },
+        {
+          "x": 768,
+          "y": 95,
+          "width": 428,
+          "height": 507
+        },
+        {
+          "x": 165,
+          "y": 706,
+          "width": 446,
+          "height": 499
+        },
+        {
+          "x": 782,
+          "y": 706,
+          "width": 443,
+          "height": 504
+        }
+      ],
+      "frameOrigins": [
+        [
+          0.33851674641148327,
+          0.9467450980392157
+        ],
+        [
+          0.4030373831775701,
+          0.9523471400394478
+        ],
+        [
+          0.3329596412556054,
+          0.9676152304609217
+        ],
+        [
+          0.3577878103837472,
+          0.9580158730158729
+        ]
+      ],
+      "animations": {
+        "idle": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "luckyPortrait": {
+      "file": "portraits/lucky-dialogue-v1.png",
+      "columns": 1,
+      "rows": 1,
+      "width": 1254,
+      "height": 1254,
+      "origin": [
+        0.5,
+        1
+      ],
+      "displayHeight": 280,
+      "animations": {
+        "idle": [
+          0
+        ]
+      }
+    }
+  },
+  "notes": [
+    "All PNGs retain original generated transparent alpha; no raster post-processing.",
+    "file paths are relative to public/assets, unlike the older manifest where they are relative to public/assets/map-sprites.",
+    "frameOrigins are fractions of their explicit frameRects.",
+    "Scale each frame by displayHeight / referenceFrameHeight * frameScaleMultipliers[frame] (default multiplier 1), then global gameplay sprite scale.",
+    "NE sprite is a directional override only; retain SW/SE/NW from hero-walk-v2.",
+    "Standing idle frames keep both feet planted; per-frame scale normalizes generator size drift between rows.",
+    "Hero NE passed static visual review of opposite contact and lifted-leg poses; final in-motion validation belongs to integration."
+  ]
+}

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101c20" />
+    <link rel="icon" href="data:," />
+    <title>Спрайти на мапі · тест v1</title>
+  </head>
+  <body>
+    <main class="preview-page">
+      <header class="page-header">
+        <a class="brand" href="./index.html">← Прах <em>над Десною</em></a>
+        <span class="eyebrow">МАЙСТЕРНЯ ПЕРСОНАЖІВ</span>
+      </header>
+      <div class="page-intro">
+        <div>
+          <p class="eyebrow">НАДДЕСНЯНСЬКА ГАЛЯВИНА</p>
+          <h1>Спрайти на мапі <span>· тест v1</span></h1>
+        </div>
+        <p><a href="./index.html">Грати: стежка до мосту →</a><br />Перевіряємо розмір, силует і рух. Розташування персонажів умовне й не відображає сюжетний прогрес.</p>
+      </div>
+
+      <div class="status-row">
+        <p id="load-status" role="status" aria-live="polite">Завантажуємо мапу та персонажів…</p>
+        <button id="retry" type="button" hidden>Спробувати ще раз</button>
+      </div>
+
+      <div class="preview-layout">
+        <div class="map-comparison">
+          <section class="map-panel" aria-labelledby="primary-map-heading">
+            <div class="map-heading">
+              <h2 id="primary-map-heading">А · Великі спрайти</h2>
+              <p>На старті: великі персонажі, уся галявина в кадрі.</p>
+            </div>
+            <fieldset id="primary-scale-controls" class="map-scale-controls" disabled>
+              <legend class="sr-only">Масштаб варіанта А</legend>
+              <div class="map-scale-field">
+                <div class="field-heading">
+                  <label for="primary-sprite-scale">Розмір персонажів</label>
+                  <output id="primary-sprite-scale-value" for="primary-sprite-scale">1,95×</output>
+                </div>
+                <input id="primary-sprite-scale" type="range" min="0.75" max="2.5" step="0.05" value="1.95" aria-label="А · Розмір персонажів" />
+              </div>
+              <div class="map-scale-field">
+                <div class="field-heading">
+                  <label for="primary-camera-zoom">Наближення камери</label>
+                  <output id="primary-camera-zoom-value" for="primary-camera-zoom">1,00×</output>
+                </div>
+                <input id="primary-camera-zoom" type="range" min="1" max="2" step="0.05" value="1" aria-label="А · Наближення камери" />
+              </div>
+              <div class="map-scale-actions">
+                <button id="primary-reset" type="button">Початкові значення</button>
+                <button id="primary-focus" type="button">До персонажа</button>
+              </div>
+            </fieldset>
+            <p class="map-scale-hint">Розмір змінює лише персонажів. Камера наближає персонажів разом з оточенням. Наближену мапу можна перетягувати.</p>
+            <div id="sprite-map" class="map-stage" role="img" aria-label="Варіант А: мапа з великими спрайтами. Виберіть персонажа кнопками під мапою."></div>
+            <div class="map-footer">
+              <span><i class="anchor-dot" aria-hidden="true"></i> Обраний персонаж в обох варіантах</span>
+              <span id="cast-count">Готуємо склад</span>
+            </div>
+            <div id="cast-list" class="cast-list" role="group" aria-label="Виберіть персонажа"></div>
+          </section>
+
+          <section class="map-panel" aria-labelledby="camera-map-heading">
+            <div class="map-heading">
+              <h2 id="camera-map-heading">Б · Ближча камера — обрано для тесту</h2>
+              <p>На старті: персонажі 1,65×, камера 1,50×. Мапу можна перетягувати.</p>
+            </div>
+            <fieldset id="camera-scale-controls" class="map-scale-controls" disabled>
+              <legend class="sr-only">Масштаб варіанта Б</legend>
+              <div class="map-scale-field">
+                <div class="field-heading">
+                  <label for="camera-sprite-scale">Розмір персонажів</label>
+                  <output id="camera-sprite-scale-value" for="camera-sprite-scale">1,65×</output>
+                </div>
+                <input id="camera-sprite-scale" type="range" min="0.75" max="2.5" step="0.05" value="1.65" aria-label="Б · Розмір персонажів" />
+              </div>
+              <div class="map-scale-field">
+                <div class="field-heading">
+                  <label for="camera-camera-zoom">Наближення камери</label>
+                  <output id="camera-camera-zoom-value" for="camera-camera-zoom">1,50×</output>
+                </div>
+                <input id="camera-camera-zoom" type="range" min="1" max="2" step="0.05" value="1.5" aria-label="Б · Наближення камери" />
+              </div>
+              <div class="map-scale-actions">
+                <button id="camera-reset" type="button">Початкові значення</button>
+                <button id="camera-focus" type="button">До персонажа</button>
+              </div>
+            </fieldset>
+            <p class="map-scale-hint">Перетягуйте мапу, щоб оглянути інші ділянки. «До персонажа» центрує камеру на спільному виборі у списку вище.</p>
+            <div id="sprite-map-camera" class="map-stage" role="img" aria-label="Варіант Б: наближена мапа. Перетягніть для огляду або натисніть «До персонажа»."></div>
+          </section>
+        </div>
+
+        <aside class="inspector" aria-labelledby="inspector-heading">
+          <div class="inspector-heading">
+            <div>
+              <p class="eyebrow">ДЕТАЛЬНИЙ ПЕРЕГЛЯД</p>
+              <h2 id="inspector-heading">Персонаж</h2>
+            </div>
+            <span id="animation-label" class="badge">Анімація</span>
+          </div>
+          <div class="inspector-stage">
+            <canvas id="sprite-inspector" width="360" height="420" role="img" aria-label="Крупний план обраного персонажа"></canvas>
+            <span class="anchor-caption">Точка опори</span>
+          </div>
+          <fieldset id="preview-controls" disabled>
+            <legend class="sr-only">Керування переглядом</legend>
+            <label class="field-label" for="actor-select">Персонаж</label>
+            <select id="actor-select"></select>
+
+            <div class="control-row">
+              <button id="play-toggle" class="primary-button" type="button" aria-pressed="false">Відтворити</button>
+              <div class="segmented" role="group" aria-label="Масштаб крупного плану">
+                <button type="button" data-zoom="1" aria-pressed="true">1×</button>
+                <button type="button" data-zoom="2" aria-pressed="false">2×</button>
+              </div>
+            </div>
+
+            <div id="hero-directions" hidden>
+              <label class="field-label" for="hero-direction">Напрям ходьби героя</label>
+              <select id="hero-direction">
+                <option value="SW">↙ Південний захід</option>
+                <option value="SE">↘ Південний схід</option>
+                <option value="NW">↖ Північний захід</option>
+                <option value="NE">↗ Північний схід</option>
+              </select>
+              <p class="control-hint">Ходьба на місці для перегляду кадрів.</p>
+            </div>
+
+            <div class="field-heading">
+              <label for="frame-slider">Кадр</label>
+              <output id="frame-label" for="frame-slider">1 / 4</output>
+            </div>
+            <input id="frame-slider" type="range" min="0" max="3" step="1" value="0" aria-label="Кадр анімації; зміна зупиняє відтворення" />
+            <div class="control-row frame-buttons">
+              <button id="previous-frame" type="button" aria-label="Попередній кадр">← Кадр</button>
+              <button id="next-frame" type="button" aria-label="Наступний кадр">Кадр →</button>
+            </div>
+
+            <label class="field-label" for="speed-select">Швидкість усіх анімацій</label>
+            <select id="speed-select">
+              <option value="0.5">0,5× · повільно</option>
+              <option value="1" selected>1× · звичайна</option>
+              <option value="1.5">1,5×</option>
+              <option value="2">2×</option>
+            </select>
+          </fieldset>
+          <p id="motion-note" class="control-hint">Пауза зупиняє весь склад. Вибір кадру змінює лише обраного персонажа.</p>
+        </aside>
+      </div>
+      <footer class="page-footer">Окремий візуальний тест. Персонажі стоять у фіксованих точках; рух по мапі тут не перевіряється.</footer>
+    </main>
+    <script type="module" src="/src/sprite-preview.js"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "Desna UI";
+  src: url("/fonts/roboto/Roboto-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  font-family: "Desna UI", Arial, sans-serif;
+  color: #e5eae5;
+  background: #101916;
+  font-synthesis: none;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button { min-height: 39px; padding: 8px 12px; border: 1px solid #536358; border-radius: 4px; background: #202e27; color: inherit; cursor: pointer; }
+button:hover:not(:disabled) { border-color: #b7cbbd; background: #2e4035; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid #d8e7a7; outline-offset: 4px; }
+button:disabled { opacity: .4; cursor: not-allowed; }
+button.selected { background: #d7e3ba; color: #172116; border-color: #d7e3ba; }
+button.primary { background: #ccddad; color: #172116; border-color: #ccddad; font-weight: 700; }
+button.primary:hover:not(:disabled) { background: #e2edc4; color: #172116; }
+input { accent-color: #9ec4ac; }
+.editor-shell { max-width: 1514px; margin: 0 auto; padding: 24px 28px 36px; }
+.editor-header { display: flex; gap: 25px; justify-content: space-between; align-items: flex-start; }
+.back-link { color: #aebeb3; font-size: 13px; text-decoration: none; }
+.back-link:hover { color: #fff; }
+.eyebrow { font-size: 11px; letter-spacing: .19em; color: #a8bd8e; margin: 24px 0 10px; }
+h1 { font-size: clamp(23px, 3vw, 32px); line-height: 1.2; font-weight: 600; margin: 0; }
+.intro { max-width: 780px; font-size: 15px; color: #b4c4ba; line-height: 1.55; margin: 12px 0 21px; }
+.draft-badge { padding: 8px 11px; border: 1px solid #38493d; color: #b0bea8; font-size: 12px; line-height: 1.4; margin-top: 28px; max-width: 260px; }
+.toolbar, .view-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; padding: 14px; background: #18231d; border: 1px solid #35473b; }
+.view-controls { margin-top: -1px; background: #142019; padding-top: 11px; padding-bottom: 11px; }
+.tool-group, .export-group { display: flex; flex-wrap: wrap; gap: 7px; }
+.export-group { margin-left: auto; }
+.range-control { display: grid; grid-template-columns: auto auto; gap: 4px 9px; font-size: 12px; min-width: 115px; color: #bcccbe; }
+.range-control output { justify-self: end; font-variant-numeric: tabular-nums; color: #e5eae5; }
+.range-control input { grid-column: 1 / -1; width: 125px; height: 14px; margin: 0; }
+.checkbox-control { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.checkbox-control input { width: 16px; height: 16px; margin: 0; }
+.zoom-control { margin-left: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 9px 21px; padding: 14px 0; color: #aebfb3; font-size: 12px; }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.swatch { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+.walkable { background: #48dfd0; }
+.obstacle { border: 2px solid #f5737c; }
+.encounter { border: 2px solid #ffd170; }
+.start { background: #f5f2de; border-radius: 50%; }
+.annotation { background: #ff795c; }
+.map-viewport { position: relative; overflow: auto; width: 100%; max-height: min(78vh, 1160px); min-height: 210px; background: #030705; border: 1px solid #3b4d40; overscroll-behavior: contain; }
+canvas { display: block; touch-action: none; cursor: crosshair; }
+canvas.pan-mode { cursor: grab; }
+canvas.panning { cursor: grabbing; }
+.map-status { margin: 10px 0 19px; font-size: 12px; color: #a9bcad; min-height: 18px; }
+footer { border-top: 1px solid #314137; padding-top: 9px; font-size: 12px; line-height: 1.5; color: #91a799; }
+footer p { margin: 7px 0; }
+
+@media (max-width: 700px) {
+  .editor-shell { padding: 16px 12px 25px; }
+  .editor-header { display: block; }
+  .draft-badge { display: inline-block; margin: 0 0 15px; max-width: 100%; }
+  .toolbar, .view-controls { gap: 12px; padding: 11px; }
+  .export-group { margin-left: 0; width: 100%; }
+  .export-group button { flex: 1; }
+  .zoom-control { margin-left: 0; }
+  .intro { margin-bottom: 13px; }
+  .map-viewport { max-height: 70vh; }
+}

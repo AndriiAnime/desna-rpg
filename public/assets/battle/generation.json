@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-21",
+  "mode": "built-in imagegen",
+  "outputs": {
+    "hero": "hero-v1.png",
+    "blud": "blud-v1.png",
+    "background": "forest-v1.png"
+  },
+  "prompts": [
+    {
+      "key": "hero",
+      "path": "/Users/andrii/AI shared/Coding/desna-rpg/docs/concepts/desna-hero-moth-chart-test-v1.png",
+      "prompt": "Use case: background-extraction. Extract ONLY the full-body young male hero at the right of this reference into a clean transparent game sprite. Preserve the approved character EXACTLY: slender long-limbed proportions, same face and hair, embroidered cream shirt, red cloak, dark trousers, footwraps, leather shoes, both hands holding the clay urn, same pose facing screen-right. Remove the moth and every chart line, paper background and cast ground shadow. The isolated hero fills the vertical canvas with a small clear margin, full body uncut. Do not redesign, do not make chibi, do not add a weapon. Crisp illustrated linework and original colors, genuinely transparent RGBA background."
+    },
+    {
+      "key": "blud",
+      "path": "/Users/andrii/AI shared/Coding/desna-rpg/docs/concepts/desna-blud-boss-v7.png",
+      "prompt": "Use case: background-extraction. Convert this exact approved Blud character illustration into a clean transparent full-body game battle sprite. Preserve silhouette, pose, costume, dark purple mushroom-like hat, cyan skeletal face, cyan hands and flames, red chest pattern, long flowing robes and staff EXACTLY. Preserve beckoning hand toward screen-left. Remove only the ivory paper background; all spaces between limbs, robe strips and staff must be genuinely transparent. Full figure and flames uncut, small clear margin. No ground shadow, no text, no redesign, original crisp illustrated linework and colors, transparent RGBA."
+    },
+    {
+      "key": "background",
+      "path": "/var/folders/r0/2t6r_z9x2ds8jvblsn276f780000gn/T/codex-clipboard-d08c72a1-6525-4c29-b539-ed00f5e96ca3.png",
+      "prompt": "Use case: compositing. Produce one complete landscape battle background, 16:9 framing, from the attached first terrain layer and second sky layer. The original terrain is an old handheld RPG forest clearing sprite background; the white unused areas and vertical stretched strips are atlas artifacts, not scenery. Reconstruct ONLY a seamless background around the real pixel-painted clearing, with the supplied blue sky above it. Preserve its era and simple painted low-resolution game textures, sparse dark green treeline, broad ochre dirt and green grass patches, open horizontal ground for two character sprites at left and right. Fill the whole canvas, no white margins, no UI, no people, no creatures, no bridge, no architecture. This is a faithful technical cleanup of the supplied game background, not a glossy fantasy concept art. Matte muted greens, crisp simplified painted shapes, no bokeh, no bloom, no extra detail."
+    }
+  ]
+}
