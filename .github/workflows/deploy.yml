@@ -1,4 +1,4 @@
-# Publication template. Replace be6879b21b3a3dd5f8ccb439617a93945b8d9aaf with the reviewed alternative commit SHA.
+# Reviewed campaign revision 3: 190 runtime/source files verified against local build.
 # The root checkout remains the existing Alpha 2 source; no game source is replaced on main.
 name: Deploy Alpha 2 and UI alternative to GitHub Pages
 on:
@@ -24,7 +24,7 @@ jobs:
       - name: Check out reviewed alternative
         uses: actions/checkout@v4
         with:
-          ref: be6879b21b3a3dd5f8ccb439617a93945b8d9aaf
+          ref: 5ee32fe1858c8f9754579cfa3823d578afbc33ca
           path: alternative-source
       - uses: actions/setup-node@v4
         with:
