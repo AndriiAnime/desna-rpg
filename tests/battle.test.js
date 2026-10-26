@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createBattleState, chooseEnemyMove, resolveBattleRound } from '../src/domain/battle.js';
 
 test('battle starts with three HP each and validates setup', () => {
-  assert.deepEqual(createBattleState(), { heroHp: 3, enemyHp: 3, maxHp: 3, round: 0, suddenDeath: false, outcome: null });
+  assert.deepEqual(createBattleState(), { heroHp: 3, enemyHp: 3, maxHp: 3, round: 0, outcome: null });
   assert.throws(() => createBattleState({ hp: 0 }), RangeError);
 });
 
@@ -24,11 +24,12 @@ test('blocked attacks deal no damage and state/decisions are not mutated', () =>
   assert.equal(result.state.round, 1); assert.equal(state.round, 0);
 });
 
-test('both hits are simultaneous even when the first hit would kill', () => {
+test('a lethal hero hit wins before the enemy can land its own lethal hit', () => {
   const state = { ...createBattleState(), heroHp: 1, enemyHp: 1 };
   const result = resolveBattleRound(state, { attack: 'head', defend: 'body' }, { attack: 'head', defend: 'body' });
-  assert.equal(result.state.heroHp, 0); assert.equal(result.state.enemyHp, 0);
-  assert.equal(result.state.outcome, null); assert.equal(result.state.suddenDeath, true);
+  assert.equal(result.state.heroHp, 1); assert.equal(result.state.enemyHp, 0);
+  assert.equal(result.state.outcome, 'victory'); assert.equal(result.enemyActed, false);
+  assert.equal(result.enemyHit, false);
 });
 
 test('a one-sided lethal hit wins without negative HP', () => {
@@ -44,15 +45,15 @@ test('a one-sided enemy lethal hit loses', () => {
   assert.equal(result.state.outcome, 'defeat'); assert.equal(result.state.enemyHp, 3);
 });
 
-test('sudden death repeats on two hits or two blocks and resolves only an unequal result', () => {
-  let state = { ...createBattleState(), heroHp: 0, enemyHp: 0, suddenDeath: true };
-  state = resolveBattleRound(state, { attack: 'head', defend: 'body' }, { attack: 'head', defend: 'body' }).state;
-  assert.equal(state.outcome, null);
-  state = resolveBattleRound(state, { attack: 'head', defend: 'body' }, { attack: 'body', defend: 'head' }).state;
-  assert.equal(state.outcome, null); assert.equal(state.heroHp, 0); assert.equal(state.enemyHp, 0);
-  const victory = resolveBattleRound(state, { attack: 'head', defend: 'head' }, { attack: 'head', defend: 'body' });
-  const defeat = resolveBattleRound(state, { attack: 'head', defend: 'body' }, { attack: 'head', defend: 'head' });
-  assert.equal(victory.state.outcome, 'victory'); assert.equal(defeat.state.outcome, 'defeat');
+test('nonlethal hits still allow the enemy reply and double blocks preserve health', () => {
+  const state = createBattleState();
+  const exchange = resolveBattleRound(state, { attack: 'head', defend: 'body' }, { attack: 'head', defend: 'body' });
+  assert.equal(exchange.state.heroHp, 2); assert.equal(exchange.state.enemyHp, 2);
+  assert.equal(exchange.enemyActed, true); assert.equal(exchange.enemyHit, true);
+  const blocked = resolveBattleRound(exchange.state, { attack: 'head', defend: 'body' }, { attack: 'body', defend: 'head' });
+  assert.equal(blocked.state.heroHp, 2); assert.equal(blocked.state.enemyHp, 2);
+  assert.equal(blocked.enemyActed, true); assert.equal(blocked.enemyHit, false);
+  assert.equal(blocked.state.outcome, null);
 });
 
 test('missing or invalid choices cannot consume a round', () => {

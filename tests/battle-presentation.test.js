@@ -26,21 +26,23 @@ test('HP display changes at each impact without prematurely applying the second 
   assert.deepEqual(impacts.map(e => e.damage), [1, 1]);
   assert.equal(before.heroHp, 3);
 });
-test('a lethal first hit never hides the committed reply or invents first-strike victory', () => {
+test('a lethal first hit skips the enemy turn, strike and feedback entirely', () => {
   const before = { ...createBattleState(), heroHp: 1, enemyHp: 1 };
   const result = resolveBattleRound(before, doubleHit, doubleHit);
   const events = createRoundPresentation(before, result);
-  assert.equal(events.find(e => e.type === 'turn' && e.side === 'enemy').committedReply, true);
-  assert.equal(events.filter(e => e.type === 'impact').length, 2);
-  assert.equal(events.at(-1).outcome, null);
-  assert.equal(result.state.suddenDeath, true);
+  assert.equal(events.find(e => e.type === 'turn' && e.side === 'enemy'), undefined);
+  assert.equal(events.find(e => e.type === 'strike' && e.attacker === 'enemy'), undefined);
+  assert.equal(events.filter(e => e.type === 'impact').length, 1);
+  assert.equal(events.at(-1).outcome, 'victory');
+  assert.deepEqual(events.find(e => e.type === 'impact').hp, { heroHp: 1, enemyHp: 0 });
+  assert.equal(events.at(-1).at, BATTLE_TIMING.declaration + BATTLE_TIMING.turn + BATTLE_TIMING.strike + BATTLE_TIMING.hold);
 });
-test('blocks and sudden-death hits do not claim lost HP', () => {
-  const before = { ...createBattleState(), heroHp: 0, enemyHp: 0, suddenDeath: true };
-  const result = resolveBattleRound(before, { attack: 'head', defend: 'head' }, doubleHit);
+test('blocks show no lost HP while a surviving enemy still receives a turn', () => {
+  const before = createBattleState();
+  const result = resolveBattleRound(before, { attack: 'head', defend: 'head' }, { attack: 'head', defend: 'head' });
   const impacts = createRoundPresentation(before, result).filter(e => e.type === 'impact');
-  assert.deepEqual(impacts.map(e => [e.feedback, e.damage]), [['hit', 0], ['block', 0]]);
-  assert.equal(result.state.outcome, 'victory');
+  assert.deepEqual(impacts.map(e => [e.feedback, e.damage]), [['block', 0], ['block', 0]]);
+  assert.equal(result.state.outcome, null);
 });
 test('all studied feedback has Ukrainian and English labels without adding combat mechanics', () => {
   for (const type of BATTLE_FEEDBACK_TYPES) {
