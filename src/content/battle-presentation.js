@@ -1,16 +1,17 @@
-/** Presentation alone is sequential. Domain round resolution remains simultaneous. */
+/** Each surviving combatant receives a readable turn, in hero-first order. */
 export const BATTLE_BASELINE_ROUND_MS = 2800;
 export const BATTLE_TIMING = Object.freeze({ declaration: 1800, turn: 1100, strike: 700, impact: 220, hold: 1500 });
 export const BATTLE_ROUND_MS = BATTLE_TIMING.declaration + 2 * (BATTLE_TIMING.turn + BATTLE_TIMING.strike + BATTLE_TIMING.hold);
 
-/** Data-only timeline, also used by QA to verify HP/result ordering and sudden death. */
+/** Data-only timeline. An enemy killed by the first impact receives no turn. */
 export function createRoundPresentation(previous, result) {
   const events = [];
   const hp = { heroHp: previous.heroHp, enemyHp: previous.enemyHp };
   let time = BATTLE_TIMING.declaration;
   for (const [attacker, defender] of [['hero', 'enemy'], ['enemy', 'hero']]) {
+    if (attacker === 'enemy' && !result.enemyActed) break;
     const hit = result[`${attacker}Hit`];
-    events.push({ at: time, type: 'turn', side: attacker, committedReply: attacker === 'enemy' && hp.enemyHp === 0 && !previous.suddenDeath });
+    events.push({ at: time, type: 'turn', side: attacker });
     time += BATTLE_TIMING.turn;
     events.push({ at: time, type: 'strike', attacker });
     hp[`${defender}Hp`] = result.state[`${defender}Hp`];
