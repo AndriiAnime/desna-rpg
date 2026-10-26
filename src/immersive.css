@@ -1,0 +1,97 @@
+.immersive-build { position:fixed;inset:0; background: #070e10; overflow: hidden; font-family: var(--ui-font-body, "Desna Roboto", Arial, sans-serif); }
+.immersive-build button, .immersive-build a { touch-action: manipulation; }
+.immersive-build #app { width: 100%; height: 100svh; min-height: 320px; }
+.immersive-build .start-screen { min-height: 320px; }
+.title-language { position: absolute; top: max(14px,env(safe-area-inset-top)); right: max(18px,env(safe-area-inset-right)); z-index: 3; display:flex;align-items:center;gap:9px;color:#8d99a3;font:12px var(--ui-font-body,Arial,sans-serif); }
+.title-language button { min-height:44px;min-width:44px;border:0;background:#080e19a6;color:#a8b1bb;font:inherit; }
+.title-language button[aria-pressed="true"] {color:#f3ead9;border-bottom:1px solid #c3ab82;}
+.immersive-build .start-screen__title { font-family:var(--ui-font-title,Georgia,serif);font-weight:var(--ui-font-title-weight,600);letter-spacing:var(--ui-font-title-spacing,.07em); }
+.immersive-build .start-screen__subtitle,.immersive-build .start-screen__start { font-family:var(--ui-font-body,"Desna Roboto Condensed",sans-serif); }
+.immersive-build .start-screen__footer { background:linear-gradient(0deg,#040811ed,transparent);left:0;right:0;bottom:0;padding:18px 26px max(12px,env(safe-area-inset-bottom)); }
+.immersive-build .start-screen__review {right:26px;}
+
+.immersive-build .immersive-game {
+  position:relative;width:100%;max-width:none;height:100svh;min-height:320px;margin:0;padding:0;isolation:isolate;overflow:clip;background:#06100b;
+  --scene-background:url('/assets/map-sprites/map-v8.png');
+}
+.immersive-game::before {content:"";position:absolute;inset:-35px;z-index:-2;background:var(--scene-background) center/cover;filter:blur(24px) brightness(.3);}
+.immersive-game[data-scene="battle"] {--scene-background:url('/assets/battle/forest-muted-a-v1.png');}
+.immersive-game .world-scene {position:absolute;inset:0;display:block!important;}
+.immersive-game .world-scene[hidden] {display:none!important;}
+.immersive-game #game-canvas {position:absolute;inset:0;width:min(100%,1600px);height:100%!important;min-height:0!important;max-height:none;margin:auto;outline-offset:-4px;border:0;border-radius:0;overflow:hidden;background:transparent;touch-action:none;}
+.immersive-game #game-canvas canvas {display:block;max-width:100%;}
+.world-hud {position:absolute;z-index:3;top:0;left:0;right:0;display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding:max(22px,env(safe-area-inset-top)) 26px 40px;background:linear-gradient(#040d11c7,transparent);pointer-events:none;}
+.day-phase {display:flex;align-items:center;gap:11px;color:#e5e7d8;text-shadow:0 2px 4px #000;}
+.day-phase__orb {width:43px;height:43px;border:2px solid #e5dab4;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d7d3a9,#7d916b 75%);box-shadow:0 0 0 5px #adba9b20,0 0 20px #a0b78b24;}
+.day-phase small,.world-location small {display:block;font:10px var(--ui-font-body,"Desna Roboto",sans-serif);letter-spacing:.15em;color:#abb6af;margin-bottom:3px;}
+.day-phase strong {font-size:16px;font-weight:500;}
+.world-location {display:flex;align-items:center;gap:14px;text-align:right;color:#eef0e6;text-shadow:0 2px 4px #000;}
+.world-location strong {font-family:var(--ui-font-body,"Desna Roboto",sans-serif);font-size:18px;font-weight:500;}
+.hud-circle {display:grid;place-items:center;min-width:46px;min-height:46px;width:46px;height:46px;padding:8px!important;border:1px solid #b8c5b477!important;border-radius:50%!important;background:#071713aa!important;color:#e4eadb;font-size:20px;backdrop-filter:blur(5px);pointer-events:auto;}
+.hud-circle:hover {background:#314935d9!important;}
+.world-controls {position:absolute;z-index:4;bottom:max(22px,env(safe-area-inset-bottom));left:26px;right:26px;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none;}
+.world-controls .dpad {margin:0;display:grid;grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px);gap:6px;opacity:.8;pointer-events:auto;}
+.world-controls .dpad button {width:46px;height:46px;min-width:0;min-height:0;border:1px solid #bbc8b580;border-radius:50%;padding:0;background:#13241ba3;backdrop-filter:blur(4px);font:24px Arial,sans-serif;color:#e9eee0;box-shadow:none;}
+.world-controls .dpad button:hover,.world-controls .dpad button.pressed {background:#648264c9;border-color:#e2e7d6;}
+.world-controls .dpad-center {display:grid;place-items:center;color:#bbcfac;font-size:17px;}
+.world-utilities {display:flex;gap:10px;pointer-events:auto;}
+.world-feedback {position:absolute;left:50%;top:102px;transform:translateX(-50%);z-index:4;width:max-content;max-width:calc(100% - 42px);margin:0;padding:9px 16px;font-size:13px;line-height:1.4;color:#ecf0df;background:#0b171bd9;border-left:2px solid #8da78b;pointer-events:none;transition:opacity .3s;opacity:0;}
+.world-feedback.is-visible {opacity:1;}
+.world-feedback:empty {display:none;}
+.immersive-game #battle-host {position:absolute;inset:0;z-index:5;width:100%;height:100%!important;min-height:0!important;max-height:none;margin:0;border:0;background:transparent;}
+
+.scene-menu {width:min(380px,calc(100vw - 32px));max-height:calc(100svh - 32px);padding:25px;border:1px solid #abbba8;background:#0c181bf5;color:#e8eadf;box-shadow:0 12px 80px #000b;font-family:var(--ui-font-body,"Desna Roboto",sans-serif);}
+.scene-menu::backdrop {background:#02060aa6;backdrop-filter:blur(5px);}
+.scene-menu h2 {font:28px var(--ui-font-title,Georgia,serif);margin:0 0 13px;}
+.scene-menu .objective {font-size:14px;line-height:1.6;color:#b7c6bb;margin:0 0 12px;}
+.scene-menu #step-count {font-size:11px;color:#84988c;}
+.scene-menu>button,.scene-menu>a {display:block;min-height:44px;width:100%;padding:11px 14px;margin-top:7px;border:1px solid #82977c66;background:#172a22b5;color:#e8eadc;text-align:left;text-decoration:none;font:14px var(--ui-font-body,Arial,sans-serif);}
+.scene-menu>button.scene-menu__primary {background:#4d6650;border-color:#a6baa0;}
+
+/* Map dialogue: a Persona 2 portrait above a broad lower text panel. */
+.immersive-build #story-dialog {position:fixed;inset:auto 0 0;width:min(1080px,100%);max-width:100%;max-height:88svh;margin:0 auto;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible;color:#ebeee4;font-family:var(--ui-font-body,"Desna Roboto",sans-serif);}
+.immersive-build #story-dialog::backdrop {background:#030c1433;backdrop-filter:none;}
+.immersive-build #story-dialog .dialog-layout {display:block;position:relative;min-height:0;}
+.immersive-build #story-dialog .dialog-speaker {position:absolute;bottom:100%;left:24px;width:210px;height:240px;display:block;padding:0;margin:0;background:transparent;border:0;pointer-events:none;}
+.immersive-build #story-dialog .dialog-speaker img {display:block;width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 4px 4px #0008);}
+.immersive-build #story-dialog .dialog-speaker>div,.immersive-build #dialog-ornament {display:none;}
+.immersive-build #story-dialog .dialog-content {position:relative;margin:0;padding:22px 35px max(18px,env(safe-area-inset-bottom));min-height:180px;border:0;border-top:2px solid #77937d;background:linear-gradient(100deg,#071219f5,#071219e8);clip-path:none;box-shadow:0 -10px 35px #0004;}
+.immersive-build #story-dialog .dialog-content::before {display:none;}
+.immersive-build #dialog-eyebrow {font:600 16px var(--ui-font-body,Arial,sans-serif);letter-spacing:.06em;color:#a8c4a7;margin:0 0 12px;}
+.immersive-build #dialog-title {font:500 21px/1.4 var(--ui-font-body,Arial,sans-serif);margin:0 0 12px;color:#f1f0e6;}
+.immersive-build #dialog-body p {font:400 clamp(17px,1.8vw,22px)/1.6 var(--ui-font-body,Arial,sans-serif);margin:0;color:#e0e5df;min-height:3.2em;}
+.immersive-build #dialog-body:empty {display:none;}
+.immersive-build #dialog-close {display:flex;justify-content:flex-end;gap:15px;min-height:44px;width:auto;margin:15px 0 0 auto;padding:8px 16px;border:0;border-bottom:1px solid #9cb493;background:transparent;color:#dbe4d2;font:500 14px var(--ui-font-body,Arial,sans-serif);}
+.dialog-count {position:absolute;right:35px;top:25px;font-size:11px;color:#83998e;}
+.immersive-build #story-dialog.tutorial-dialog .dialog-speaker {display:none;}
+.immersive-build #story-dialog.tutorial-dialog .dialog-content {border-color:#c2b48b;}
+.immersive-build #story-dialog.tutorial-dialog #dialog-eyebrow {color:#d6c497;}
+
+@media (max-aspect-ratio: 4/5) {
+  .immersive-build .start-screen__art {background-image:url('/assets/title/ps2-hero-lucky-portrait-v1.png');background-position:center;}
+  .immersive-build .start-screen__content {top:28%;}
+}
+@media (max-width:650px) {
+  .world-hud {padding:18px 13px 35px;gap:12px;}
+  .day-phase {gap:7px;}.day-phase__orb{width:31px;height:31px;}.day-phase small{display:none;}.day-phase strong{font-size:12px;}
+  .world-location {gap:8px;}.world-location small{font-size:8px;letter-spacing:.08em;}.world-location strong{font-size:clamp(12px,3.6vw,16px);}.hud-circle{width:42px;height:42px;min-width:42px;min-height:42px;}
+  .world-controls {left:13px;right:13px;bottom:max(17px,env(safe-area-inset-bottom));}.world-controls .dpad {grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);gap:4px;}.world-controls .dpad button{width:44px;height:44px;font-size:22px;}
+  .world-utilities{flex-direction:column;gap:9px;}.world-feedback{top:83px;font-size:12px;}
+  .immersive-build #story-dialog .dialog-content {padding:19px 20px max(15px,env(safe-area-inset-bottom));min-height:175px;}
+  .immersive-build #story-dialog .dialog-speaker {left:9px;width:145px;height:170px;}
+  .immersive-build #dialog-body p{font-size:17px;line-height:1.5;}.immersive-build #dialog-title {font-size:19px;}.dialog-count{right:20px;top:23px;}
+  .immersive-build .start-screen__review{right:auto;}
+}
+@media (max-height:500px) and (orientation:landscape) {
+  .world-hud {padding:9px 17px 25px;}.day-phase__orb{width:28px;height:28px;}.world-location strong{font-size:14px;}
+  .world-controls{bottom:10px;left:17px;right:17px;}.world-controls .dpad{grid-template-columns:repeat(3,38px);grid-template-rows:repeat(3,38px);gap:3px;}.world-controls .dpad button{width:38px;height:38px;font-size:20px;}
+  .immersive-build #story-dialog .dialog-content {min-height:150px;padding:13px 25px;}.immersive-build #story-dialog .dialog-speaker{height:135px;width:130px;}.immersive-build #dialog-body p{font-size:16px;}.immersive-build #dialog-title{font-size:18px;}.immersive-build #dialog-close{margin-top:4px;}
+}
+@media(prefers-reduced-motion:reduce){.world-feedback{transition:none;}}
+
+.world-controls .dpad button {touch-action:none;}
+.dialog-accessible {position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}
+.immersive-build #status {position:fixed;left:0;top:0;margin:0;}
+
+.immersive-game #game-canvas:focus {outline:none;}
+.immersive-game #game-canvas:focus-visible {outline:1px solid #becba566;}

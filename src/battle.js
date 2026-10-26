@@ -2,13 +2,15 @@ import './battle.css';
 import { BATTLE_ZONES, createBattleState, chooseEnemyMove, resolveBattleRound } from './domain/battle.js';
 import { battleChoiceIcon } from './battle-icons.js';
 import { BLUD_ENCOUNTER } from './content/blud-encounter.js';
+import { BATTLE_TIMING, createRoundPresentation } from './content/battle-presentation.js';
+import { battleFeedbackMarkup, battleTurnMarkup, checkedFeedbackVariant } from './battle-feedback.js';
 
 const asset = (file) => `${import.meta.env.BASE_URL}assets/battle/${file}`;
 export const DEFAULT_BATTLE_BACKGROUND = asset('forest-muted-a-v1.png');
 const ASSETS = [DEFAULT_BATTLE_BACKGROUND, asset('hero-v1.png'), asset('blud-v1.png')];
 const assetPromises = new Map();
 let battleCounter = 0;
-export const BATTLE_DECLARATION_MS = 1800;
+export const BATTLE_DECLARATION_MS = BATTLE_TIMING.declaration;
 export const BATTLE_FRAMINGS = Object.freeze(['full', 'waist', 'close']);
 
 export function preloadBattleAssets({ background = ASSETS[0] } = {}) {
@@ -40,6 +42,7 @@ const COPY = {
     strikeHead: 'Б’є в голову', strikeBody: 'Б’є в корпус', guardHead: 'Захищає голову', guardBody: 'Захищає корпус',
     stepAttack: '1 · Удар', stepDefend: '2 · Захист',
     conversation: 'Розмова перед боєм', next: 'Далі', fight: 'До бою',
+    heroTurn: 'Хід героя', enemyTurn: 'Хід ворога', committedReply: 'Ворог завершує вже обраний удар.', roundCommitment: 'Обидва удари вже обрано. Результат визначиться після обміну.',
   },
   en: {
     scene: 'Battle with Blud', hero: 'Hero', enemy: 'Blud', head: 'Head', body: 'Body',
@@ -57,6 +60,7 @@ const COPY = {
     strikeHead: 'Strikes the head', strikeBody: 'Strikes the body', guardHead: 'Guards the head', guardBody: 'Guards the body',
     stepAttack: '1 · Attack', stepDefend: '2 · Guard',
     conversation: 'Before the battle', next: 'Continue', fight: 'Begin battle',
+    heroTurn: 'Hero Turn', enemyTurn: 'Enemy Turn', committedReply: 'The enemy completes its committed strike.', roundCommitment: 'Both strikes are committed. The result follows the exchange.',
   },
 };
 const copyFor = (language) => COPY[language || document.documentElement.lang] || COPY.uk;
@@ -64,7 +68,7 @@ const checkedFraming = (framing) => BATTLE_FRAMINGS.includes(framing) ? framing 
 
 function stageMarkup(t) {
   const actor = (side, source) => `<div class="battle-figure battle-figure--${side}" data-ref="${side}Figure"><span class="battle-ground-shadow" aria-hidden="true"></span><div class="battle-art"><img data-ref="${side}Image" src="${source}" alt="${t[side]}" draggable="false"></div><span class="battle-feedback" data-ref="${side}Feedback" hidden aria-hidden="true"></span></div><div class="battle-declaration battle-declaration--${side}" data-ref="${side}Declaration" hidden><span class="battle-declaration-name">${t[side]}</span><span data-ref="${side}Attack"></span><span data-ref="${side}Guard"></span></div>`;
-  return `<div class="battle-stage"><div class="battle-backdrop" aria-hidden="true"></div><div class="battle-stage-shade" aria-hidden="true"></div>${['hero', 'enemy'].map((side) => `<div class="battle-health battle-health--${side}"><span>${t[side]}</span><strong data-ref="${side}Hp">3 / 3</strong><div class="battle-hp-pips" data-ref="${side}Pips" aria-hidden="true"><i class="is-full"></i><i class="is-full"></i><i class="is-full"></i></div></div>`).join('')}${actor('hero', ASSETS[1])}${actor('enemy', ASSETS[2])}</div>`;
+  return `<div class="battle-stage"><div class="battle-backdrop-blur" aria-hidden="true"></div><div class="battle-backdrop" aria-hidden="true"></div><div class="battle-stage-shade" aria-hidden="true"></div>${['hero', 'enemy'].map((side) => `<div class="battle-health battle-health--${side}"><span>${t[side]}</span><strong data-ref="${side}Hp">3 / 3</strong><div class="battle-hp-pips" data-ref="${side}Pips" aria-hidden="true"><i class="is-full"></i><i class="is-full"></i><i class="is-full"></i></div></div>`).join('')}${actor('hero', ASSETS[1])}${actor('enemy', ASSETS[2])}<div class="battle-turn-banner" data-ref="turnBanner" hidden aria-live="polite"></div><span class="battle-turn-indicator" data-ref="turnIndicator" hidden></span></div><p class="battle-commitment" data-ref="commitment" hidden>${t.roundCommitment}</p>`;
 }
 function windowMarkup(contents) {
   return `<div class="battle-window"><div class="battle-window-inset"><div class="battle-window-body">${contents}</div></div></div>`;
@@ -73,16 +77,17 @@ function choiceButtons(action, t) {
   return BATTLE_ZONES.map((zone) => `<button type="button" class="battle-choice" data-action="${action}" data-zone="${zone}">${battleChoiceIcon(action, zone)}<span>${t[zone]}</span><span class="battle-choice-arrow" aria-hidden="true">▸</span></button>`).join('');
 }
 function setBackground(root, background = DEFAULT_BATTLE_BACKGROUND) {
-  if (background) root.querySelector('.battle-backdrop').style.backgroundImage = `url(${JSON.stringify(background)})`;
+  if (background) root.querySelectorAll('.battle-backdrop, .battle-backdrop-blur').forEach(layer => { layer.style.backgroundImage = `url(${JSON.stringify(background)})`; });
 }
 
 /** Static comparison of the exact battle framing and command styling. No game state is created. */
-export function mountBattlePreview({ host, framing = 'full', background, language = 'uk' }) {
+export function mountBattlePreview({ host, framing = 'full', background, language = 'uk', feedback = 'muted' }) {
   if (!(host instanceof HTMLElement)) throw new TypeError('Preview host must be an element');
   const t = copyFor(language);
   const root = document.createElement('section');
   root.className = `desna-battle battle-preview battle-framing--${checkedFraming(framing)}`;
   root.setAttribute('aria-label', t.scene);
+  root.dataset.feedback = checkedFeedbackVariant(feedback);
   root.innerHTML = stageMarkup(t) + windowMarkup(`<div class="battle-window-heading"><h2>${t.attack}</h2><span class="battle-location">ДЕСНА · DESNA</span></div><div class="battle-choices">${choiceButtons('attack', t)}</div>`);
   setBackground(root, background);
   host.append(root);
@@ -90,9 +95,11 @@ export function mountBattlePreview({ host, framing = 'full', background, languag
 }
 
 /** The owner pauses world input; start resolves when the result's return button is pressed. */
-export function createBattle({ host, onComplete = () => {}, onSound = () => {}, language, random = Math.random, framing = 'full', background, intro = false } = {}) {
+export function createBattle({ host, onComplete = () => {}, onSound = () => {}, language, random = Math.random, framing = 'full', background, intro = false, feedback, feedbackPalette } = {}) {
   if (!(host instanceof HTMLElement)) throw new TypeError('Battle host must be an element');
   const t = copyFor(language);
+  const locale = COPY[language || document.documentElement.lang] ? (language || document.documentElement.lang) : 'uk';
+  const palette = checkedFeedbackVariant(feedback || feedbackPalette || document.documentElement.dataset.feedback);
   const id = `battle-${++battleCounter}`;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let state = createBattleState();
@@ -117,9 +124,9 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
     animations.add(animation);
     return animation.finished.catch(() => {}).finally(() => animations.delete(animation));
   }
-  function renderHp() {
+  function renderHp(display = state) {
     for (const side of ['hero', 'enemy']) {
-      const hp = state[`${side}Hp`];
+      const hp = display[`${side}Hp`];
       refs[`${side}Hp`].textContent = `${hp} / ${state.maxHp}`;
       refs[`${side}Hp`].setAttribute('aria-label', `${t[side]}: ${t.hp} ${hp} / ${state.maxHp}`);
       refs[`${side}Pips`].innerHTML = Array.from({ length: state.maxHp }, (_, i) => `<i class="${i < hp ? 'is-full' : ''}"></i>`).join('');
@@ -198,35 +205,69 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
     refs.heroDeclaration.hidden = true;
     refs.enemyDeclaration.hidden = true;
   }
-  async function performAttack(attacker, defender, hit, suddenDeath) {
+  function playStrike(attacker) {
     const direction = attacker === 'hero' ? 1 : -1;
     const distance = Math.min(72, refs.stage.clientWidth * .065);
-    const defenderDirection = defender === 'hero' ? -1 : 1;
-    const defenderImage = refs[`${defender}Image`];
-    const feedback = refs[`${defender}Feedback`];
     sound('attack');
-    feedback.textContent = hit ? (suddenDeath ? '✦' : t.hit) : t.blocked;
-    feedback.classList.toggle('is-blocked', !hit);
-    feedback.hidden = false;
-    const attackAnimation = animate(refs[`${attacker}Image`], [
+    void animate(refs[`${attacker}Image`], [
       { transform: 'translateX(0)', offset: 0 },
-      { transform: `translateX(${direction * distance}px)`, offset: .35 },
+      { transform: `translateX(${direction * distance}px)`, offset: BATTLE_TIMING.impact / BATTLE_TIMING.strike },
       { transform: 'translateX(0)', offset: 1 },
-    ], { duration: 500, easing: 'cubic-bezier(.2,.7,.3,1)' });
+    ], { duration: BATTLE_TIMING.strike, easing: 'cubic-bezier(.2,.7,.3,1)' });
+  }
+  function showImpact(event) {
+    const { defender, hit, damage, hp } = event;
+    const feedbackElement = refs[`${defender}Feedback`];
+    feedbackElement.innerHTML = battleFeedbackMarkup({ type: event.feedback, language: locale, variant: palette, amount: damage });
+    feedbackElement.hidden = false;
+    renderHp(hp);
     sound(hit ? 'hit' : 'block');
-    const reactions = [attackAnimation, animate(feedback, [
-      { opacity: 0, transform: 'translate(-50%, 6px)', offset: 0 },
-      { opacity: 1, transform: 'translate(-50%, 0)', offset: .35 },
-      { opacity: 1, transform: 'translate(-50%, -9px)', offset: .7 },
-      { opacity: 0, transform: 'translate(-50%, -16px)', offset: 1 },
-    ], { duration: 500, easing: 'ease-out' })];
-    if (hit) reactions.push(animate(defenderImage, [
-      { transform: 'translateX(0)', filter: 'brightness(1)', offset: 0 },
-      { transform: `translateX(${defenderDirection * distance * .65}px)`, filter: 'brightness(1.65)', offset: .4 },
-      { transform: 'translateX(0)', filter: 'brightness(1)', offset: 1 },
-    ], { delay: 100, duration: 400, easing: 'ease-out' }));
-    await Promise.all(reactions);
-    feedback.hidden = true;
+    refs.status.textContent = event.attacker === 'hero'
+      ? (hit ? t.heroHit : t.heroBlocked)
+      : (hit ? t.enemyHit : t.enemyBlocked);
+    void animate(feedbackElement, [
+      { opacity: 0, transform: 'translate(-50%, 10px) scale(.8)' },
+      { opacity: 1, transform: 'translate(-50%, 0) scale(1)' },
+    ], { duration: 230, easing: 'cubic-bezier(.15,.7,.2,1)' });
+    if (hit) {
+      const distance = Math.min(46, refs.stage.clientWidth * .042) * (defender === 'hero' ? -1 : 1);
+      void animate(refs[`${defender}Image`], [
+        { transform: 'translateX(0)', filter: 'brightness(1)', offset: 0 },
+        { transform: `translateX(${distance}px)`, filter: 'brightness(1.55)', offset: .28 },
+        { transform: 'translateX(0)', filter: 'brightness(1)', offset: 1 },
+      ], { duration: 480, easing: 'ease-out' });
+    }
+  }
+  async function presentRound(previous, result) {
+    let previousTime = 0;
+    for (const event of createRoundPresentation(previous, result)) {
+      await wait(event.at - previousTime);
+      if (destroyed) return;
+      previousTime = event.at;
+      if (event.type === 'turn') {
+        hideDeclarations();
+        refs.turnBanner.innerHTML = battleTurnMarkup({ side: event.side, language: locale, variant: palette });
+        refs.turnBanner.hidden = false;
+        refs.turnIndicator.textContent = t[`${event.side}Turn`];
+        refs.turnIndicator.hidden = false;
+        refs.status.textContent = t[`${event.side}Turn`];
+        refs.commitment.textContent = event.committedReply ? t.committedReply : t.roundCommitment;
+        root.dataset.turn = event.side;
+        void animate(refs.turnBanner, [
+          { opacity: 0, transform: 'translateX(-12px)' },
+          { opacity: 1, transform: 'translateX(0)' },
+        ], { duration: 260, easing: 'ease-out' });
+      } else if (event.type === 'strike') {
+        refs.turnBanner.hidden = true;
+        playStrike(event.attacker);
+      } else if (event.type === 'impact') {
+        showImpact(event);
+      } else if (event.type === 'clear') {
+        refs[`${event.defender}Feedback`].hidden = true;
+      }
+    }
+    delete root.dataset.turn;
+    refs.turnIndicator.hidden = true;
   }
   async function submitRound(defend) {
     if (phase !== 'combat' || busy || state.outcome || destroyed || !BATTLE_ZONES.includes(selectedAttack) || !BATTLE_ZONES.includes(defend)) return;
@@ -240,15 +281,11 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
     refs.form.dataset.step = 'committed';
     refs.defendStep.querySelector(`[data-zone="${defend}"]`).classList.add('is-selected');
     declare('hero', result.hero); declare('enemy', result.enemy);
-    await wait(BATTLE_DECLARATION_MS);
-    if (destroyed) return;
-    hideDeclarations();
-    refs.status.textContent = t.resolving;
     root.classList.add('is-resolving');
-    await performAttack('hero', 'enemy', result.heroHit, state.suddenDeath);
+    refs.commitment.hidden = false;
+    await presentRound(state, result);
     if (destroyed) return;
-    await performAttack('enemy', 'hero', result.enemyHit, state.suddenDeath);
-    if (destroyed) return;
+    refs.commitment.hidden = true;
     state = result.state;
     renderHp();
     root.classList.remove('is-resolving');
@@ -288,6 +325,7 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
   function mount() {
     root = document.createElement('section');
     root.className = `desna-battle battle-framing--${intro ? 'waist' : checkedFraming(framing)}${intro ? ' is-dialogue' : ''}`;
+    root.dataset.feedback = palette;
     root.dataset.phase = phase;
     root.tabIndex = -1;
     root.setAttribute('role', 'region');

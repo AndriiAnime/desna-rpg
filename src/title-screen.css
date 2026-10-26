@@ -1,0 +1,213 @@
+.start-screen {
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #070b16;
+  color: #eee7d8;
+}
+
+.start-screen__art,
+.start-screen::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.start-screen__art {
+  background: url("/assets/title/ps2-allies-title-space-v1.png") center / cover no-repeat;
+}
+
+.start-screen::after {
+  content: "";
+  background: linear-gradient(0deg, #03060deb, #03060d00 15%);
+}
+
+.start-screen__content {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  width: min(90%, 850px);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.start-screen .start-screen__title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(35px, 4.5vw, 76px);
+  line-height: 1.1;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 1px #03050b, 0 0 22px #03050be6;
+}
+
+.start-screen .start-screen__title-line {
+  display: block;
+  font-size: inherit;
+  color: inherit;
+}
+
+.start-screen[data-title-variant="rebirth"] .start-screen__title-line:first-child {
+  font-size: .5em;
+  line-height: 1.35;
+  letter-spacing: .09em;
+}
+
+.start-screen[data-title-variant="rebirth"] .start-screen__title-line:last-child {
+  font-size: .85em;
+  letter-spacing: .18em;
+}
+
+.start-screen__subtitle {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin: 12px 0 0;
+  font-family: "Desna Roboto Condensed", Arial, sans-serif;
+  font-size: clamp(13px, 1.3vw, 21px);
+  font-weight: 450;
+  line-height: 1.2;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: #c5b39c;
+  text-shadow: 0 2px 5px #000;
+}
+
+.start-screen__subtitle::before,
+.start-screen__subtitle::after {
+  content: "";
+  width: clamp(18px, 3vw, 48px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #a99070);
+}
+
+.start-screen__subtitle::after { transform: rotate(180deg); }
+
+.start-screen__start {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  min-width: 205px;
+  min-height: 46px;
+  margin-top: 24px;
+  padding: 9px 25px;
+  border: 1px solid #b8a58b9c;
+  border-radius: 0;
+  background: #0a101cd6;
+  color: #eee7d8;
+  font-family: "Desna Roboto Condensed", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 450;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.start-screen__start:enabled:hover {
+  background: #29302fe8;
+  border-color: #eee0c7;
+}
+
+.start-screen__arrow {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  line-height: 1;
+  color: #c9b491;
+}
+
+.start-screen__hint {
+  max-width: 340px;
+  color: #eee7d8;
+  background: #080d19d9;
+  padding: 8px;
+  line-height: 1.5;
+}
+.start-screen__hint:empty { display: none; }
+
+.start-screen__footer {
+  position: absolute;
+  right: 26px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  left: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Desna Roboto Condensed", Arial, sans-serif;
+}
+
+.start-screen__variants {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #6b707a;
+}
+
+.start-screen__variants button {
+  min-height: 44px;
+  padding: 8px 2px;
+  border: 0;
+  background: none;
+  color: #a9aab0;
+  font-size: 13px;
+  letter-spacing: .035em;
+  touch-action: manipulation;
+}
+
+.start-screen__variants button[aria-pressed="true"] {
+  color: #e4d4b6;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-color: #ad9570;
+}
+
+.start-screen__review {
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  letter-spacing: .05em;
+  color: #acaeb6;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .start-screen__content { top: 23%; width: 94%; }
+  .start-screen .start-screen__title { font-size: clamp(28px, 7.1vw, 48px); letter-spacing: .025em; }
+  .start-screen[data-title-variant="rebirth"] .start-screen__title-line:first-child { font-size: .64em; }
+  .start-screen[data-title-variant="rebirth"] .start-screen__title-line:last-child { font-size: 1.15em; }
+  .start-screen__subtitle { font-size: 12px; gap: 9px; letter-spacing: .2em; }
+  .start-screen__start { margin-top: 20px; font-size: 14px; min-width: 190px; }
+  .start-screen__footer { left: 12px; right: 12px; flex-direction: column; gap: 0; bottom: max(8px, env(safe-area-inset-bottom)); }
+  .start-screen__variants { gap: 10px; }
+  .start-screen__variants button { font-size: 12px; }
+  .start-screen__review { position: static; font-size: 11px; min-height: 30px; }
+}
+
+@media (max-height: 540px) and (orientation: landscape) {
+  .start-screen { min-height: 360px; }
+  .start-screen__content { top: 19%; }
+  .start-screen .start-screen__title { font-size: clamp(28px, 5vw, 48px); }
+  .start-screen__subtitle { margin-top: 7px; font-size: 11px; }
+  .start-screen__start { margin-top: 12px; min-height: 42px; padding: 6px 18px; font-size: 13px; }
+  .start-screen__footer { bottom: 5px; flex-direction: row; }
+  .start-screen__review { position: absolute; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .start-screen__start { transition: none; }
+}

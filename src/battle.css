@@ -119,3 +119,122 @@
   .battle-rules { display: none; }
   .battle-health { top: 8px; }
 }
+
+/* Alternative branch: the battlefield itself owns every interface layer. */
+.desna-battle { display: block; overflow: hidden; font-family: var(--ui-font-body, "Desna Battle Roboto", Arial, sans-serif); font-style: normal; background: #0b1413; }
+.battle-stage { position: absolute; inset: 0; min-height: 0; }
+.battle-backdrop-blur { position: absolute; inset: -28px; z-index: -3; background: center / cover no-repeat; filter: blur(24px) brightness(.36) saturate(.6); }
+.battle-backdrop { background-size: contain; background-position: center 43%; filter: saturate(.69) brightness(.77); }
+.battle-stage-shade { background: linear-gradient(#0713139c, transparent 28%, transparent 52%, #071111a3 83%, #06100fe8); }
+.battle-figure { bottom: clamp(195px, 31%, 245px); }
+.battle-figure--hero { height: min(54cqh, 40cqw); }
+.battle-figure--enemy { height: min(64.8cqh, 48cqw); }
+.battle-health { top: max(24px, env(safe-area-inset-top)); min-width: 165px; padding: 9px 3px 10px; background: linear-gradient(90deg, #081512b0, #08151200); border: 0; box-shadow: none; text-shadow: 0 2px 5px #000; }
+.battle-health--hero { left: 5%; }
+.battle-health--enemy { right: 5%; background: linear-gradient(270deg, #081512b0, #08151200); }
+.battle-health span { font-size: 15px; letter-spacing: .07em; }
+.battle-health strong { color: #e6eadd; }
+.battle-hp-pips i { height: 4px; background: #283c35; box-shadow: 0 1px 2px #000a; }
+.battle-hp-pips i.is-full { background: #81aa89; }
+.battle-health--enemy .battle-hp-pips i.is-full { background: #b89084; }
+.battle-feedback { top: 10%; padding: 0; background: none; box-shadow: none; z-index: 9; pointer-events: none; }
+.battle-declaration { bottom: 36%; min-width: 185px; background: linear-gradient(90deg, #081413cf, #08141340); border-left: 1px solid #a5bda5; padding: 10px 12px; box-shadow: none; text-shadow: 0 2px 3px #000; }
+.battle-declaration--hero { left: 7%; }
+.battle-declaration--enemy { right: 5%; }
+.battle-window { position: absolute; z-index: 10; inset: auto 0 0; padding: 36px max(5%, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)); margin: 0; background: linear-gradient(transparent, #07120ee8 22%, #06100ff7); clip-path: none; }
+.battle-window-inset { background: none; padding: 0; clip-path: none; }
+.battle-window-body { padding: 0; background: none; clip-path: none; }
+.battle-window-body::after { display: none; }
+.battle-window-heading { margin-bottom: 6px; align-items: center; }
+.battle-window-heading h2 { font: 500 19px/1.2 var(--ui-font-body, "Desna Battle Roboto", sans-serif); letter-spacing: .04em; }
+.battle-location { color: #93aa9f; margin: 0; letter-spacing: .19em; }
+.battle-status { color: #d6dfd3; margin: 0 0 10px; font-size: 14px; }
+.battle-command-form { min-height: 108px; }
+.battle-choice-progress { color: #75887c; }
+.battle-choice-progress .is-active { color: #c9d8c7; }
+.desna-battle legend { font-size: 12px; letter-spacing: .05em; margin-bottom: 8px; }
+.battle-choices { max-width: none; gap: 18px; }
+.battle-choice { padding: 7px 14px; min-height: 58px !important; border: 0; border-top: 1px solid #617d695e; border-bottom: 1px solid #617d69ad; background: linear-gradient(90deg, #173329bb, #17332922); letter-spacing: .03em; }
+.battle-choice:hover:not(:disabled), .battle-choice:focus-visible { background: linear-gradient(90deg, #396746ce, #24463099); border-color: #a8c3a7; }
+.battle-choice.is-selected { background: linear-gradient(90deg, #32543dcc, #1d332888); border-color: #a7c0a0; }
+.battle-back { font-size: 12px !important; margin-top: 3px; }
+.battle-rules, .battle-previous { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.battle-exit, .battle-dialogue-next { border: 0; border-bottom: 1px solid #9db5a0; background: #1a3028b3; font-style: normal; }
+.battle-exit:hover, .battle-dialogue-next:hover { background: #315241d1; }
+.battle-turn-banner { position: absolute; top: 23%; left: 0; right: 0; z-index: 10; padding: 14px 0; background: linear-gradient(90deg, transparent, #071111d4 30%, #071111d4 70%, transparent); pointer-events: none; }
+.battle-commitment { position: absolute; bottom: 16%; left: 8%; right: 8%; margin: 0; font-size: 11px; line-height: 1.5; color: #c7d2c6; text-align: center; text-shadow: 0 2px 3px #000; z-index: 11; }
+.is-resolving .battle-command-form { visibility: hidden; min-height: 48px; max-height: 48px; overflow: hidden; }
+.is-resolving .battle-status { font-size: 16px; }
+.is-resolving .battle-window { padding-top: 24px; }
+.battle-intro { min-height: 154px; }
+.battle-intro .battle-window-heading { justify-content: flex-start; gap: 24px; padding-bottom: 9px; border-bottom: 1px solid #8da6938c; }
+.battle-intro .battle-window-heading h2 { color: #c6dbc8; font-weight: 500; letter-spacing: .07em; }
+.battle-dialogue-line { font-family: var(--ui-font-body, "Desna Battle Roboto", sans-serif); font-style: normal; font-size: clamp(18px, 2.1vw, 24px); line-height: 1.5; margin: 12px 0 18px; max-width: 880px; }
+.battle-dialogue-footer { margin-top: auto; }
+.battle-dialogue-count { color: #9caea3; }
+.battle-dialogue-next { min-width: 130px; padding: 8px 19px; }
+.battle-framing--waist .battle-figure--hero { height: min(125cqh, 100cqw); top: 15%; left: calc(23cqw - min(30cqh, 24cqw)); }
+.battle-framing--waist .battle-figure--enemy { height: min(150cqh, 120cqw); top: 12%; left: calc(73cqw - min(49.5cqh, 39.6cqw)); }
+.battle-preview { position: relative; min-height: 280px; }
+.battle-preview .battle-window-body { padding: 0; }
+.battle-preview .battle-window { padding: 24px 4% 12px; }
+.battle-preview .battle-figure { bottom: 90px; }
+.battle-preview .battle-health { min-width: 100px; padding: 5px 4px; }
+.battle-preview .battle-window-heading { margin-bottom: 7px; }
+.battle-preview .battle-window-heading h2 { font-size: 14px; }
+.battle-preview .battle-choice { min-height: 44px !important; }
+@media (max-width: 650px) {
+  /* Feather the actual 1672 × 941 artwork, not the tall viewport around it.
+     Its aspect ratio stays intact; the dark blurred copy fills the extra height. */
+  .battle-backdrop { inset: auto 0; top: 43%; width: 100%; height: auto; aspect-ratio: 1672 / 941; transform: translateY(-43%); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent); }
+  .battle-health { min-width: 117px; top: max(18px, env(safe-area-inset-top)); }
+  .battle-health--hero { left: 5%; }
+  .battle-health--enemy { right: 5%; }
+  .battle-health span, .battle-health strong { font-size: 12px; }
+  .battle-figure--hero { left: 9%; height: min(47cqh, 49cqw); bottom: 34%; }
+  .battle-figure--enemy { right: 3%; height: min(56.4cqh, 58.8cqw); bottom: 34%; }
+  .battle-window { padding: 32px 5% max(18px, env(safe-area-inset-bottom)); }
+  .battle-window-heading h2 { font-size: 18px; }
+  .battle-status { font-size: 13px; }
+  .battle-choices { gap: 9px; }
+  .battle-choice { padding: 6px 8px; min-height: 55px !important; gap: 6px; }
+  .battle-choice-icon { width: 40px; height: 35px; flex-basis: 40px; }
+  .battle-choice-progress { font-size: 10px; }
+  .battle-declaration { width: 44%; min-width: 0; padding: 7px 8px; bottom: 34%; font-size: 11px; }
+  .battle-declaration--hero { left: 3%; }
+  .battle-declaration--enemy { right: 3%; }
+  .battle-turn-banner { top: 20%; }
+  .battle-commitment { bottom: 22%; font-size: 11px; }
+  .battle-intro { min-height: 175px; }
+  .battle-dialogue-line { font-size: 18px; margin-bottom: 20px; }
+  .battle-intro .battle-window-heading h2 { font-size: 18px; }
+  .battle-framing--waist .battle-figure--hero, .is-dialogue .battle-figure--hero { height: min(125cqh, 155cqw); left: calc(23cqw - min(30cqh, 37.2cqw)); top: 24%; }
+  .battle-framing--waist .battle-figure--enemy, .is-dialogue .battle-figure--enemy { height: min(150cqh, 186cqw); left: calc(78cqw - min(49.5cqh, 61.38cqw)); top: 22%; }
+  .battle-preview .battle-figure { bottom: 90px; }
+}
+@media (max-height: 530px) and (min-width: 651px) {
+  .battle-figure { bottom: 150px; }
+  .battle-figure--hero { height: 46cqh; }
+  .battle-figure--enemy { height: 55.2cqh; }
+  .battle-window { padding-top: 22px; padding-bottom: 8px; }
+  .battle-command-form { min-height: 87px; }
+  .battle-window-body { padding: 0; }
+  .battle-choices { gap: 12px; }
+  .battle-choice { min-height: 45px !important; padding: 3px 10px; }
+  .battle-choice-icon { width: 36px; height: 32px; flex-basis: 36px; }
+  .battle-window-heading h2 { font-size: 16px; }
+  .battle-status { margin-bottom: 5px; font-size: 12px; }
+  .battle-back { min-height: 25px !important; }
+  .battle-health { top: 8px; padding-top: 4px; }
+  .battle-health span, .battle-health strong { font-size: 11px; }
+  .battle-turn-banner { top: 20%; padding: 8px 0; }
+  .battle-turn-label { font-size: 27px; }
+  .battle-declaration { bottom: 40%; }
+  .battle-commitment { bottom: 29%; }
+  .battle-intro { min-height: 120px; }
+  .battle-dialogue-line { margin: 7px 0 8px; font-size: 17px; }
+  .battle-dialogue-next { min-height: 36px; padding: 5px 14px; }
+}
+
+.battle-turn-indicator { position: absolute; top: 78px; right: 5%; z-index: 5; font-size: 11px; letter-spacing: .04em; color: #c8d5ca; text-shadow: 0 2px 4px #000; }
+@media (max-height: 530px) and (min-width: 651px) { .battle-turn-indicator { top: 60px; } }

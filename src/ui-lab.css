@@ -1,0 +1,230 @@
+* { box-sizing: border-box; }
+:root { color-scheme: dark; background: #101513; color: #e9e8de; font-family: "Desna Roboto", Arial, sans-serif; font-synthesis: none; --lab-muted: #acb8ad; --lab-accent: #b6ccab; --lab-border: #35433a; }
+body { margin: 0; }
+button, select, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+button, select { font: inherit; }
+button, a { color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; }
+a { text-decoration: none; }
+button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid #e0d9b5; outline-offset: 5px; }
+button, select { border-radius: 0; }
+.lab-header { max-width: 1456px; padding: 28px 48px; margin: auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--lab-border); gap: 20px; }
+.lab-brand { text-transform: uppercase; letter-spacing: .16em; font-family: "Desna Roboto Condensed", sans-serif; font-size: 17px; font-weight: 600; }
+.lab-brand span { display: block; margin-top: 6px; color: var(--lab-muted); font-weight: 400; font-size: 10px; letter-spacing: .2em; }
+.lab-game-link { display: flex; gap: 28px; align-items: center; font-size: 13px; border-bottom: 1px solid #809483; padding: 10px 0; }
+.lab-game-link span, .lab-primary-link span { color: var(--lab-accent); font-size: 21px; }
+.lab-main { max-width: 1456px; margin: auto; padding: 0 48px; }
+.lab-intro { position: relative; padding: 72px 0 44px; }
+.lab-eyebrow { margin: 0 0 19px; font-size: 11px; letter-spacing: .17em; text-transform: uppercase; color: var(--lab-accent); }
+.lab-intro h1 { font-family: "Desna Roboto Condensed", sans-serif; font-size: clamp(40px, 5vw, 74px); line-height: 1.03; max-width: 850px; margin: 0 0 22px; font-weight: 450; letter-spacing: -.025em; }
+.lab-lead { max-width: 620px; color: var(--lab-muted); font-size: 16px; line-height: 1.65; margin: 0; }
+.lab-intro-line { width: 140px; position: absolute; right: 0; top: 102px; border-top: 1px solid #7d9681; transform: rotate(-45deg); transform-origin: right; }
+.lab-intro-line::after { content: ""; position: absolute; width: 6px; height: 6px; border: 1px solid #c7cdb7; right: 0; top: -4px; background: #101513; }
+.lab-controls { display: grid; grid-template-columns: 1fr 1fr auto; gap: 28px; padding: 23px 0; border-top: 1px solid var(--lab-border); border-bottom: 1px solid var(--lab-border); margin-bottom: 61px; align-items: end; }
+.lab-controls label, .lab-language > span { display: block; color: var(--lab-muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.lab-controls select { margin-top: 9px; display: block; width: 100%; padding: 12px 36px 12px 13px; background: #1c2821; color: #e9e8de; border: 1px solid #3d4d41; font-size: 15px; min-height: 44px; }
+.lab-language > div { display: flex; gap: 2px; margin-top: 9px; }
+.lab-language button { background: transparent; border: 1px solid #3d4d41; color: #9bad9d; min-width: 66px; min-height: 44px; padding: 11px 14px; font-size: 13px; }
+.lab-language button[aria-pressed="true"] { background: #b6c3ac; color: #152018; border-color: #b6c3ac; }
+.lab-section { margin: 0 0 76px; }
+.lab-section-heading { display: flex; gap: 22px; margin-bottom: 26px; align-items: baseline; }
+.lab-section-number { font-size: 13px; color: #7e9684; letter-spacing: .07em; flex-shrink: 0; }
+.lab-section-heading h2 { font-family: "Desna Roboto Condensed", sans-serif; font-weight: 450; font-size: 30px; letter-spacing: -.02em; margin: 0 0 9px; line-height: 1.15; }
+.lab-section-heading p { margin: 0; color: var(--lab-muted); font-size: 14px; line-height: 1.65; max-width: 780px; }
+.lab-font-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.lab-font-card { background: #17211c; border: 1px solid var(--lab-border); min-width: 0; }
+.lab-font-card.is-selected { border-color: #a7b79b; }
+.lab-font-caption { display: flex; align-items: baseline; gap: 13px; padding: 18px 21px; }
+.lab-font-caption > span:first-child { color: #92a794; font-size: 11px; }
+.lab-font-caption h3 { margin: 0; font-size: 15px; font-weight: 500; }
+.lab-font-mark { margin-left: auto; color: #a8b59a; font-size: 12px; }
+.lab-title-art { position: relative; overflow: hidden; aspect-ratio: 16/9; background: var(--title-art) center / cover no-repeat; }
+.lab-title-art::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #090b11a8 0%, #090b1130 46%, transparent 72%); }
+.lab-title-lockup { position: absolute; inset: 12% 4% auto; text-align: center; }
+.lab-franchise { font-family: var(--ui-font-title); font-size: clamp(24px, 3.35vw, 49px); font-weight: var(--ui-font-title-weight); letter-spacing: var(--ui-font-title-spacing); text-shadow: 0 2px 8px #000; margin: 0; text-transform: uppercase; line-height: 1.1; }
+.lab-font-card[data-ui-font="classic"] .lab-franchise { font-size: clamp(24px, 3vw, 44px); }
+.lab-subtitle { font-family: var(--ui-font-body); font-size: clamp(12px, 1.45vw, 20px); letter-spacing: .08em; margin: 10px 0 12px; text-shadow: 0 2px 8px #000; }
+.lab-start-sample { font-family: var(--ui-font-body); display: inline-block; padding-bottom: 4px; border-bottom: 1px solid #acb9a5a6; font-size: 11px; color: #ced9c4; text-shadow: 0 1px 5px #000; }
+.lab-font-description { font-size: 12px; color: var(--lab-muted); line-height: 1.6; margin: 19px 21px 0; min-height: 39px; }
+.lab-bilingual-lines { display: grid; grid-template-columns: 1fr 1fr; margin: 20px 21px 0; border-top: 1px solid var(--lab-border); }
+.lab-bilingual-lines > div { padding: 17px 14px 0 0; min-width: 0; }
+.lab-bilingual-lines > div + div { border-left: 1px solid var(--lab-border); padding-left: 17px; }
+.lab-lang-tag { font-family: "Desna Roboto", sans-serif; display: block; font-size: 9px; letter-spacing: .15em; color: #8da28d; }
+.lab-bilingual-lines p { font-family: var(--ui-font-body); font-size: clamp(16px, 1.65vw, 22px); line-height: 1.5; margin: 9px 0 0; }
+.lab-glyphs { font-family: var(--ui-font-body); font-size: 12px; color: #a1afa1; margin: 17px 21px 21px; letter-spacing: .04em; }
+.lab-select { display: flex; justify-content: space-between; align-items: center; width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--lab-border); padding: 15px 21px; font-size: 12px; color: #d6ddce; min-height: 48px; }
+.lab-select:hover { background: #22352a; }
+.lab-select[aria-pressed="true"] { background: #2c3b2f; }
+.lab-select span { font-size: 19px; color: var(--lab-accent); }
+.lab-note { margin: 20px 0 0; color: #9cac9e; font-size: 12px; line-height: 1.65; max-width: 960px; }
+.lab-dialogue-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.lab-dialogue-frame { aspect-ratio: 1.45; position: relative; overflow: hidden; isolation: isolate; background: #070c0a; font-family: var(--ui-font-body); }
+.lab-dialogue-frame::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--scene-art) 55% 55% / cover no-repeat; }
+.lab-dialogue-frame::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, #02060477, transparent 25%, #03080477); }
+.lab-scene-meta { position: absolute; z-index: 2; left: 17px; right: 17px; top: 15px; display: flex; justify-content: space-between; color: #d4ddcf; text-transform: uppercase; font-size: 9px; letter-spacing: .13em; text-shadow: 0 1px 4px #000; }
+.lab-scene-location { position: absolute; top: 45px; left: 19px; font-size: 11px; display: flex; align-items: center; gap: 10px; text-shadow: 0 1px 4px #000; }
+.lab-moon { display: inline-block; height: 17px; width: 17px; border: 1px solid #d8d9b9; border-radius: 50%; background: linear-gradient(90deg, #d8d9b9 30%, #3a4638 31%); box-shadow: 0 0 8px #e0db9970; }
+.lab-lucky-portrait { position: absolute; width: 34%; left: 10px; bottom: 22%; filter: drop-shadow(2px 5px 5px #0009); }
+.lab-dialogue-panel { position: absolute; z-index: 1; bottom: 0; width: 100%; padding: 16px 24px 13px; color: #f0eee7; background: #0b0c0ee6; border-top: 2px solid #774844; min-height: 32%; }
+.lab-dialogue-panel p { font-size: clamp(16px, 1.6vw, 22px); margin: 8px 0 13px; line-height: 1.45; max-width: 94%; }
+.lab-speaker { font-size: 13px; font-weight: 500; color: #b2c99d; }
+.lab-dialogue-next { display: block; font-family: "Desna Roboto", sans-serif; text-align: right; font-size: 10px; color: #bfcab6; }
+.lab-scene-hero, .lab-scene-blud { position: absolute; object-fit: contain; filter: drop-shadow(0 4px 5px #0008); }
+.lab-scene-hero { height: 98%; left: 4%; bottom: -19%; }
+.lab-scene-blud { height: 108%; width: 67%; right: -3%; bottom: -13%; }
+.lab-dialogue-frame--prebattle .lab-dialogue-panel { border: 0; background: linear-gradient(0deg, #080e10f7 10%, #0a1113ca 74%, #0a111300); padding: 36px 30px 16px; min-height: 35%; }
+.lab-dialogue-frame--prebattle .lab-speaker { color: #e0e6dc; padding-left: 5%; }
+.lab-dialogue-frame--prebattle .lab-dialogue-panel p { text-align: center; max-width: 100%; font-weight: 400; }
+.lab-palette-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.lab-palette-card { background: #1b2420; border: 1px solid var(--lab-border); min-width: 0; display: flex; flex-direction: column; }
+.lab-palette-card.is-selected { border-color: #a7b79b; }
+.lab-palette-card h3 { margin: 20px 19px 9px; font-size: 15px; font-weight: 500; }
+.lab-palette-card > p { color: var(--lab-muted); font-size: 12px; line-height: 1.55; margin: 0 19px 21px; min-height: 38px; }
+.lab-feedback-head { display: grid; grid-template-columns: 1fr 1fr; font-size: 9px; letter-spacing: .13em; color: #8da28d; padding: 0 15px 9px; text-align: center; }
+.lab-feedback-list { background: #101713; padding: 14px 10px 9px; flex: 1; }
+.lab-feedback-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; min-height: 49px; align-items: center; }
+.lab-feedback-pair > div { display: flex; justify-content: center; align-items: center; min-width: 0; }
+.lab-feedback-pair .battle-impact { font-size: clamp(15px, 1.55vw, 22px); }
+.lab-demo-frame { overflow: hidden; isolation: isolate; position: relative; width: 100%; aspect-ratio: 2.05; min-height: 360px; background: #121711; font-family: var(--ui-font-body); }
+.lab-demo-frame::before { content: ""; position: absolute; inset: 0; background: var(--scene-art) center / cover no-repeat; z-index: -2; }
+.lab-demo-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#1019169c, #07100a15 40%, #0b100ccc); z-index: -1; }
+.lab-demo-hp { position: absolute; z-index: 3; top: 23px; display: grid; grid-template-columns: 1fr auto; width: 180px; gap: 8px; color: #f3f0df; text-shadow: 0 2px 4px #000; font-size: 16px; --health: 100%; }
+.lab-demo-hp--hero { left: 27px; }
+.lab-demo-hp--enemy { right: 27px; }
+.lab-demo-hp strong { font-weight: 500; font-size: 14px; }
+.lab-demo-hp i { display: block; grid-column: 1/-1; height: 5px; background: linear-gradient(to right, #a6bd8e var(--health), #16231b var(--health)); box-shadow: 0 1px 4px #0007; transition: background .3s; }
+.lab-demo-hp--enemy i { background: linear-gradient(to right, #be927d var(--health), #301b19 var(--health)); }
+.lab-demo-turn { position: absolute; z-index: 5; top: 23%; left: 15%; width: 70%; display: flex; justify-content: center; pointer-events: none; }
+.lab-demo-actor { position: absolute; z-index: 1; bottom: 20%; height: 59%; width: 30%; display: flex; justify-content: center; }
+.lab-demo-actor--hero { left: 15%; }
+.lab-demo-actor--enemy { right: 12%; height: 68%; }
+.lab-demo-actor > img { position: relative; height: 100%; max-width: 100%; object-fit: contain; filter: drop-shadow(0 3px 3px #0008); }
+.lab-actor-shadow { position: absolute; bottom: -1%; width: 70%; left: 15%; height: 7%; border-radius: 50%; background: #0710098f; filter: blur(3px); }
+.lab-demo-impact { position: absolute; z-index: 6; top: 16%; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.lab-demo-impact .battle-impact { font-size: clamp(25px, 4vw, 55px); }
+.lab-demo-actor--hero.is-striking > img { animation: lab-hero-strike .65s ease-in-out both; }
+.lab-demo-actor--enemy.is-striking > img { animation: lab-enemy-strike .65s ease-in-out both; }
+.lab-demo-actor.is-hit > img { animation: lab-recoil .55s ease-out both; }
+.lab-demo-status { position: absolute; z-index: 7; bottom: 0; inset-inline: 0; padding: 25px 27px 21px; background: linear-gradient(0deg, #101715f5 65%, #10171500); display: flex; gap: 24px; justify-content: space-between; align-items: center; }
+.lab-demo-status p { font-size: 17px; line-height: 1.5; margin: 0; max-width: 700px; }
+.lab-demo-status button { flex-shrink: 0; border: 1px solid #a5b89a; background: #17251dc9; color: #e6eadc; padding: 13px 19px; min-height: 48px; font-size: 14px; }
+.lab-demo-status button:disabled { color: #b9c6b4; border-color: #5a715d; }
+.lab-timeline { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+.lab-timeline li { display: flex; gap: 15px; align-items: center; font-size: 14px; background: #1a241e; border-top: 3px solid transparent; padding: 19px 20px; color: #97a99b; }
+.lab-timeline li + li { border-left: 1px solid #35433a; }
+.lab-timeline li span { font-size: 11px; opacity: .6; }
+.lab-timeline li.is-active { color: #f0eee0; border-top-color: #b6ccab; background: #2d3b2e; }
+.lab-footer { border-top: 1px solid #516153; margin-top: 15px; padding: 39px 0 50px; display: flex; justify-content: space-between; align-items: center; gap: 48px; }
+.lab-footer .lab-eyebrow { margin-bottom: 13px; }
+.lab-footer h2 { margin: 0 0 10px; font-weight: 450; font-size: 27px; font-family: "Desna Roboto Condensed", sans-serif; }
+.lab-footer p:last-child { margin: 0; max-width: 630px; font-size: 13px; line-height: 1.7; color: var(--lab-muted); }
+.lab-primary-link { flex-shrink: 0; padding: 15px 24px; border: 1px solid #a8b59a; display: flex; align-items: center; justify-content: space-between; gap: 45px; font-size: 15px; background: #1c2b20; }
+.lab-live-entry { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 0 0; }
+.lab-live-entry p { margin: 0; color: var(--lab-muted); font-size: 13px; line-height: 1.6; max-width: 610px; }
+.lab-live-entry button { border: 1px solid #879d80; background: #223126; color: #e8eddd; padding: 13px 20px; min-height: 48px; font-size: 13px; flex-shrink: 0; }
+.lab-live-dialog { padding: 0; margin: auto; border: 1px solid #71846d; background: #121913; color: #e9e8de; width: min(1180px, calc(100vw - 40px)); height: min(820px, calc(100dvh - 40px)); max-width: none; max-height: none; overflow: hidden; }
+.lab-live-dialog[open] { display: flex; flex-direction: column; }
+.lab-live-dialog::backdrop { background: #030605de; backdrop-filter: blur(8px); }
+.lab-live-toolbar { padding: 8px 17px; display: flex; justify-content: space-between; align-items: center; gap: 18px; border-bottom: 1px solid #3c5040; flex-shrink: 0; }
+.lab-live-toolbar > span { font-size: 12px; color: #b9cbb5; }
+.lab-live-toolbar button { min-height: 40px; border: 0; background: transparent; color: #e1e5da; font-size: 12px; padding: 9px; }
+.lab-live-toolbar button span { font-size: 20px; margin-left: 15px; }
+.lab-live-host { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+@keyframes lab-hero-strike { 0%, 100% { transform: translateX(0); } 45% { transform: translateX(20%); } }
+@keyframes lab-enemy-strike { 0%, 100% { transform: translateX(0); } 45% { transform: translateX(-20%); } }
+@keyframes lab-recoil { 0%, 100% { transform: translateX(0); } 35% { transform: translateX(12%); filter: brightness(1.8); } }
+@media (min-width: 1500px) { .lab-franchise { font-size: 46px; } }
+@media (max-width: 1000px) {
+  .lab-main { padding: 0 28px; }
+  .lab-header { padding: 23px 28px; }
+  .lab-intro-line { width: 80px; top: 60px; }
+  .lab-intro h1 { max-width: 670px; }
+  .lab-controls { gap: 18px; }
+  .lab-palette-grid { gap: 12px; }
+  .lab-palette-card h3 { margin: 16px 13px 9px; font-size: 13px; }
+  .lab-palette-card > p { margin: 0 13px 18px; font-size: 11px; min-height: 52px; }
+  .lab-feedback-list { padding-inline: 4px; }
+  .lab-feedback-pair .battle-impact { font-size: 17px; }
+  .lab-dialogue-panel { padding: 14px 18px 11px; }
+  .lab-dialogue-panel p { font-size: 17px; margin: 6px 0 9px; }
+  .lab-dialogue-frame { aspect-ratio: 1.25; }
+  .lab-demo-frame { aspect-ratio: 1.8; }
+  .lab-demo-status { padding: 24px 20px 18px; gap: 16px; }
+  .lab-demo-status p { font-size: 15px; }
+  .lab-demo-status button { font-size: 12px; padding: 12px; }
+  .lab-footer { gap: 28px; }
+  .lab-primary-link { gap: 20px; padding: 15px 20px; }
+}
+@media (max-width: 700px) {
+  .lab-main { padding: 0 17px; }
+  .lab-header { padding: 20px 17px; gap: 14px; }
+  .lab-brand { font-size: 13px; letter-spacing: .11em; }
+  .lab-brand span { font-size: 8px; }
+  .lab-game-link { font-size: 10px; gap: 12px; }
+  .lab-game-link span { font-size: 18px; }
+  .lab-intro { padding: 44px 0 30px; }
+  .lab-intro-line { display: none; }
+  .lab-intro h1 { font-size: 44px; max-width: 440px; margin-bottom: 19px; }
+  .lab-eyebrow { font-size: 9px; letter-spacing: .13em; }
+  .lab-lead { font-size: 14px; }
+  .lab-controls { grid-template-columns: 1fr 1fr; gap: 17px 13px; padding: 20px 0; margin-bottom: 37px; }
+  .lab-controls label, .lab-language > span { font-size: 9px; }
+  .lab-controls select { font-size: 12px; padding-left: 10px; padding-right: 16px; }
+  .lab-language { grid-column: 1/-1; display: flex; align-items: center; justify-content: space-between; }
+  .lab-language > div { margin: 0; }
+  .lab-language button { min-height: 38px; padding: 8px 13px; font-size: 11px; min-width: 59px; }
+  .lab-section { margin-bottom: 46px; }
+  .lab-section-heading { gap: 13px; margin-bottom: 20px; }
+  .lab-section-heading h2 { font-size: 25px; }
+  .lab-section-heading p { font-size: 12px; }
+  .lab-section-number { font-size: 11px; }
+  .lab-font-grid { gap: 22px; grid-template-columns: 1fr; }
+  .lab-title-art { aspect-ratio: 16/10; }
+  .lab-title-lockup { top: 13%; }
+  .lab-franchise { font-size: clamp(27px, 7.3vw, 47px); }
+  .lab-font-card[data-ui-font="classic"] .lab-franchise { font-size: clamp(25px, 7vw, 45px); }
+  .lab-subtitle { font-size: 15px; margin: 9px 0 13px; }
+  .lab-font-description { min-height: 0; }
+  .lab-bilingual-lines p { font-size: 18px; }
+  .lab-note { font-size: 11px; }
+  .lab-dialogue-grid { grid-template-columns: 1fr; gap: 20px; }
+  .lab-dialogue-frame { aspect-ratio: 1.15; }
+  .lab-dialogue-panel p { font-size: 19px; }
+  .lab-dialogue-panel { padding: 15px 20px 13px; }
+  .lab-dialogue-panel .lab-speaker { font-size: 13px; }
+  .lab-lucky-portrait { width: 38%; bottom: 25%; }
+  .lab-palette-grid { grid-template-columns: 1fr; gap: 20px; }
+  .lab-palette-card h3 { margin: 20px 21px 10px; font-size: 16px; }
+  .lab-palette-card > p { margin: 0 21px 21px; min-height: 0; font-size: 12px; }
+  .lab-feedback-head { padding-bottom: 12px; }
+  .lab-feedback-list { padding: 14px 12px; }
+  .lab-feedback-pair { min-height: 53px; gap: 8px; }
+  .lab-feedback-pair .battle-impact { font-size: 26px; }
+  .lab-demo-frame { aspect-ratio: .85; min-height: 440px; }
+  .lab-demo-hp { top: 20px; width: 110px; font-size: 13px; gap: 6px; }
+  .lab-demo-hp--hero { left: 17px; }
+  .lab-demo-hp--enemy { right: 17px; }
+  .lab-demo-hp strong { font-size: 11px; }
+  .lab-demo-turn { top: 23%; left: 0; width: 100%; }
+  .lab-demo-actor { height: 47%; bottom: 29%; width: 42%; }
+  .lab-demo-actor--hero { left: 6%; }
+  .lab-demo-actor--enemy { right: 3%; height: 55%; }
+  .lab-demo-impact .battle-impact { font-size: 28px; }
+  .lab-demo-status { flex-direction: column; text-align: center; padding: 32px 18px 18px; gap: 15px; }
+  .lab-demo-status p { min-height: 44px; font-size: 14px; }
+  .lab-demo-status button { min-height: 44px; width: 100%; font-size: 13px; }
+  .lab-timeline { grid-template-columns: 1fr 1fr; }
+  .lab-timeline li { font-size: 12px; padding: 15px 13px; gap: 9px; }
+  .lab-timeline li:nth-child(3) { border-left: 0; }
+  .lab-footer { flex-direction: column; align-items: stretch; padding: 31px 0 36px; gap: 24px; }
+  .lab-footer h2 { font-size: 25px; }
+  .lab-primary-link { font-size: 14px; }
+  .lab-live-entry { flex-direction: column; align-items: stretch; gap: 16px; }
+  .lab-live-dialog { width: 100vw; height: 100dvh; border: 0; }
+  .lab-live-toolbar { padding: 5px 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-demo-actor.is-striking > img, .lab-demo-actor.is-hit > img { animation: none; }
+  .lab-demo-hp i { transition: none; }
+}

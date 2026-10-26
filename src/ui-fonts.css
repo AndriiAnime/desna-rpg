@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "Desna Roboto";
+  src: url("/fonts/roboto/Roboto-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Desna Roboto Condensed";
+  src: url("/fonts/roboto-condensed/RobotoCondensed-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* Scoped variables let a single comparison card override the document preset. */
+:root, [data-ui-font="hybrid"] {
+  --ui-font-body: "Desna Roboto", Arial, sans-serif;
+  --ui-font-title: "Desna Roboto Condensed", "Arial Narrow", sans-serif;
+  --ui-font-title-weight: 600;
+  --ui-font-title-spacing: .07em;
+}
+[data-ui-font="condensed"] {
+  --ui-font-body: "Desna Roboto Condensed", "Arial Narrow", sans-serif;
+  --ui-font-title: "Desna Roboto Condensed", "Arial Narrow", sans-serif;
+  --ui-font-title-weight: 650;
+  --ui-font-title-spacing: .015em;
+}
+[data-ui-font="clean"] {
+  --ui-font-body: "Desna Roboto", Arial, sans-serif;
+  --ui-font-title: "Desna Roboto", Arial, sans-serif;
+  --ui-font-title-weight: 500;
+  --ui-font-title-spacing: -.035em;
+}
+[data-ui-font="classic"] {
+  --ui-font-body: Georgia, "Times New Roman", serif;
+  --ui-font-title: Georgia, "Times New Roman", serif;
+  --ui-font-title-weight: 400;
+  --ui-font-title-spacing: .015em;
+}
