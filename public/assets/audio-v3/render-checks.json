@@ -1,0 +1,79 @@
+[
+  {
+    "mode": "title",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.08526813983917236,
+    "rms": 0.017442689599473652,
+    "referenceRms": 0.036198943282275256,
+    "levelChangeDb": -6.341648808431181,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "clearing",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.13645778596401215,
+    "rms": 0.012409701300162494,
+    "referenceRms": 0.04465738747717574,
+    "levelChangeDb": -11.12263968795915,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "river",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.06898710131645203,
+    "rms": 0.01264860339607461,
+    "referenceRms": 0.03634902270297513,
+    "levelChangeDb": -9.169003269181115,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "mountain",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.09796132147312164,
+    "rms": 0.01844977804716583,
+    "referenceRms": 0.03844813301298067,
+    "levelChangeDb": -6.3776822001255296,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "comedy",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.15126007795333862,
+    "rms": 0.014249167481333824,
+    "referenceRms": 0.028541437649720915,
+    "levelChangeDb": -6.033727078307215,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "battle",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.14961054921150208,
+    "rms": 0.02367955307155007,
+    "referenceRms": 0.0753306414799734,
+    "levelChangeDb": -10.051963289002103,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "effects",
+    "duration": 17,
+    "sampleRate": 22050,
+    "peak": 0.20904310047626495,
+    "rms": 0.014925499507247504,
+    "referenceRms": 0.015788137421679886,
+    "levelChangeDb": -0.4880404687602638,
+    "invalid": 0,
+    "clipped": 0
+  }
+]
