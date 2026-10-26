@@ -1,4 +1,6 @@
-name: Deploy Alpha 2 to GitHub Pages
+# Publication template. Replace be6879b21b3a3dd5f8ccb439617a93945b8d9aaf with the reviewed alternative commit SHA.
+# The root checkout remains the existing Alpha 2 source; no game source is replaced on main.
+name: Deploy Alpha 2 and UI alternative to GitHub Pages
 on:
   push:
     branches: [main]
@@ -17,18 +19,41 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out preserved root
+        uses: actions/checkout@v4
+      - name: Check out reviewed alternative
+        uses: actions/checkout@v4
+        with:
+          ref: be6879b21b3a3dd5f8ccb439617a93945b8d9aaf
+          path: alternative-source
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+          cache-dependency-path: |
+            package-lock.json
+            alternative-source/package-lock.json
+      - name: Install baseline dependencies
+        run: npm ci
+      - name: Test baseline
+        run: npm test
+      - name: Build baseline
+        run: npm run build
+      - name: Install alternative dependencies
+        working-directory: alternative-source
+        run: npm ci
+      - name: Test alternative
+        working-directory: alternative-source
+        run: npm test
+      - name: Build alternative
+        working-directory: alternative-source
+        run: npm run build
+      - name: Package both versions and UI Kit
+        run: node alternative-source/scripts/package-pages.mjs dist alternative-source/dist _site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
