@@ -1,0 +1,65 @@
+[
+  {
+    "mode": "title",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.15505929291248322,
+    "rms": 0.03619945126673789,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "clearing",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.2756888270378113,
+    "rms": 0.04465806722469046,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "river",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.1499170958995819,
+    "rms": 0.03634956657888377,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "mountain",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.16142046451568604,
+    "rms": 0.03844872787892184,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "comedy",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.16138797998428345,
+    "rms": 0.028541873030878545,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "battle",
+    "duration": 24,
+    "sampleRate": 22050,
+    "peak": 0.38598430156707764,
+    "rms": 0.0753317898142499,
+    "invalid": 0,
+    "clipped": 0
+  },
+  {
+    "mode": "effects",
+    "duration": 15,
+    "sampleRate": 22050,
+    "peak": 0.20751985907554626,
+    "rms": 0.01578839478841999,
+    "invalid": 0,
+    "clipped": 0
+  }
+]
