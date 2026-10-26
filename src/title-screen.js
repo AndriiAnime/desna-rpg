@@ -1,4 +1,5 @@
 import "./title-screen.css";
+import { mountStarTitleBackground } from './star-title-background.js';
 
 const UK_TITLES = {
   unmourned: { name: "Невідспівані", lines: ["Невідспівані"] },
@@ -18,6 +19,7 @@ export function mountTitleScreen(host, { language = "uk" } = {}) {
   const heading = host.querySelector("#game-title");
   const buttons = [...host.querySelectorAll("[data-title-option]")];
   const controller = new AbortController();
+  const background = mountStarTitleBackground(host.querySelector('.start-screen__art'), { visibilityHost: host });
 
   function selectTitle(variant, updateURL = false) {
     const key = Object.hasOwn(TITLES, variant) ? variant : "unmourned";
@@ -58,5 +60,5 @@ export function mountTitleScreen(host, { language = "uk" } = {}) {
     }, { signal: controller.signal });
   }
   window.addEventListener("popstate", syncURL, { signal: controller.signal });
-  return { destroy: () => controller.abort() };
+  return { destroy: () => { controller.abort(); background.destroy(); } };
 }

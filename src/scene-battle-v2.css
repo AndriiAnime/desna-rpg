@@ -114,7 +114,7 @@
 .demo-battle-v2 .cutin-lucky .demo-cutin-label { color: #d9edbc; }
 .demo-battle-v2 .cutin-heal .demo-cutin-label { color: #cce9ba; }
 .demo-battle-v2 .cutin-heal .demo-cutin-art { filter: drop-shadow(0 0 18px #b5e6aa35); }
-.demo-battle-v2 .cutin-tail .demo-cutin-art { animation: cutin-tail-sweep .48s ease-out both; }
+.demo-battle-v2 .cutin-tail .demo-cutin-art { left: 12%; width: 76%; height: 55%; animation: cutin-tail-sweep .48s ease-out both; }
 .demo-battle-v2 .cutin-charm .demo-cutin-shade { background: linear-gradient(90deg, #05080ce8, #090813aa 55%, #080c1040); }
 .demo-battle-v2 .cutin-charm .demo-cutin-art { left: 9%; width: 55%; height: 56%; bottom: 27%; }
 .demo-battle-v2 .cutin-smith { display: block; height: 100%; width: auto; aspect-ratio: 798/724; background-repeat: no-repeat; background-size: 272.18% 100%; background-position: 53.13% 0; filter: drop-shadow(0 4px 7px #0009); }

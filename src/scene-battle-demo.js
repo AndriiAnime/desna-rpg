@@ -5,6 +5,7 @@ import { sceneAsset, sheetSprite } from './scene-visuals.js';
 import { dialogueSkinMarkup } from './dialogue-skins.js';
 import { amuletMarkup } from './location-amulets.js';
 import { mapHeroMarkup, mountMapSprites } from './scene-map-sprites.js';
+import { ABILITY_ART } from './scene-assets.js';
 import './scene-battle-v2.css';
 
 /** Cancellable presentation of the same hero-first rules used by the game. */
@@ -86,8 +87,7 @@ export function mountSceneBattle(host, { enemy = 'blud', unlocks = {}, language 
   }
   function showSummon(ability, label = '') {
     const summon = host.querySelector('.demo-cutin');
-    const sources = { lucky: 'scenes/v3/lucky-shield.png', heal: 'scenes/v3/apprentice-cast.png', tail: 'scenes/v3/rusalka-battle.png' };
-    const art = ability === 'charm' ? `<span class="cutin-smith" role="img" aria-label="${t('Коваль', 'Blacksmith')}" style="background-image:url('${sceneAsset('scenes/smith-reactions-v1.png')}')"></span>` : `<img src="${sceneAsset(sources[ability])}" alt="${zone(ability)}">`;
+    const art = `<img src="${sceneAsset(ABILITY_ART[ability])}" alt="${zone(ability)}">`;
     const title = label || (ability === 'lucky' ? t('ЗАБЛОКОВАНО', 'BLOCKED') : zone(ability));
     summon.innerHTML = `<div class="demo-cutin-shade"></div><div class="demo-cutin-art">${art}${ability === 'charm' ? '<span class="cutin-sparkles" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i><i>✧</i><i>✦</i></span>' : ''}</div><strong class="demo-cutin-label">${title}</strong>`;
     summon.className = `demo-cutin cutin-${ability}`; summon.hidden = false;

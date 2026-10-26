@@ -1,0 +1,14 @@
+.scene-stage.is-loading { background: #090f0d; }
+.scene-loader { position: absolute; inset: 0; z-index: 35; display: grid; place-content: center; justify-items: center; gap: 16px; padding: 30px; text-align: center; color: #e6e9dd; background: radial-gradient(ellipse at 50% 45%, #25392c 0, #101d17 40%, #080e0c 80%); }
+.scene-loader__mark { width: 64px; height: 64px; border: 1px solid #8caa7855; border-radius: 50%; display: grid; place-items: center; color: #b6c8a4; font-size: 32px; box-shadow: 0 0 32px #b6c8a418; animation: loading-breathe 2s ease-in-out infinite; }
+.scene-loader h3 { font: 400 clamp(20px, 3cqw, 30px)/1.3 "Desna Roboto", sans-serif; margin: 4px 0 0; }
+.scene-loader p { margin: 0; color: #b2bfac; font-size: 13px; max-width: 330px; line-height: 1.6; }
+.scene-loader progress { width: min(280px, 60vw); height: 5px; border: 0; appearance: none; background: #354235; border-radius: 2px; overflow: hidden; }
+.scene-loader progress::-webkit-progress-bar { background: #354235; }
+.scene-loader progress::-webkit-progress-value { background: #b4c99a; transition: width .18s; }
+.scene-loader progress::-moz-progress-bar { background: #b4c99a; }
+.scene-loader__count { font-variant-numeric: tabular-nums; font-size: 12px; letter-spacing: .08em; color: #c4ceb9; }
+.scene-loader button { padding: 11px 24px; margin-top: 10px; border: 1px solid #9bae87; color: #e6e9dd; background: #263a2c; cursor: pointer; }
+.scene-loader button:focus-visible { outline: 2px solid #e6e9dd; outline-offset: 4px; }
+@keyframes loading-breathe { 50% { opacity: .45; transform: scale(.93); } }
+@media(prefers-reduced-motion: reduce) { .scene-loader__mark { animation: none; } }

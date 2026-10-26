@@ -2,8 +2,12 @@ import './ui-fonts.css';
 import './scene-workshop.css';
 import './scene-revision-v2.css';
 import './scene-revision-v3.css';
+import './scene-loading.css';
 import { mountExploration } from './scene-exploration.js';
-import { mountMapSprites } from './scene-map-sprites.js';
+import { mountMapSprites, preloadMapSprites } from './scene-map-sprites.js';
+import { createAssetPreloader } from './asset-preloader.js';
+import { SCENE_ASSETS, MAP_ASSET_GROUPS, assetGroupForScene } from './scene-assets.js';
+import { mountStarTitleBackground } from './star-title-background.js';
 import { CHAPTERS, SPEAKERS, RIDDLES, LIBRARY_ENTRIES, FOLKLORE_SOURCE, NG_PLUS_DIALOGUES } from './content/campaign-scenes.js';
 import { dialogueSkinMarkup } from './dialogue-skins.js';
 import { sceneVisualMarkup, sceneAsset, sheetSprite, allyPortrait, grandfather, escapeHTML as esc } from './scene-visuals.js';
@@ -20,7 +24,9 @@ let skin = ['veil','drift','orbit'].includes(query.get('dialogue')) ? query.get(
 let chapterIndex = Math.max(0,CHAPTERS.findIndex(chapter => chapter.id === query.get('chapter'))), beatIndex = 0;
 let typingTimer, printed = 0, fullText = '', pendingTimer, transitionTimer, battle, sceneController, busy = false, mode = 'scene';
 let completed = false, newGamePlus = false, soundStarted = false;
-let riddlesSolved = 0, disposeMapSprites;
+let riddlesSolved = 0, disposeMapSprites, titleBackground;
+const sceneImages = createAssetPreloader();
+let mapAssetsReady = false;
 const approachedNPCs = new Set();
 const locationTheme = () => chapterIndex >= 7 && chapterIndex <= 9 ? 'mountain' : chapterIndex >= 4 && chapterIndex <= 6 ? 'river' : 'clearing';
 const musicMode = () => currentChapter().id === 'smith' && beatIndex >= 1 && beatIndex <= 7 ? 'comedy' : currentChapter().id === 'intro' ? 'title' : locationTheme();
@@ -38,7 +44,7 @@ const currentBeat = () => chapterBeats()[beatIndex];
 const names = value => translated(SPEAKERS[value]) || value;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function shell() {
+function shell({ menu = playerMode } = {}) {
   document.documentElement.lang = language;
   document.body.classList.toggle('player-mode',playerMode);
   document.title = t('Невідспівані — майстерня сцен','The Unmourned — scene workshop');
@@ -52,7 +58,7 @@ function shell() {
   app.querySelector('#dialogue-skin').addEventListener('change', event => {skin=event.target.value;updateURL();if(mode==='scene')renderBeat();});
   app.querySelectorAll('.music-review audio').forEach(player=>player.addEventListener('play',()=>{app.querySelectorAll('.music-review audio').forEach(other=>{if(other!==player)other.pause();});audio.setMuted(true).then(updateSoundButton);}));
   updateSoundButton();
-  renderBeat();
+  if(menu)renderMenu();else renderBeat();
 }
 function updateSoundButton() {
   const enabled=soundStarted&&!audio.muted,button=app.querySelector('[data-action="audio"]');
@@ -66,7 +72,45 @@ function updateURL() {
 }
 function cleanup() {
   clearInterval(typingTimer);clearTimeout(pendingTimer);clearTimeout(transitionTimer);
-  sceneController?.abort();disposeMapSprites?.();disposeMapSprites=null;battle?.destroy();battle=null;busy=false;const skip=app.querySelector('[data-action=skip-battle]');if(skip)skip.disabled=true;const status=app.querySelector('.skip-status');if(status)status.textContent='';
+  sceneController?.abort();titleBackground?.destroy();titleBackground=null;disposeMapSprites?.();disposeMapSprites=null;battle?.destroy();battle=null;busy=false;const skip=app.querySelector('[data-action=skip-battle]');if(skip)skip.disabled=true;const status=app.querySelector('.skip-status');if(status)status.textContent='';
+}
+
+async function prepareStage(group, signal, retry) {
+  const files = SCENE_ASSETS[group].map(sceneAsset);
+  const needsMap = MAP_ASSET_GROUPS.has(group);
+  if (sceneImages.ready(files) && (!needsMap || mapAssetsReady)) { sceneImages.retain(files); return true; }
+  const stage = app.querySelector('.scene-stage');
+  stage.className = 'scene-stage is-loading';
+  stage.setAttribute('aria-busy', 'true');
+  const label = { intro:t('До світанку','Before dawn'), clearing:t('Наддеснянська галявина','Desna Glade'), river:t('Берег Десни','Desna riverbank'), mountain:t('Курган предків','Ancestral mound'), credits:t('Після світанку','After dawn'), library:t('Бібліотека','Library') }[group];
+  stage.innerHTML = `<div class="scene-loader" role="status"><span class="scene-loader__mark" aria-hidden="true">✧</span><h3>${label}</h3><p>${t('Готуємо зображення…','Preparing the scene…')}</p><progress max="100" value="0" aria-label="${t('Завантаження','Loading')}"></progress><span class="scene-loader__count" aria-hidden="true">0%</span></div>`;
+  let imageCount = 0, mapCount = 0, finished = false;
+  const total = files.length + (needsMap ? 1 : 0);
+  const update = () => {
+    if(signal.aborted||finished)return;
+    const percentage = Math.floor((imageCount + mapCount) / total * 100);
+    stage.querySelector('progress').value = percentage;
+    stage.querySelector('.scene-loader__count').textContent = `${percentage}%`;
+  };
+  try {
+    await Promise.all([
+      sceneImages.prepare(files, {signal,onProgress:done=>{imageCount=done;update();}}),
+      needsMap ? preloadMapSprites().then(()=>{mapAssetsReady=true;mapCount=1;update();}) : Promise.resolve(),
+    ]);
+    finished=true;
+    if(signal.aborted)return false;
+    sceneImages.retain(files);
+    stage.setAttribute('aria-busy','false');
+    return true;
+  } catch(error) {
+    finished=true;
+    if(signal.aborted)return false;
+    console.error('Scene assets could not load',error);
+    stage.setAttribute('aria-busy','false');
+    stage.innerHTML=`<div class="scene-loader" role="alert"><span class="scene-loader__mark" aria-hidden="true">✧</span><h3>${label}</h3><p>${t('Не вдалося завантажити всі зображення. Перевір підключення й спробуй ще раз.','Some images could not be loaded. Check your connection and try again.')}</p><button type="button" data-asset-retry>${t('Спробувати ще раз','Try again')}</button></div>`;
+    stage.querySelector('[data-asset-retry]').addEventListener('click',event=>{event.stopPropagation();retry();},{once:true,signal});
+    return false;
+  }
 }
 function updateHeader() {
   app.querySelector('#chapter-number').textContent = `${t('СЦЕНА','SCENE')} ${String(chapterIndex+1).padStart(2,'0')}`;
@@ -96,8 +140,13 @@ function portrait(speaker) {
   if(['smith','lesovyk','apprentice'].includes(speaker))return allyPortrait(speaker);
   return speaker==='rusalka' ? `<img src="${sceneAsset('scenes/v2/rusalka-win.png')}" alt="${names(speaker)}">` : '';
 }
-function renderBeat() {
-  cleanup();mode='scene';sceneController=new AbortController();
+async function renderBeat() {
+  cleanup();mode='loading';busy=true;sceneController=new AbortController();
+  const signal=sceneController.signal;
+  updateHeader();updateURL();
+  if(currentChapter().id==='menu'){renderMenu();return;}
+  if(!await prepareStage(assetGroupForScene(currentChapter().id,currentBeat().visual),signal,renderBeat)||signal.aborted)return;
+  mode='scene';busy=false;
   const beat=currentBeat();
   if(beat.unlock)unlocks[beat.unlock]=true;
   if(beat.unlock==='weight')unlocks.charm=true;
@@ -135,14 +184,14 @@ function transitionTo(next) {
 }
 function nextBeat() {
   const leavingIntro = currentChapter().id === 'intro' && beatIndex === chapterBeats().length - 1;
-  const proceed = () => {
+  const proceed = async () => {
     if(beatIndex<chapterBeats().length-1)beatIndex++;
     else {
       chapterIndex=Math.min(CHAPTERS.length-1,chapterIndex+1);beatIndex=0;
       while(newGamePlus && ['tutorial','river','smith'].includes(currentChapter().id))chapterIndex++;
     }
-    renderBeat();
-    if(leavingIntro&&!reducedMotion)app.querySelector('.scene-stage').classList.add('scene-enter');
+    await renderBeat();
+    if(leavingIntro&&!reducedMotion&&mode==='scene')app.querySelector('.scene-stage').classList.add('scene-enter');
   };
   if(leavingIntro)transitionTo(proceed);else proceed();
 }
@@ -201,7 +250,9 @@ function selectChapter(id) {
 }
 function renderMenu() {
   cleanup();mode='menu';audio.setMode('title');const stage=app.querySelector('.scene-stage');stage.className='scene-stage';
-  stage.innerHTML=`${sceneVisualMarkup('menu',language)}<div class="preview-title-menu"><h2>${t('Невідспівані','The Unmourned')}</h2><p>${t('Прах над Десною','Ashes over the Desna')}</p><div class="title-menu-options"><button data-menu="start">${t('Почати гру','Start game')} <span>→</span></button><button data-menu="plus" aria-disabled="${!completed}">${t('Нова гра+','New Game+')} <span>${completed?'→':'♙'}</span></button><button data-menu="library" aria-disabled="${!completed}">${t('Бібліотека','Library')} <span>${completed?'→':'♙'}</span></button></div><p class="menu-hint" aria-live="polite">${completed?t('Доступ відкрито після проходження.','Unlocked after completing the journey.'):t('Нова гра+ та бібліотека відкриються після проходження.','New Game+ and the Library unlock after completion.')}</p></div>`;
+  stage.setAttribute('aria-busy','false');
+  stage.innerHTML=`<div class="star-title-background"></div><div class="preview-title-menu"><h2>${t('Невідспівані','The Unmourned')}</h2><p>${t('Прах над Десною','Ashes over the Desna')}</p><div class="title-menu-options"><button data-menu="start">${t('Почати гру','Start game')} <span>→</span></button><button data-menu="plus" aria-disabled="${!completed}">${t('Нова гра+','New Game+')} <span>${completed?'→':'♙'}</span></button><button data-menu="library" aria-disabled="${!completed}">${t('Бібліотека','Library')} <span>${completed?'→':'♙'}</span></button></div><p class="menu-hint" aria-live="polite">${completed?t('Доступ відкрито після проходження.','Unlocked after completing the journey.'):t('Нова гра+ та бібліотека відкриються після проходження.','New Game+ and the Library unlock after completion.')}</p></div>`;
+  titleBackground=mountStarTitleBackground(stage.querySelector('.star-title-background'),{visibilityHost:stage});
   stage.querySelectorAll('[aria-disabled="true"]').forEach(button=>{button.title=t('Ця опція стане доступна після проходження гри.','This option becomes available after completing the game.');button.addEventListener('focus',()=>stage.querySelector('.menu-hint').textContent=button.title);});
   stage.querySelectorAll('[data-menu]').forEach(button=>button.addEventListener('click',()=>{
     if(button.getAttribute('aria-disabled')==='true'){stage.querySelector('.menu-hint').textContent=button.title;return;}
@@ -217,8 +268,10 @@ function libraryArt(id, early=false) {
   if(id==='grandfather')return grandfather(early?0:2);
   return sheetSprite(id==='lesovyk'?'elder':id);
 }
-function renderLibrary(id='hero',early=false) {
-  mode='library';const entry=LIBRARY_ENTRIES.find(item=>item.id===id)||LIBRARY_ENTRIES[0],stage=app.querySelector('.scene-stage');stage.className='scene-stage library-stage';
+async function renderLibrary(id='hero',early=false) {
+  cleanup();mode='loading';busy=true;sceneController=new AbortController();const signal=sceneController.signal;
+  if(!await prepareStage('library',signal,()=>renderLibrary(id,early))||signal.aborted)return;
+  mode='library';busy=false;const entry=LIBRARY_ENTRIES.find(item=>item.id===id)||LIBRARY_ENTRIES[0],stage=app.querySelector('.scene-stage');stage.className='scene-stage library-stage';
   stage.innerHTML=`<section class="scene-library"><div class="library-topline"><span>${t('БІБЛІОТЕКА','LIBRARY')}</span><button data-library-menu>← ${t('Меню','Menu')}</button></div><nav class="library-nav">${LIBRARY_ENTRIES.map(item=>`<button data-library-id="${item.id}" aria-current="${item.id===entry.id}">${esc(translated(item.name))}</button>`).join('')}</nav><div class="library-detail"><div class="library-art">${libraryArt(entry.id,early)}</div><div class="library-copy"><p class="section-kicker">${t('ІСТОРІЯ ОБРАЗУ','BEHIND THE CHARACTER')}</p><h2>${esc(translated(entry.name))}</h2><h3>${t('Фольклорне джерело','Folklore source')}</h3><p>${esc(translated(entry.folklore))}</p><h3>${t('Наша інтерпретація','Our interpretation')}</h3><p>${esc(translated(entry.adaptation))}</p>${entry.source?`<a href="${entry.source.url}" target="_blank" rel="noopener">${translated(entry.source.author)}, ${entry.source.year} · ${t('с.','pp.')} ${entry.source.pages} ↗</a>`:''}<button data-library-version>${early?t('Поточний образ','Current design'):t('Ранній образ / варіант','Early design / variant')}</button></div></div><details class="library-cast"><summary>${t('Перші ескізи персонажів','First character sketches')}</summary><img src="${sceneAsset('scenes/designs/cast-first.png')}" alt="${t('Перший склад персонажів на лінійованому тлі','First character lineup on a ruled background')}"><img src="${sceneAsset('scenes/designs/cast-full.png')}" alt="${t('Розширений склад персонажів','Expanded character lineup')}"></details><p class="library-source">${esc(translated(FOLKLORE_SOURCE.context))}</p></section>`;
   stage.querySelector('[data-library-menu]').addEventListener('click',renderMenu);stage.querySelector('[data-library-version]').addEventListener('click',()=>renderLibrary(entry.id,!early));stage.querySelectorAll('[data-library-id]').forEach(button=>button.addEventListener('click',()=>renderLibrary(button.dataset.libraryId)));
 }
@@ -236,7 +289,7 @@ app.addEventListener('click',event=>{
   if(action==='previous'&&beatIndex>0){cleanup();beatIndex--;renderBeat();}
   if(action==='replay'){cleanup();approachedNPCs.clear();beatIndex=0;if(currentChapter().id==='mountain')riddlesSolved=0;renderBeat();}
   if(action==='menu')renderMenu();
-  if(action==='language'){const wasMenu=mode==='menu';cleanup();language=language==='uk'?'en':'uk';shell();if(wasMenu)renderMenu();}
+  if(action==='language'){const wasMenu=mode==='menu';cleanup();language=language==='uk'?'en':'uk';shell({menu:wasMenu});}
   if(action==='audio'){app.querySelectorAll('.music-review audio').forEach(player=>player.pause());const shouldMute=soundStarted&&!audio.muted;soundStarted=true;audio.setMuted(shouldMute).then(updateSoundButton);}
 });
 function unlockSound(){if(!soundStarted){soundStarted=true;audio.unlock().then(updateSoundButton);}}
@@ -245,4 +298,3 @@ document.addEventListener('keydown',event=>{
 });
 window.addEventListener('pagehide',()=>{cleanup();audio.destroy();});
 shell();
-if(playerMode)renderMenu();

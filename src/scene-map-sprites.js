@@ -1,23 +1,29 @@
 import { createHeroIdle, advanceHeroIdle, animationFrameAt } from './domain/idle-behavior.js';
+import { loadDecodedImage } from './asset-preloader.js';
 
 const root = `${import.meta.env.BASE_URL}assets/`;
 let assetsPromise;
-const loadImage = src => new Promise((resolve, reject) => {
-  const image = new Image(); image.onload = () => resolve(image); image.onerror = reject; image.src = src;
-});
+const loadImage = loadDecodedImage;
+async function loadConfig(file) {
+  const response = await fetch(root + file, { signal: AbortSignal.timeout(30000) });
+  if (!response.ok) throw new Error(`Sprite configuration could not load: ${file}`);
+  return response.json();
+}
 function assets() {
   return assetsPromise ||= Promise.all([
-    fetch(`${root}map-sprites/manifest.json`).then(r => r.json()),
-    fetch(`${root}map-sprites/idle-candidates-v1.json`).then(r => r.json()),
-    fetch(`${root}map-sprites/character-states-v1.json`).then(r => r.json()),
+    loadConfig('map-sprites/manifest.json'),
+    loadConfig('map-sprites/idle-candidates-v1.json'),
+    loadConfig('map-sprites/character-states-v1.json'),
   ]).then(async ([manifest, idle, states]) => {
     const walk = manifest.actors.find(a => a.id === 'hero');
     const configs = { heroWalk: { ...walk, file: `map-sprites/${walk.file}`, frameRate: 4.9 },
       heroWalkNE: { ...states.entries.heroWalkNE, frameRate: 4.9 }, ...idle.entries };
     const entries = await Promise.all(Object.entries(configs).filter(([id]) => id.startsWith('hero')).map(async ([id, config]) => [id, { ...config, image: await loadImage(root + config.file) }]));
     return Object.fromEntries(entries);
-  });
+  }).catch(error => { assetsPromise = undefined; throw error; });
 }
+
+export const preloadMapSprites = () => assets();
 
 export const mapHeroMarkup = () => '<canvas class="map-hero-pixel" width="112" height="120" role="img" aria-label="Герой / Hero"></canvas>';
 
