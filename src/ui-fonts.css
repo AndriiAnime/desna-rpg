@@ -14,7 +14,13 @@
 }
 
 /* Scoped variables let a single comparison card override the document preset. */
-:root, [data-ui-font="hybrid"] {
+:root, [data-ui-font="heritage"] {
+  --ui-font-body: "Desna Roboto", Arial, sans-serif;
+  --ui-font-title: Georgia, "Times New Roman", serif;
+  --ui-font-title-weight: 400;
+  --ui-font-title-spacing: .015em;
+}
+[data-ui-font="hybrid"] {
   --ui-font-body: "Desna Roboto", Arial, sans-serif;
   --ui-font-title: "Desna Roboto Condensed", "Arial Narrow", sans-serif;
   --ui-font-title-weight: 600;

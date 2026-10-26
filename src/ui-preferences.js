@@ -4,8 +4,8 @@ export function readUIPreferences(search = window.location.search) {
   const query = new URLSearchParams(search);
   return {
     language: choice(query.get('lang'), ['uk', 'en'], 'uk'),
-    font: choice(query.get('font'), ['condensed', 'clean', 'classic', 'hybrid'], 'hybrid'),
-    feedback: choice(query.get('feedback'), ['reference', 'muted', 'outline'], 'outline'),
+    font: choice(query.get('font'), ['condensed', 'clean', 'classic', 'hybrid', 'heritage'], 'heritage'),
+    feedback: choice(query.get('feedback'), ['reference', 'muted', 'outline'], 'reference'),
   };
 }
 

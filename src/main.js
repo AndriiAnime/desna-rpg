@@ -21,6 +21,14 @@ applyInterfaceCopy();
 const titleScreen = mountTitleScreen($("#title-screen"), { language: UI_PREFERENCES.language });
 const dialog = $("#story-dialog"), host = $("#game-canvas"), pauseDialog = $("#pause-dialog");
 const audio = createAudio();
+audio.setMode("title");
+function onAudioGesture(event) {
+  void audio.unlock();
+  // Battle buttons already emit their own sound through onSound.
+  if (event.type === "pointerdown" && event.target.closest("button, [role=button]") && !event.target.closest("#battle-host")) audio.sound("click");
+}
+document.addEventListener("pointerdown", onAudioGesture);
+document.addEventListener("keydown", onAudioGesture);
 const clearedWorld = { ...CLEARING, enemy: null };
 let state = createClearingState(CLEARING);
 let progress = { rockHintSeen: false, enemyDefeated: false };
@@ -77,6 +85,7 @@ function renderDialogPage() {
   if (!typing) { visual.textContent = text; return; }
   typingTimer = setInterval(() => {
     visual.textContent = text.slice(0, ++length);
+    if (text[length - 1]?.trim()) audio.sound("type");
     if (length >= text.length) { clearInterval(typingTimer); typing = false; }
   }, 24);
 }
@@ -201,7 +210,7 @@ async function beginBattle() {
   } finally {
     cleanup?.();
     if (!disposed) {
-      screen="world"; $("#game-screen").dataset.scene="world"; audio.setMode("field");
+      screen="world"; $("#game-screen").dataset.scene="world"; audio.setMode("clearing");
       $("#battle-host").hidden=true; $("#exploration-view").hidden=false;
       $("#journal-button").disabled=false; $("#home-link").removeAttribute("aria-disabled");
       stopWalking(); scene.notePlayerActivity(); resizeGame(); updatePause(); host.focus({preventScroll:true}); window.scrollTo(0,0);
@@ -236,7 +245,7 @@ function resetWalk() {
 }
 $("#start-button").addEventListener("click",()=>{
   if(loadFailed){location.reload();return;} if(!ready)return;
-  audio.unlock();screen="world";$("#title-screen").hidden=true;$("#game-screen").hidden=false;
+  audio.setMode("clearing");audio.unlock();screen="world";$("#title-screen").hidden=true;$("#game-screen").hidden=false;
   resizeGame();resetWalk();window.scrollTo(0,0);showDialog(localizedIntro,t.go);
 });
 $("#dialog-close").addEventListener("click",()=>{
@@ -253,12 +262,13 @@ pauseDialog.addEventListener("close",()=>{stopWalking();scene.notePlayerActivity
 $("#restart-walk").addEventListener("click",()=>{if(screen === "world"){pauseDialog.close();resetWalk();host.focus({preventScroll:true});}});
 $("#home-link").addEventListener("click",event=>{
   event.preventDefault();if(screen!=="world")return;
-  stopWalking();screen="title";pauseDialog.close();updatePause();$("#game-screen").hidden=true;$("#title-screen").hidden=false;$("#start-button").focus();
+  stopWalking();screen="title";audio.setMode("title");pauseDialog.close();updatePause();$("#game-screen").hidden=true;$("#title-screen").hidden=false;$("#start-button").focus();
 });
 function onBlur(){stopWalking();}
 function onVisibility(){stopWalking();updatePause();}
 window.addEventListener("blur",onBlur);document.addEventListener("visibilitychange",onVisibility);
 if(import.meta.hot)import.meta.hot.dispose(()=>{
   disposed=true;observer.disconnect();mapVisibility.disconnect();window.removeEventListener("blur",onBlur);document.removeEventListener("visibilitychange",onVisibility);
+  document.removeEventListener("pointerdown",onAudioGesture);document.removeEventListener("keydown",onAudioGesture);
   clearTimeout(feedbackTimer);clearInterval(typingTimer);input.destroy();titleScreen.destroy();battle?.destroy();audio.destroy();game.destroy(true);
 });

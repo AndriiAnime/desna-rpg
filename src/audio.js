@@ -1,82 +1,107 @@
-/** Small original synthesized score. No audio downloads, samples, or external player. */
+import { MUSIC_THEMES, MUSIC_MIX, musicBar, normalizeMusicMode } from './content/music-score.js';
+import { createSynth } from './audio-engine.js';
+
+/** Original six-scene score and synthesized effects. Recordings stay outside the game. */
 export function createAudio() {
-  let context, master, timer, nextBeat = 0, beat = 0, mode = "field", muted = false;
-  const voices = new Set();
-  try { muted = localStorage.getItem("desna.audio.muted") === "true"; } catch { /* private mode */ }
-  const frequency = (note) => 440 * 2 ** ((note - 69) / 12);
-  function tone(note, at, duration, volume = .07, type = "sine") {
-    if (!context || muted || context.state !== "running") return;
-    const oscillator = context.createOscillator();
-    const envelope = context.createGain();
-    oscillator.type = type;
-    oscillator.frequency.setValueAtTime(frequency(note), at);
-    envelope.gain.setValueAtTime(0, at);
-    envelope.gain.linearRampToValueAtTime(volume, at + .025);
-    envelope.gain.exponentialRampToValueAtTime(.0001, at + duration);
-    oscillator.connect(envelope).connect(master);
-    voices.add(oscillator);
-    oscillator.onended = () => { voices.delete(oscillator); oscillator.disconnect(); envelope.disconnect(); };
-    oscillator.start(at); oscillator.stop(at + duration + .03);
+  let context, master, compressor, effects, currentTrack, timer;
+  let muted = false, mode = 'clearing', destroyed = false, lastType = -Infinity;
+  const retiringTracks = new Set();
+  try { muted = localStorage.getItem('desna.audio.muted') === 'true'; } catch { /* private browsing */ }
+
+  function makeTrack() {
+    if (!context || destroyed) return;
+    const bus = context.createGain(); bus.gain.value = 0;
+    bus.connect(master);
+    const synth = createSynth(context, bus, { room: MUSIC_THEMES[mode].room });
+    const at = context.currentTime;
+    bus.gain.linearRampToValueAtTime(MUSIC_MIX.music, at + MUSIC_MIX.fadeSeconds);
+    return { mode, bus, synth, bar:0, nextBar:at+.04 };
+  }
+  function disposeTrack(track) {
+    if (!track) return;
+    clearTimeout(track.timeout); track.synth.dispose(); track.bus.disconnect(); retiringTracks.delete(track);
+  }
+  function retireTrack(track) {
+    if (!track) return;
+    const now = context.currentTime;
+    if (track.bus.gain.cancelAndHoldAtTime) track.bus.gain.cancelAndHoldAtTime(now);
+    else { const value = track.bus.gain.value; track.bus.gain.cancelScheduledValues(now); track.bus.gain.setValueAtTime(value, now); }
+    track.bus.gain.linearRampToValueAtTime(0, now + .65);
+    retiringTracks.add(track);
+    track.timeout = setTimeout(() => disposeTrack(track), 750);
   }
   function schedule() {
-    if (!context || muted || document.hidden || context.state !== "running") return;
-    const interval = mode === "battle" ? 60 / 138 / 2 : 60 / 84 / 2;
-    if (nextBeat < context.currentTime) nextBeat = context.currentTime + .03;
-    while (nextBeat < context.currentTime + .18) {
-      const bar = Math.floor(beat / 16) % 4;
-      const roots = [50, 46, 53, 48];
-      const root = roots[bar];
-      if (mode === "battle") {
-        tone(root - 12 + [0, 0, 7, 0, 12, 0, 7, 3][beat % 8], nextBeat, .16, .065, "triangle");
-        if (beat % 4 === 0) tone(28, nextBeat, .13, .16, "sine");
-        if (beat % 4 === 2) tone(82, nextBeat, .045, .027, "triangle");
-        if (beat % 2 === 0) tone(root + [12, 15, 19, 22, 19, 15, 14, 19][beat / 2 % 8], nextBeat, .29, .045, "triangle");
-      } else {
-        if (beat % 8 === 0) {
-          tone(root - 12, nextBeat, 3, .055);
-          tone(root + 7, nextBeat, 2.5, .025);
-        }
-        if (beat % 2 === 0) tone(root + [12, 19, 15, 22, 19, 14, 15, 7][beat / 2 % 8], nextBeat, 1.1, .036, "triangle");
-      }
-      nextBeat += interval; beat++;
+    if (!context || muted || destroyed || document.hidden || context.state !== 'running') return;
+    currentTrack ||= makeTrack();
+    const track = currentTrack, theme = MUSIC_THEMES[track.mode], beat = 60 / theme.bpm;
+    if (track.nextBar < context.currentTime - .25) track.nextBar = context.currentTime + .03;
+    while (track.nextBar < context.currentTime + .2) {
+      for (const event of musicBar(track.mode, track.bar)) track.synth.play(event, track.nextBar + event.beat * beat, beat);
+      track.nextBar += theme.beats * beat; track.bar++;
     }
   }
   async function unlock() {
+    if (destroyed) return false;
     try {
       if (!context) {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         if (!AudioContext) return false;
         context = new AudioContext();
-        master = context.createGain(); master.gain.value = .4;
-        const limiter = context.createDynamicsCompressor();
-        master.connect(limiter).connect(context.destination);
-        timer = setInterval(schedule, 80);
+        master = context.createGain(); master.gain.value = MUSIC_MIX.master;
+        compressor = context.createDynamicsCompressor();
+        compressor.threshold.value = -14; compressor.knee.value = 10; compressor.ratio.value = 4;
+        compressor.attack.value = .006; compressor.release.value = .2;
+        master.connect(compressor).connect(context.destination);
+        timer = setInterval(schedule, 75);
       }
-      if (!muted && !document.hidden) { await context.resume(); nextBeat = context.currentTime + .04; schedule(); }
+      if (!muted && !document.hidden) {
+        if (context.state !== 'running') await context.resume();
+        if (destroyed || muted || document.hidden) return false;
+        effects ||= createSynth(context, master, { room:.08, level:.85 });
+        schedule();
+      }
       return true;
     } catch { return false; }
   }
-  function silenceVoices() { for (const voice of voices) { try { voice.stop(); } catch { /* ended */ } } voices.clear(); }
+  function silence() {
+    disposeTrack(currentTrack); currentTrack = null;
+    for (const track of [...retiringTracks]) disposeTrack(track);
+    effects?.dispose(); effects = null; lastType = -Infinity;
+  }
   async function setMuted(value) {
     muted = Boolean(value);
-    try { localStorage.setItem("desna.audio.muted", String(muted)); } catch { /* optional persistence */ }
-    if (muted) { silenceVoices(); await context?.suspend(); }
+    try { localStorage.setItem('desna.audio.muted', String(muted)); } catch { /* optional persistence */ }
+    if (muted) { silence(); if (context && context.state !== 'closed') await context.suspend(); }
     else await unlock();
     return muted;
   }
-  function setMode(value) { if (mode === value) return; mode = value; beat = 0; silenceVoices(); nextBeat = context ? context.currentTime + .08 : 0; }
-  function sound(name) {
-    if (!context || muted || context.state !== "running") return;
-    const now = context.currentTime;
-    if (name === "hit") { tone(43, now, .11, .1, "triangle"); tone(31, now + .02, .16, .08); }
-    else if (name === "block") tone(86, now, .1, .04, "triangle");
-    else if (name === "victory") [62, 65, 69, 74].forEach((n, i) => tone(n, now + i * .12, .65, .07, "triangle"));
-    else if (name === "defeat") [57, 53, 50].forEach((n, i) => tone(n, now + i * .18, .8, .05));
-    else tone(76, now, .07, .025, "triangle");
+  function setMode(value) {
+    const next = normalizeMusicMode(value);
+    if (mode === next || destroyed) return;
+    mode = next;
+    retireTrack(currentTrack); currentTrack = null;
+    schedule();
   }
-  const onVisibility = () => { if (document.hidden) { silenceVoices(); context?.suspend(); } else if (!muted && context) unlock(); };
-  document.addEventListener("visibilitychange", onVisibility);
-  return { unlock, setMuted, setMode, sound, get muted() { return muted; }, destroy() {
-    clearInterval(timer); silenceVoices(); document.removeEventListener("visibilitychange", onVisibility); context?.close();
-  } };
+  function sound(name) {
+    if (!context || muted || destroyed || context.state !== 'running' || document.hidden) return;
+    const now = context.currentTime;
+    if (name === 'type') { if (now - lastType < .06) return; lastType = now; }
+    effects?.effect(name, now + .003);
+  }
+  const onVisibility = () => {
+    if (document.hidden) { silence(); if (context && context.state !== 'closed') context.suspend().catch(() => {}); }
+    else if (!muted && context) unlock();
+  };
+  document.addEventListener('visibilitychange', onVisibility);
+  return {
+    unlock, setMuted, setMode, sound,
+    get muted() { return muted; },
+    destroy() {
+      if (destroyed) return;
+      destroyed = true; clearInterval(timer); silence(); effects?.dispose();
+      document.removeEventListener('visibilitychange', onVisibility);
+      master?.disconnect(); compressor?.disconnect();
+      if (context && context.state !== 'closed') context.close().catch(() => {});
+    },
+  };
 }

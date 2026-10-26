@@ -2,8 +2,12 @@ import './ui-fonts.css';
 import './ui-lab.css';
 import { battleFeedbackMarkup, battleTurnMarkup } from './battle-feedback.js';
 import { createBattle } from './battle.js';
+import { LAB_NOTES, directionBadge, provenanceNote } from './ui-lab-notes.js';
+import { DIALOGUE_SKINS, dialogueSkinMarkup } from './dialogue-skins.js';
 
-const asset = (file) => `${import.meta.env.BASE_URL}assets/${file}`;
+// Custom-property URLs are consumed by the built stylesheet in assets/.
+// Resolve against the document (including the UI Kit alias <base>) first.
+const asset = (file) => new URL(`${import.meta.env.BASE_URL}assets/${file}`, document.baseURI).href;
 const ART = asset('title/ps2-allies-title-space-v1.png');
 const MAP = asset('map-sprites/map-v8.png');
 const FOREST = asset('battle/forest-muted-a-v1.png');
@@ -11,33 +15,39 @@ const LUCKY = asset('portraits/lucky-dialogue-v1.png');
 const HERO = asset('battle/hero-v1.png');
 const BLUD = asset('battle/blud-v1.png');
 
-const fonts = ['condensed', 'clean', 'classic', 'hybrid'];
+const fonts = ['condensed', 'clean', 'classic', 'hybrid', 'heritage'];
 const palettes = ['reference', 'muted', 'outline'];
 const types = ['critical', 'miss', 'guard', 'weak', 'resist', 'block'];
 const params = new URLSearchParams(location.search);
 const state = {
   language: params.get('lang') === 'en' ? 'en' : 'uk',
-  font: fonts.includes(params.get('font')) ? params.get('font') : 'hybrid',
-  palette: palettes.includes(params.get('feedback')) ? params.get('feedback') : 'outline',
+  font: fonts.includes(params.get('font')) ? params.get('font') : 'heritage',
+  palette: palettes.includes(params.get('feedback')) ? params.get('feedback') : 'reference',
+  title: params.get('title') === 'rebirth' ? 'rebirth' : 'unmourned',
   demoRunning: false,
   demoGeneration: 0,
+  turnPreviewGeneration: 0,
 };
 const COPY = {
   uk: {
     title: 'Майстерня інтерфейсу', chapter: 'Невідспівані / Альтернативна версія',
     intro: 'Один світ. Різні голоси.', description: 'Порівняй назви, діалоги й повідомлення бою. Обрана комбінація відкривається в грі.',
     game: 'Спробувати в грі', typography: 'Типографіка', palette: 'Повідомлення', language: 'Мова',
-    titleStudy: 'Назва, що задає тон', titleNote: 'Те саме зображення й текст — чотири різні гарнітурні рішення.',
+    titleStudy: 'Назва, що задає тон', titleNote: 'Погоджене поєднання: назва з «Тихої класики», підназва з «Чистого голосу». Попередні чотири напрями збережені для порівняння.',
     selected: 'Обрано', choose: 'Обрати цей напрям', fontNote: 'Доступні аналоги, а не оригінальні шрифти ігор. Roboto та Roboto Condensed збережені локально; Georgia використовує системну гарнітуру. Усі основні варіанти — без курсиву.',
     franchise: 'Невідспівані', subtitle: 'Прах над Десною', start: 'Почати гру',
-    fontNames: { condensed: 'Вузький ритм', clean: 'Чистий голос', classic: 'Тиха класика', hybrid: 'Спільна мова' },
+    fontNames: { condensed: 'Вузький ритм', clean: 'Чистий голос', classic: 'Тиха класика', hybrid: 'Спільна мова', heritage: 'Обране: класика + чистий голос' },
     fontDescriptions: {
       condensed: 'Roboto Condensed · компактний, виразний ритм за мотивами SMT V.',
       clean: 'Roboto · спокійна геометрія й відкриті форми для малого екрана.',
-      classic: 'Georgia · літературний тон і контраст штрихів для діалогового напряму Persona 2.',
+      classic: 'Georgia · наш літературний експеримент із зарубками.',
       hybrid: 'Roboto Condensed у назві + Roboto у діалогах. Вузький заголовок, вільний рядок.',
     },
     dialogueStudy: 'Два способи почати розмову', dialogueNote: 'Мапа — портрет і вікно з характером Persona 2. Перед боєм — простір сцени та стриманий рядок SMT V.',
+    prebattleStudy: 'Перед боєм · три варіанти підкладки', prebattleNote: 'Ім’я відділено від репліки. Основний текст — звичайний Roboto, без заголовкової ваги. Зразки нижче використовують однакову сцену та репліку.',
+    skinNames: { veil: 'A / Тиха тканина', drift: 'B / Живий візерунок', orbit: 'C / Одна орбіта' },
+    skinDescriptions: { veil: 'Наш варіант: темна напівпрозора площина з нерухомою геометричною текстурою.', drift: 'Та сама ідея з повільним рухом геометрії під текстом. Анімацію можна вимкнути.', orbit: 'Найближче до наданих SMT-боксів: світлий край і одна орбіта замість багатьох кіл.' },
+    motionOn: 'Рух фону: увімкнено', motionOff: 'Рух фону: вимкнено', turnReplay: 'Повторити плашку ходу', scenes: 'Майстерня сцен ↗',
     mapDialogue: 'На мапі', prebattle: 'Перед боєм', lucky: 'Лакі', blud: 'Блуд',
     mapLine: 'Тут не пройти. Хоча можеш переконати камінь посунутися.',
     battleLine: 'Ти вже проходив цією стежкою. Чи це було завтра?',
@@ -52,23 +62,27 @@ const COPY = {
     heroTurn: 'Хід героя', heroHit: 'Удар героя влучив. Блуд втрачає 1 HP.', enemyTurn: 'Хід ворога', blocked: 'Удар Блуда заблоковано. Здоров’я героя без змін.', done: 'Обмін завершено. Час знову обирати дію.',
     hero: 'Герой', enemy: 'Блуд', finish: 'Твій варіант готовий до перевірки',
     liveBattle: 'Спробувати справжній бій', liveNote: 'Розмова, вибір удару й захисту та весь обмін — без подорожі мапою.', closeBattle: 'Закрити бій',
-    finishNote: 'Шрифт, палітра та мова перейдуть у гру за посиланням. Поточний збережений варіант залишається окремо.',
+    finishNote: 'Назва, шрифт, палітра та мова перейдуть у гру за посиланням. Поточний збережений варіант залишається окремо.',
   },
   en: {
     title: 'Interface workshop', chapter: 'The Unmourned / Alternative edition',
     intro: 'One world. Different voices.', description: 'Compare titles, dialogue and battle messages. Open the game with your chosen combination.',
     game: 'Try it in the game', typography: 'Typography', palette: 'Feedback', language: 'Language',
-    titleStudy: 'A title sets the tone', titleNote: 'The same illustration and words — four typographic directions.',
+    titleStudy: 'A title sets the tone', titleNote: 'The chosen combination: Quiet classic for the title, A clear voice for the subtitle. The four earlier directions remain available for comparison.',
     selected: 'Selected', choose: 'Choose this direction', fontNote: 'Accessible alternatives, not the original game fonts. Roboto and Roboto Condensed are stored locally; Georgia uses the system font. All main directions use upright lettering.',
     franchise: 'The Unmourned', subtitle: 'Ashes over the Desna', start: 'Begin game',
-    fontNames: { condensed: 'Condensed rhythm', clean: 'A clear voice', classic: 'Quiet classic', hybrid: 'Common ground' },
+    fontNames: { condensed: 'Condensed rhythm', clean: 'A clear voice', classic: 'Quiet classic', hybrid: 'Common ground', heritage: 'Chosen: classic + clear voice' },
     fontDescriptions: {
       condensed: 'Roboto Condensed · a compact, expressive rhythm inspired by SMT V.',
       clean: 'Roboto · calm geometry and open shapes for a small screen.',
-      classic: 'Georgia · a literary voice and contrasting strokes for the Persona 2 dialogue direction.',
+      classic: 'Georgia · our literary serif experiment.',
       hybrid: 'Roboto Condensed for titles + Roboto for dialogue. Compact headings, relaxed reading.',
     },
     dialogueStudy: 'Two ways to begin a conversation', dialogueNote: 'On the map: a portrait and a Persona 2-inspired window. Before battle: room for the scene and restrained SMT V-style text.',
+    prebattleStudy: 'Before battle · three panel treatments', prebattleNote: 'The speaker name is separate. Dialogue uses regular Roboto, not heading weights. Each sample uses the same scene and reply.',
+    skinNames: { veil: 'A / Quiet texture', drift: 'B / Living pattern', orbit: 'C / A single orbit' },
+    skinDescriptions: { veil: 'Our direction: a dark translucent panel with a still geometric texture.', drift: 'The same idea with gently moving geometry beneath the text. Motion can be switched off.', orbit: 'Closest to your SMT boxes: a luminous edge and one orbit instead of multiple circles.' },
+    motionOn: 'Background motion: on', motionOff: 'Background motion: off', turnReplay: 'Replay turn banner', scenes: 'Scene workshop ↗',
     mapDialogue: 'On the map', prebattle: 'Before battle', lucky: 'Lucky', blud: 'Blud',
     mapLine: 'No way through here. Unless you can persuade the rock to move.',
     battleLine: 'You have walked this path before. Or was that tomorrow?',
@@ -83,59 +97,90 @@ const COPY = {
     heroTurn: 'Hero Turn', heroHit: 'The hero’s attack lands. Blud loses 1 HP.', enemyTurn: 'Enemy Turn', blocked: 'Blud’s attack is blocked. The hero’s health is unchanged.', done: 'Exchange complete. Time to choose the next action.',
     hero: 'Hero', enemy: 'Blud', finish: 'Your combination is ready to try',
     liveBattle: 'Try the real battle', liveNote: 'Dialogue, attack and guard choices, and the full exchange — without walking across the map.', closeBattle: 'Close battle',
-    finishNote: 'The link carries your type, palette and language into the game. The saved previous edition remains separate.',
+    finishNote: 'The link carries your title, type, palette and language into the game. The saved previous edition remains separate.',
   },
 };
 
 const app = document.querySelector('#ui-lab');
 function gameLink() {
-  return `./?${new URLSearchParams({ font: state.font, feedback: state.palette, lang: state.language })}`;
+  return `./?${new URLSearchParams({ font: state.font, feedback: state.palette, lang: state.language, title: state.title })}`;
+}
+function titleSample() {
+  if (state.title === 'unmourned') return COPY[state.language].franchise;
+  return state.language === 'uk' ? 'Друге народження <br>богів' : 'The Second Birth <br>of the Gods';
+}
+function inspirationLegend() {
+  const n = LAB_NOTES[state.language];
+  return `<aside class="lab-origin-guide" aria-labelledby="origin-title"><h2 id="origin-title">${n.legendTitle}</h2><p>${n.legendIntro}</p><div class="lab-origin-grid">${n.legend.map(([tone, direction, description]) => `<div>${directionBadge({ tone, direction })}<p>${description}</p></div>`).join('')}</div></aside>`;
 }
 function sectionHeading(number, title, note) {
   return `<div class="lab-section-heading"><span class="lab-section-number">${number}</span><div><h2>${title}</h2><p>${note}</p></div></div>`;
 }
 function titleCard(font, index) {
   const t = COPY[state.language];
-  return `<article class="lab-font-card ${font === state.font ? 'is-selected' : ''}" data-ui-font="${font}">
+  const n = LAB_NOTES[state.language];
+  return `<article class="lab-font-card ${font === 'heritage' ? 'lab-font-card--approved' : ''} ${font === state.font ? 'is-selected' : ''}" data-ui-font="${font}">
     <div class="lab-font-caption"><span>0${index + 1}</span><h3>${t.fontNames[font]}</h3><span class="lab-font-mark">${font === state.font ? '●' : '○'}</span></div>
-    <div class="lab-title-art" style="--title-art: url('${ART}')"><div class="lab-title-lockup"><p class="lab-franchise" lang="${state.language}">${t.franchise}</p><p class="lab-subtitle">${t.subtitle}</p><span class="lab-start-sample">${t.start}<span aria-hidden="true"> ›</span></span></div></div>
-    <p class="lab-font-description">${t.fontDescriptions[font]}</p>
+    <div class="lab-title-art lab-title-art--${state.title}" style="--title-art: url('${ART}')"><div class="lab-title-lockup"><p class="lab-franchise" lang="${state.language}">${titleSample()}</p><p class="lab-subtitle">${t.subtitle}</p><span class="lab-start-sample">${t.start}<span aria-hidden="true"> ›</span></span></div></div>
+    ${provenanceNote(n.fonts[font], state.language)}
     <div class="lab-bilingual-lines"><div lang="uk"><span class="lab-lang-tag">УКР</span><p>Тут не пройти.<br>До світанку ще є час.</p></div><div lang="en"><span class="lab-lang-tag">ENG</span><p>No way through.<br>There is still time before dawn.</p></div></div>
     <p class="lab-glyphs">Ґ ґ · Є є · І і · Ї ї · ’ · 0123456789</p>
     <button class="lab-select" data-font="${font}" aria-pressed="${font === state.font}">${font === state.font ? t.selected : t.choose}<span aria-hidden="true">↗</span></button>
   </article>`;
 }
+function prebattleSkinCard(variant, language) {
+  const t = COPY[language];
+  const labels = COPY[state.language];
+  const note = LAB_NOTES[state.language].skins[variant];
+  return `<article class="lab-dialogue-study lab-skin-study"><h3>${labels.skinNames[variant]} <span>${language === 'uk' ? 'УКР' : 'ENG'}</span></h3>
+    <div class="lab-dialogue-frame lab-dialogue-frame--skin" lang="${language}" style="--scene-art:url('${FOREST}')">
+      <img class="lab-scene-hero" src="${HERO}" alt="${t.hero}" loading="lazy"><img class="lab-scene-blud" src="${BLUD}" alt="${t.blud}" loading="lazy">
+      <div class="lab-skin-host">${dialogueSkinMarkup({ variant, speaker: t.blud, text: t.battleLine, language, nextLabel: t.continue })}</div>
+    </div>
+    <p class="lab-skin-description">${labels.skinDescriptions[variant]}</p>
+    ${variant === 'drift' ? `<button class="lab-motion-toggle" data-skin-motion aria-pressed="true">${labels.motionOn}</button>` : ''}
+    ${provenanceNote(note, state.language, 'Roboto · 400')}
+  </article>`;
+}
 function dialogueCard(kind, language) {
   const t = COPY[language];
+  const n = LAB_NOTES[state.language];
+  const note = n.dialogues[kind];
+  const font = state.font === 'condensed' ? 'Roboto Condensed' : state.font === 'classic' ? 'Georgia / Times New Roman / serif' : 'Roboto';
   const map = kind === 'map';
-  return `<article class="lab-dialogue-frame lab-dialogue-frame--${kind}" lang="${language}" style="--scene-art: url('${map ? MAP : FOREST}')">
+  return `<article class="lab-dialogue-study"><h3>${note.name} <span>${language === 'uk' ? 'УКР' : 'ENG'}</span></h3><div class="lab-dialogue-frame lab-dialogue-frame--${kind}" lang="${language}" style="--scene-art: url('${map ? MAP : FOREST}')">
     <div class="lab-scene-meta"><span>${map ? t.mapDialogue : t.prebattle}</span><span>${language === 'uk' ? 'УКР' : 'ENG'}</span></div>
     ${map ? `<div class="lab-scene-location"><span class="lab-moon" aria-hidden="true"></span>${t.location}</div><img class="lab-lucky-portrait" src="${LUCKY}" alt="${t.lucky}" loading="lazy">` : `<img class="lab-scene-hero" src="${HERO}" alt="${t.hero}" loading="lazy"><img class="lab-scene-blud" src="${BLUD}" alt="${t.blud}" loading="lazy">`}
     <div class="lab-dialogue-panel"><div class="lab-speaker">${map ? t.lucky : t.blud}</div><p>${map ? t.mapLine : t.battleLine}</p><span class="lab-dialogue-next">${t.continue}<span aria-hidden="true"> ▸</span></span></div>
-  </article>`;
+  </div>${provenanceNote(note, state.language, font)}</article>`;
 }
 function paletteCard(palette) {
   const t = COPY[state.language];
-  return `<article class="lab-palette-card ${palette === state.palette ? 'is-selected' : ''}"><h3>${t.paletteNames[palette]}</h3><p>${t.paletteDescriptions[palette]}</p><div class="lab-feedback-head"><span>УКР</span><span>ENG</span></div><div class="lab-feedback-list">${types.map((type) => `<div class="lab-feedback-pair"><div lang="uk">${battleFeedbackMarkup({ type, language: 'uk', variant: palette })}</div><div lang="en">${battleFeedbackMarkup({ type, language: 'en', variant: palette })}</div></div>`).join('')}</div><button class="lab-select" data-palette="${palette}" aria-pressed="${palette === state.palette}">${palette === state.palette ? t.selected : t.paletteChoose}<span aria-hidden="true">↗</span></button></article>`;
+  return `<article class="lab-palette-card ${palette === state.palette ? 'is-selected' : ''}"><h3>${t.paletteNames[palette]}</h3><p>${t.paletteDescriptions[palette]}</p><div class="lab-feedback-head"><span>УКР</span><span>ENG</span></div><div class="lab-feedback-list">${types.map((type) => `<div class="lab-feedback-pair"><div lang="uk">${battleFeedbackMarkup({ type, language: 'uk', variant: palette })}</div><div lang="en">${battleFeedbackMarkup({ type, language: 'en', variant: palette })}</div></div>`).join('')}</div>${provenanceNote(LAB_NOTES[state.language].palettes[palette], state.language)}<button class="lab-select" data-palette="${palette}" aria-pressed="${palette === state.palette}">${palette === state.palette ? t.selected : t.paletteChoose}<span aria-hidden="true">↗</span></button></article>`;
 }
 function render(focusSelector) {
   stopDemo();
   const t = COPY[state.language];
+  const n = LAB_NOTES[state.language];
   document.documentElement.lang = state.language;
   document.documentElement.dataset.uiFont = state.font;
   document.title = `${t.title} · ${t.franchise}`;
-  app.innerHTML = `<header class="lab-header"><a class="lab-brand" href="./">${t.franchise}<span>${t.subtitle}</span></a><a class="lab-game-link" href="${gameLink()}">${t.game}<span aria-hidden="true">↗</span></a></header>
+  app.innerHTML = `<header class="lab-header"><a class="lab-brand" href="./">${t.franchise}<span>${t.subtitle}</span></a><div class="lab-header-links"><a class="lab-game-link" href="./scenes.html?lang=${state.language}">${t.scenes}</a><a class="lab-game-link" href="${gameLink()}">${t.game}<span aria-hidden="true">↗</span></a></div></header>
     <main class="lab-main">
       <section class="lab-intro"><p class="lab-eyebrow">${t.chapter}</p><h1>${t.intro}</h1><p class="lab-lead">${t.description}</p><div class="lab-intro-line" aria-hidden="true"></div></section>
-      <nav class="lab-controls" aria-label="${t.title}"><label>${t.typography}<select name="font">${fonts.map((font) => `<option value="${font}" ${state.font === font ? 'selected' : ''}>${t.fontNames[font]}</option>`).join('')}</select></label><label>${t.palette}<select name="palette">${palettes.map((palette) => `<option value="${palette}" ${state.palette === palette ? 'selected' : ''}>${t.paletteNames[palette]}</option>`).join('')}</select></label><div class="lab-language"><span>${t.language}</span><div role="group" aria-label="${t.language}"><button data-language="uk" aria-pressed="${state.language === 'uk'}">УКР</button><button data-language="en" aria-pressed="${state.language === 'en'}">ENG</button></div></div></nav>
-      <section class="lab-section" id="typography">${sectionHeading('01', t.titleStudy, t.titleNote)}<div class="lab-font-grid">${fonts.map(titleCard).join('')}</div><p class="lab-note">${t.fontNote}</p></section>
-      <section class="lab-section" id="dialogues">${sectionHeading('02', t.dialogueStudy, t.dialogueNote)}<div class="lab-dialogue-grid">${['map', 'prebattle'].map((kind) => ['uk', 'en'].map((lang) => dialogueCard(kind, lang)).join('')).join('')}</div></section>
+      <nav class="lab-controls" aria-label="${t.title}"><label>${n.titleLabel}<select name="title">${Object.entries(n.titles).map(([value, name]) => `<option value="${value}" ${state.title === value ? 'selected' : ''}>${name}</option>`).join('')}</select></label><label>${t.typography}<select name="font">${fonts.map((font) => `<option value="${font}" ${state.font === font ? 'selected' : ''}>${t.fontNames[font]}</option>`).join('')}</select></label><label>${t.palette}<select name="palette">${palettes.map((palette) => `<option value="${palette}" ${state.palette === palette ? 'selected' : ''}>${t.paletteNames[palette]}</option>`).join('')}</select></label><div class="lab-language"><span>${t.language}</span><div role="group" aria-label="${t.language}"><button data-language="uk" aria-pressed="${state.language === 'uk'}">УКР</button><button data-language="en" aria-pressed="${state.language === 'en'}">ENG</button></div></div></nav>
+      ${inspirationLegend()}
+      <section class="lab-section" id="typography">${sectionHeading('01', t.titleStudy, t.titleNote)}<div class="lab-font-grid">${titleCard('heritage', 4)}${fonts.filter(font => font !== 'heritage').map(titleCard).join('')}</div><p class="lab-note">${t.fontNote}</p></section>
+      <section class="lab-section" id="dialogues">${sectionHeading('02', t.dialogueStudy, t.dialogueNote)}<div class="lab-dialogue-grid">${['uk', 'en'].map(lang => dialogueCard('map', lang)).join('')}</div><div class="lab-subsection-heading"><h3>${t.prebattleStudy}</h3><p>${t.prebattleNote}</p></div><div class="lab-dialogue-grid">${DIALOGUE_SKINS.map(variant => ['uk', 'en'].map(lang => prebattleSkinCard(variant, lang)).join('')).join('')}</div></section>
       <section class="lab-section" id="feedback">${sectionHeading('03', t.reactionStudy, t.reactionNote)}<div class="lab-palette-grid">${palettes.map(paletteCard).join('')}</div><p class="lab-note">${t.exampleOnly}</p></section>
       <section class="lab-section" id="pacing">${sectionHeading('04', t.pacing, t.pacingNote)}
         <div class="lab-demo-frame" style="--scene-art: url('${FOREST}')"><div class="lab-demo-hp lab-demo-hp--hero"><span>${t.hero}</span><strong data-hp="hero">3 / 3</strong><i></i></div><div class="lab-demo-hp lab-demo-hp--enemy"><span>${t.enemy}</span><strong data-hp="enemy">3 / 3</strong><i></i></div><div class="lab-demo-turn" aria-live="off"></div><div class="lab-demo-actor lab-demo-actor--hero"><span class="lab-actor-shadow"></span><img src="${HERO}" alt="${t.hero}" loading="lazy"><div class="lab-demo-impact"></div></div><div class="lab-demo-actor lab-demo-actor--enemy"><span class="lab-actor-shadow"></span><img src="${BLUD}" alt="${t.enemy}" loading="lazy"><div class="lab-demo-impact"></div></div><div class="lab-demo-status"><p aria-live="polite">${t.ready}</p><button data-play>${t.play}<span aria-hidden="true"> ▶</span></button></div></div>
         <ol class="lab-timeline"><li data-timeline="0"><span>01</span>${t.heroTurn}</li><li data-timeline="1"><span>02</span>−1 HP</li><li data-timeline="2"><span>03</span>${t.enemyTurn}</li><li data-timeline="3"><span>04</span>${state.language === 'uk' ? 'Блок' : 'Block'}</li></ol>
+        <div class="lab-demo-notes">${provenanceNote(n.pacing, state.language)}${provenanceNote(n.icons, state.language)}</div>
+        <div class="lab-turn-study"><div class="lab-turn-preview" aria-live="polite"></div><button data-turn-preview>${t.turnReplay}</button></div>
         <div class="lab-live-entry"><p>${t.liveNote}</p><button data-live-battle>${t.liveBattle}<span aria-hidden="true"> ↗</span></button></div>
       </section>
+      <details class="lab-sources"><summary>${n.sourcesTitle}</summary><p>${n.sourcesText}</p><p>${n.sourcesFonts}</p><a href="./ui-kit.html">${n.sourcesReference} ↗</a></details>
       <footer class="lab-footer"><div><p class="lab-eyebrow">${t.franchise}</p><h2>${t.finish}</h2><p>${t.finishNote}</p></div><a class="lab-primary-link" href="${gameLink()}">${t.game}<span aria-hidden="true">↗</span></a></footer>
     </main>`;
   if (focusSelector) app.querySelector(focusSelector)?.focus({ preventScroll: true });
@@ -147,11 +192,14 @@ function setChoice(key, value, focusSelector) {
   url.searchParams.set('font', state.font);
   url.searchParams.set('feedback', state.palette);
   url.searchParams.set('lang', state.language);
+  url.searchParams.set('title', state.title);
   history.replaceState(null, '', url);
   render(focusSelector);
 }
 function stopDemo() {
   state.demoGeneration += 1;
+  state.turnPreviewGeneration += 1;
+  app.querySelector('.lab-turn-preview')?.replaceChildren();
   state.demoRunning = false;
   const button = app.querySelector('[data-play]');
   if (button) {
@@ -166,6 +214,17 @@ function stopDemo() {
     enemyHp.textContent = '3 / 3';
     enemyHp.parentElement.style.setProperty('--health', '100%');
   }
+}
+async function playTurnPreview() {
+  const generation = ++state.turnPreviewGeneration;
+  const host = app.querySelector('.lab-turn-preview');
+  const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+  for (const side of ['hero', 'enemy']) {
+    if (generation !== state.turnPreviewGeneration) return;
+    host.innerHTML = battleTurnMarkup({ side, language: state.language, variant: state.palette, duration: 1800 });
+    await pause(2100);
+  }
+  if (generation === state.turnPreviewGeneration) host.replaceChildren();
 }
 function openLiveBattle(trigger) {
   stopDemo();
@@ -210,7 +269,7 @@ async function playDemo() {
   const pause = (ms) => new Promise((resolve) => setTimeout(() => resolve(generation === state.demoGeneration), ms));
   const active = (index, text) => { timeline.forEach((item, i) => item.classList.toggle('is-active', i === index)); status.textContent = text; };
   active(0, t.heroTurn);
-  turn.innerHTML = battleTurnMarkup({ side: 'hero', language: state.language, variant: state.palette });
+  turn.innerHTML = battleTurnMarkup({ side: 'hero', language: state.language, variant: state.palette, duration: 1600 });
   if (!await pause(1600)) return;
   turn.replaceChildren();
   hero.classList.add('is-striking');
@@ -225,7 +284,7 @@ async function playDemo() {
   enemy.classList.remove('is-hit');
   enemy.querySelector('.lab-demo-impact').replaceChildren();
   active(2, t.enemyTurn);
-  turn.innerHTML = battleTurnMarkup({ side: 'enemy', language: state.language, variant: state.palette });
+  turn.innerHTML = battleTurnMarkup({ side: 'enemy', language: state.language, variant: state.palette, duration: 1600 });
   if (!await pause(1600)) return;
   turn.replaceChildren();
   enemy.classList.add('is-striking');
@@ -248,11 +307,19 @@ app.addEventListener('click', (event) => {
   else if (target.dataset.palette) setChoice('palette', target.dataset.palette, `[data-palette="${target.dataset.palette}"]`);
   else if (target.dataset.language) setChoice('language', target.dataset.language, `[data-language="${target.dataset.language}"]`);
   else if (target.hasAttribute('data-play')) playDemo();
+  else if (target.hasAttribute('data-turn-preview')) playTurnPreview();
+  else if (target.hasAttribute('data-skin-motion')) {
+    const enabled = target.getAttribute('aria-pressed') !== 'true';
+    target.setAttribute('aria-pressed', String(enabled));
+    target.textContent = COPY[state.language][enabled ? 'motionOn' : 'motionOff'];
+    target.closest('.lab-skin-study').querySelector('.scene-dialogue').classList.toggle('scene-dialogue--animated', enabled);
+  }
   else if (target.hasAttribute('data-live-battle')) openLiveBattle(target);
 });
 app.addEventListener('change', (event) => {
   if (event.target.name === 'font') setChoice('font', event.target.value, '[name="font"]');
   if (event.target.name === 'palette') setChoice('palette', event.target.value, '[name="palette"]');
+  if (event.target.name === 'title') setChoice('title', event.target.value, '[name="title"]');
 });
 window.addEventListener('pagehide', stopDemo);
 render();

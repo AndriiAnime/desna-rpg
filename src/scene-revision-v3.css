@@ -1,0 +1,109 @@
+/* Revision 03: shared game presentation; workshop tools remain outside the stage. */
+.map-hero-pixel{image-rendering:auto}
+.scene-stage{touch-action:manipulation}
+.scene-art .map-actor{transform:translate(-50%,-100%)}
+.route-marker-board .route-waypoints{position:relative}
+.route-waypoints>.route-hiker{position:absolute;width:18%;height:35%;object-fit:contain;left:0;top:0;animation:hiker-journey 6s linear infinite;filter:drop-shadow(0 3px 1px #0002)}
+@keyframes hiker-journey{
+  0%,8%{left:0%;top:8%;rotate:-3deg} 18%{left:18%;top:-10%;rotate:3deg} 32%,39%{left:39%;top:8%;rotate:-3deg}
+  50%{left:59%;top:-10%;rotate:3deg} 65%,80%{left:80%;top:8%;rotate:0deg} 90%,100%{left:0%;top:8%;rotate:-3deg}
+}
+.map-dialogue-portrait:has(.ally-portrait){height:clamp(120px,22cqw,250px);width:auto;aspect-ratio:1;bottom:100%}
+.ally-portrait,.library-ally{aspect-ratio:1}
+.library-ally{height:auto}
+.scene-visual--map-river .smith-map{left:25%;top:39%}
+.scene-visual--map-river .rusalka-map{left:77%;top:30%;animation:none}
+.rusalka-map:not(.rusalka-diving) .sheet-rusalka{animation:rusalka-map-frames 2.8s steps(1) infinite}
+@keyframes rusalka-map-frames{0%,100%{background-position:0 0;translate:0 0}25%{background-position:100% 0;translate:-2% 0}50%{background-position:0 100%;translate:-1.5% 1%}75%{background-position:100% 100%;translate:-2.5% .3%}}
+.scene-visual--map-river .rusalka-diving{width:16%;height:23%;left:77%;top:30%;animation:rusalka-dive-path 1.8s ease-in both}
+.rusalka-dive-frames{width:auto;height:100%;aspect-ratio:543/724;margin:auto}
+.flirt-rusalka{position:absolute;left:auto;right:-3%;bottom:19%;top:auto;width:42%;height:55%;overflow:hidden}
+.flirt-rusalka img{height:100%;width:100%;object-fit:contain;object-position:center top}
+.map-knockback{animation:map-somersault 1.35s cubic-bezier(.2,.65,.4,1) both}
+@keyframes map-somersault{
+  0%{left:77%;top:34%;rotate:0deg;scale:1}35%{left:65%;top:23%;rotate:-130deg;scale:1.5}
+  65%{left:52%;top:40%;rotate:-265deg;scale:1.35}100%{left:41%;top:63%;rotate:-360deg;scale:1}
+}
+.map-knockback.smith-map{animation-delay:.08s}
+.flame-barrier{left:54.5%;top:36%;width:23%;height:16%;transform:rotate(33deg);transform-origin:center 88%}
+.blud-map{left:79%;top:74%;width:17%;height:29%}
+.scene-visual--map-clearing .hero-map{left:52%;top:25.5%}
+.scene-visual--map-clearing .tutorial-map{left:57%;top:45%}
+.arena-dialogue-hero{position:absolute;left:18%;bottom:23%;width:25%;height:62%;object-fit:contain}
+.arena-dialogue-minion{position:absolute;right:12%;bottom:23%;width:34%;height:72%;object-fit:contain}
+.scene-visual--tutorial-arena .scene-backdrop{filter:brightness(.68)}
+.scene-stage:has(.scene-visual--tutorial-arena) .combat-diagram{top:8%;bottom:auto;left:35%;width:30%;background:#09140dd9;padding:12px;border:1px solid #98a68b66}
+.map-destination{position:absolute;z-index:9;width:34px;height:34px;border:2px solid #b9eabc;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 15px #b9eabc55;pointer-events:none;animation:destination-pulse 1s ease-in-out infinite}
+.map-destination[data-valid=false]{border-color:#e28f80;animation:none}
+.map-destination[data-valid=false]::after{content:'×';display:grid;place-items:center;height:100%;color:#e28f80}
+@keyframes destination-pulse{50%{scale:1.15;opacity:.65}}
+.exploring .scene-art{cursor:crosshair}
+.exploring .approach-target{cursor:pointer;z-index:5}
+.preview-dpad{z-index:20;touch-action:none;opacity:.72}
+.preview-dpad button{border-radius:50%;background:#14251cc2;touch-action:none;user-select:none;-webkit-user-select:none}
+.stage-toolbar{flex-wrap:wrap;gap:12px}
+.skip-status{font-size:11px;color:#bdc8ae}
+.stage-toolbar label{font-size:11px}
+.stage-toolbar select{max-width:215px}
+.altar-target{position:absolute;left:74%;top:4%;width:14%;height:12%;opacity:0;z-index:4;min-height:30px}
+.altar-urn-map,.altar-ghost-map{position:absolute;width:9%;aspect-ratio:1;left:77%;top:3.5%;background:url('/assets/scenes/v3/altar-map.png') 0 0/300% 100% no-repeat;opacity:0;pointer-events:none}
+.altar-ghost-map{background-position:100% 0;left:75%;width:13%;top:-3%;z-index:3}
+.scene-visual[data-visual=altar] .ash-particles{display:none}
+.altar-ritual .altar-urn-map{animation:urn-place 4.2s linear both}
+.altar-ritual .altar-ghost-map{animation:map-grandpa-rise 4.2s ease-out both}
+.altar-ritual .hero-map{animation:hero-place-urn .7s ease-in-out}
+@keyframes hero-place-urn{50%{rotate:8deg;scale:1 .88}}
+@keyframes urn-place{0%,12%{opacity:0}18%,100%{opacity:1}}
+@keyframes map-grandpa-rise{0%,24%{opacity:0;translate:0 30px;scale:.5}40%,65%{opacity:1;translate:0 0;scale:1}100%{opacity:0;translate:0 -45px;scale:.85;filter:blur(4px)}}
+.scene-visual[data-visual=altar-rest] .hero-map{left:78%;top:17%}
+.scene-visual[data-visual=altar-rest] .altar-urn-map{opacity:1;background-position:50% 0}
+.scene-stage:has([data-visual=lucky-finale]) .large-moth,.scene-stage:has([data-visual=sequel]) .large-moth{height:145%;top:2%}
+.player-mode{background:#060b08;overflow:hidden}
+.player-mode .workshop-layout{display:block;padding:0;max-width:none;height:100dvh}
+.player-mode .workshop-main{max-width:none;height:100%}
+.player-mode .chapter-sidebar,.player-mode .stage-heading,.player-mode .stage-toolbar,.player-mode .scene-context,.player-mode .workshop-footnote,.player-mode .music-review,.player-mode .workshop-wordmark,.player-mode .workshop-header-actions>a{display:none}
+.player-mode .workshop-header{position:fixed;right:max(12px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top));height:auto;padding:0;z-index:40;border:0}
+.player-mode .workshop-header-actions{gap:6px}
+.player-mode .workshop-header-actions button{background:#101a13bb;backdrop-filter:blur(5px);border-color:#74886b66;min-width:40px}
+.player-mode .scene-stage{width:min(100vw,160dvh);height:min(100dvh,62.5vw);aspect-ratio:16/10;max-height:100dvh;border:0;margin:auto;top:50%;transform:translateY(-50%)}
+.player-mode .stage-location{right:120px}
+.player-mode .scene-visual::before{content:'';position:fixed;inset:-50%;background:var(--scene-backdrop) center/cover;filter:blur(30px) brightness(.18);z-index:-1}
+.player-mode .scene-stage{overflow:hidden}
+@media(max-width:760px){
+ .route-waypoints>.route-hiker{width:23%;height:34%;top:2%}
+ .map-dialogue-portrait:has(.ally-portrait){height:135px;width:135px}
+ .scene-visual--map-clearing .hero-map{width:17%;height:30%;top:25.5%}
+ .scene-visual--map-clearing .tutorial-map{top:45%;width:20%;height:30%}
+ .scene-visual--map-clearing .blud-map{width:23%;height:36%}
+ .arena-dialogue-hero{width:37%;height:48%;left:7%;bottom:32%}
+ .arena-dialogue-minion{width:47%;height:58%;right:4%;bottom:32%}
+ .scene-stage:has(.scene-visual--tutorial-arena) .combat-diagram{left:20%;width:60%;top:8%;font-size:11px}
+ .flirt-rusalka{width:55%;height:42%;bottom:25%}
+ .scene-visual--map-river .rusalka-diving{height:23%}
+ .stage-toolbar label{display:grid;gap:4px;flex:1}
+ .player-mode .scene-stage{width:100vw;height:100dvh;aspect-ratio:auto;top:0;transform:none;min-height:0}
+ .player-mode .workshop-header{right:8px;top:max(8px,env(safe-area-inset-top))}
+ .player-mode .stage-location{top:max(20px,env(safe-area-inset-top));left:12px;font-size:8px;right:110px}
+ .player-mode .preview-title-menu{top:8%}
+ .player-mode .dialogue-dock{padding-bottom:env(safe-area-inset-bottom)}
+ .scene-visual--map-river .scene-art,.scene-visual--map-mountain .scene-art{height:56%;top:6%}
+ .scene-visual--map-river .scene-backdrop,.scene-visual--map-mountain .scene-backdrop{background-size:100% 56%;background-position:center 6%;background-repeat:no-repeat;transform:none}
+ .scene-visual--map-river::before,.scene-visual--map-mountain::before{content:'';position:absolute;inset:0;background:var(--scene-backdrop) center/cover;filter:blur(20px) brightness(.3)}
+ .scene-visual--map-river .map-actor,.scene-visual--map-mountain .map-actor{height:26%;width:17%}
+ .scene-visual--map-river .rusalka-map{width:20%;height:26%}
+ .scene-visual--map-river .rusalka-diving{width:20%;height:26%}
+ .flame-barrier{top:36%;height:16%;width:23%}
+}
+@media(prefers-reduced-motion:reduce){.route-waypoints>.route-hiker,.rusalka-map .sheet-rusalka{animation:none}.map-knockback{animation-duration:.01ms}.altar-ritual .altar-ghost-map{animation-duration:.4s}}
+/* The altar is in the far plane: keep the complete map silhouettes in frame. */
+.scene-visual[data-visual^=altar] .hero-map{width:7%;height:13%}
+.altar-urn-map{left:79%;top:7%;width:7%}
+.altar-ghost-map{left:76%;top:0%;width:11%}
+@media(max-width:760px){.scene-visual[data-visual^=altar] .hero-map{width:9%;height:16%}.scene-visual[data-visual=altar-rest] .hero-map{top:18%}}
+.rusalka-dive-frames{scale:1.342;transform-origin:50% 90%}
+.scene-visual[data-visual=sunrise]::before{content:'';position:absolute;inset:0;background:var(--scene-backdrop) center/cover;filter:blur(20px) brightness(.25)}
+@media(max-width:760px){
+ .scene-visual--map .scene-backdrop{top:6%;bottom:auto;height:80cqw;background-size:100% 100%;background-position:center;background-repeat:no-repeat;transform:none}
+ .scene-visual--map .scene-art{height:80cqw;top:6%;bottom:auto}
+ .scene-visual[data-visual=sunrise] .scene-backdrop{background-size:contain;background-repeat:no-repeat;background-position:center 25%;transform:none}
+}

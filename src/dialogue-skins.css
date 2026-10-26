@@ -1,0 +1,51 @@
+.scene-dialogue {
+  --dialogue-ink: #edf1e7;
+  --dialogue-accent: #bec9ad;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding: 0 7% 17px;
+  color: var(--dialogue-ink);
+  font-family: "Desna Roboto", Arial, sans-serif;
+  font-style: normal;
+  font-synthesis: none;
+}
+.scene-dialogue-surface { position: absolute; inset: 21px 0 0; z-index: -1; overflow: hidden; background: linear-gradient(180deg, #090e0bdb, #060a08eb); border-top: 1px solid #a5b69e91; border-bottom: 1px solid #4c605263; }
+.scene-dialogue-grain { position: absolute; inset: 0; opacity: .11; background: repeating-linear-gradient(0deg, transparent 0 3px, #c4d0ba 4px 5px), repeating-linear-gradient(114deg, transparent 0 33px, #adbfac 34px 35px, transparent 36px 90px); }
+.scene-dialogue-motif { position: absolute; width: 150px; height: 150px; top: 8px; left: 3%; border: 1px solid #b4c1a536; transform: rotate(45deg); box-shadow: 0 0 0 11px #b4c1a509, 0 0 0 13px #b4c1a523, inset 0 0 35px #b4c1a50c; }
+.scene-dialogue-nameplate { position: relative; width: fit-content; min-width: 125px; max-width: 90%; margin: 0 0 16px 2%; padding: 8px 28px 9px; background: #101911f2; border: 1px solid #bac5a985; box-shadow: 0 3px 10px #0008; color: #eceddf; font-size: 14px; line-height: 1.3; font-weight: 500; letter-spacing: .025em; text-align: left; }
+.scene-dialogue-nameplate::after { content: ""; position: absolute; bottom: -1px; left: 24px; right: 24px; height: 1px; background: #d6dec3; box-shadow: 0 0 8px #b2c1938c; }
+.scene-dialogue-text { margin: 0; max-width: 860px; min-height: 2.9em; margin-inline: auto; font-family: "Desna Roboto", Arial, sans-serif; font-size: clamp(16px, 1.55vw, 22px); font-weight: 400; line-height: 1.55; text-align: left; letter-spacing: .005em; text-shadow: 0 1px 3px #000; }
+.scene-dialogue-next { display: flex; align-items: center; justify-content: flex-end; gap: 11px; margin-top: 12px; color: #cbd6b8; font-size: 11px; line-height: 1.2; }
+.scene-dialogue-next i { display: grid; place-items: center; width: 18px; height: 18px; font-style: normal; border: 1px solid #afbd95; color: #e5e8c9; }
+.scene-dialogue--drift .scene-dialogue-surface { background: linear-gradient(180deg, #0b1410e0, #050d0bea); }
+.scene-dialogue--drift .scene-dialogue-motif { width: 240px; height: 220px; left: -50px; top: -65px; border-radius: 0; transform: rotate(30deg); opacity: .72; border-color: #b9cfb93d; box-shadow: 0 0 0 20px #b4c1a509, 0 0 0 22px #b4c1a525, 0 0 0 70px #b4c1a509, 0 0 0 72px #b4c1a51b; }
+.scene-dialogue--animated .scene-dialogue-motif { animation: dialogue-motif-drift 16s ease-in-out infinite alternate; }
+.scene-dialogue--animated .scene-dialogue-grain { animation: dialogue-grain-drift 20s linear infinite alternate; }
+.scene-dialogue--orbit .scene-dialogue-surface { inset: 20px 0 0; background: linear-gradient(180deg, #11170dd6 0%, #d3d7af1f 7%, #070c09ed 24%, #060b09e6 80%, #c6ceac22 100%); border: 1px solid #d1d8b56b; box-shadow: inset 0 1px 8px #d9dfba40, inset 0 -1px 7px #c7d6ac26, 0 2px 12px #0007; }
+.scene-dialogue--orbit .scene-dialogue-motif { border-radius: 50%; transform: none; width: 130px; height: 130px; left: 3%; top: -17px; border: 2px solid #c4cdaa42; box-shadow: 0 0 0 7px #b7c6a014, 0 0 0 9px #c4cdaa38; }
+.scene-dialogue--orbit .scene-dialogue-grain { opacity: .055; }
+.scene-dialogue--orbit .scene-dialogue-nameplate { margin-left: 9%; border-radius: 0; background: linear-gradient(90deg, #080b07f0, #151c10f2); border-color: #d5dbb3a1; }
+.scene-dialogue--orbit .scene-dialogue-text { text-align: center; }
+.scene-dialogue--orbit .scene-dialogue-next i { border-radius: 50%; }
+@keyframes dialogue-motif-drift { from { transform: translateX(0) rotate(30deg); } to { transform: translateX(55px) rotate(47deg); } }
+@keyframes dialogue-grain-drift { from { transform: translateX(-8px); } to { transform: translateX(8px); } }
+@media (max-width: 650px) {
+  .scene-dialogue { padding: 0 6% 14px; }
+  .scene-dialogue-nameplate { font-size: 12px; padding: 7px 20px; min-width: 100px; margin-bottom: 12px; }
+  .scene-dialogue-text { font-size: 16px; line-height: 1.5; }
+  .scene-dialogue-next { margin-top: 10px; font-size: 10px; }
+  .scene-dialogue--orbit .scene-dialogue-motif { width: 90px; height: 90px; left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-dialogue--animated .scene-dialogue-motif, .scene-dialogue--animated .scene-dialogue-grain { animation: none; }
+}
+
+/* The same restrained sign sits inside the panel for each location. */
+.scene-dialogue-amulet { position:absolute; width:130px; height:130px; top:-17px; left:3%; color:#c4cdaa; opacity:.14; animation:amulet-breathe 12s ease-in-out infinite; }
+.location-amulet { display:block; width:100%; height:100%; }
+.scene-dialogue--orbit .scene-dialogue-motif { display:none; }
+.scene-dialogue-text { text-align:center; white-space:pre-line; }
+@keyframes amulet-breathe { 0%,100%{opacity:.08} 50%{opacity:.23} }
+@media(max-width:650px){.scene-dialogue-amulet{width:95px;height:95px;left:0}}
+@media(prefers-reduced-motion:reduce){.scene-dialogue-amulet{animation:none}}

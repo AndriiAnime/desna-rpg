@@ -31,8 +31,8 @@ const COPY = {
     attack: 'Куди вдарити?', defend: 'Що захистити?', back: 'Змінити удар',
     choose: 'Обери зону удару.', chooseGuard: 'Тепер обери захист — і почнеться обмін ударами.',
     attackSelected: 'Обраний удар', declaring: 'Дії обрано. Приготуйся до удару.',
-    rules: 'Удар у незахищену зону забирає 1 HP. Обидва удари враховуються одночасно.',
-    round: 'Раунд', sudden: 'Нічия. Вирішальний раунд', suddenHint: 'HP залишаються на нулі. Щоб перемогти, влуч і заблокуй удар у тому самому раунді.',
+    rules: 'Удар у незахищену зону забирає 1 HP. Герой б’є першим. Переможений ворог не відповідає.',
+    round: 'Раунд',
     resolving: 'Обмін ударами…', victory: 'Перемога', defeat: 'Поразка',
     victoryLine: 'Блуд відступає. Шлях до мосту вільний.', defeatLine: 'Блуд відкинув тебе назад. Можна спробувати ще раз.',
     return: 'Повернутися на мапу', hit: '−1 HP', blocked: 'БЛОК',
@@ -42,15 +42,15 @@ const COPY = {
     strikeHead: 'Б’є в голову', strikeBody: 'Б’є в корпус', guardHead: 'Захищає голову', guardBody: 'Захищає корпус',
     stepAttack: '1 · Удар', stepDefend: '2 · Захист',
     conversation: 'Розмова перед боєм', next: 'Далі', fight: 'До бою',
-    heroTurn: 'Хід героя', enemyTurn: 'Хід ворога', committedReply: 'Ворог завершує вже обраний удар.', roundCommitment: 'Обидва удари вже обрано. Результат визначиться після обміну.',
+    heroTurn: 'Хід героя', enemyTurn: 'Хід ворога', roundCommitment: 'Спочатку б’є герой. Ворог відповість, лише якщо вистоїть.',
   },
   en: {
     scene: 'Battle with Blud', hero: 'Hero', enemy: 'Blud', head: 'Head', body: 'Body',
     attack: 'Where to strike?', defend: 'What to guard?', back: 'Change attack',
     choose: 'Choose an attack zone.', chooseGuard: 'Now choose a guard — the exchange starts automatically.',
     attackSelected: 'Selected attack', declaring: 'Moves chosen. Prepare for the exchange.',
-    rules: 'An unblocked hit deals 1 HP. Both attacks are resolved simultaneously.',
-    round: 'Round', sudden: 'A draw. Sudden death', suddenHint: 'HP stays at zero. Land a hit and block the enemy in the same round to win.',
+    rules: 'An unblocked hit deals 1 HP. The hero strikes first. A defeated enemy cannot retaliate.',
+    round: 'Round',
     resolving: 'Exchanging blows…', victory: 'Victory', defeat: 'Defeat',
     victoryLine: 'Blud retreats. The path to the bridge is clear.', defeatLine: 'Blud pushed you back. You can try again.',
     return: 'Return to the map', hit: '−1 HP', blocked: 'BLOCK',
@@ -60,7 +60,7 @@ const COPY = {
     strikeHead: 'Strikes the head', strikeBody: 'Strikes the body', guardHead: 'Guards the head', guardBody: 'Guards the body',
     stepAttack: '1 · Attack', stepDefend: '2 · Guard',
     conversation: 'Before the battle', next: 'Continue', fight: 'Begin battle',
-    heroTurn: 'Hero Turn', enemyTurn: 'Enemy Turn', committedReply: 'The enemy completes its committed strike.', roundCommitment: 'Both strikes are committed. The result follows the exchange.',
+    heroTurn: 'Hero Turn', enemyTurn: 'Enemy Turn', roundCommitment: 'The hero strikes first. The enemy only replies if it survives.',
   },
 };
 const copyFor = (language) => COPY[language || document.documentElement.lang] || COPY.uk;
@@ -133,9 +133,8 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
     }
   }
   function renderRound() {
-    refs.round.textContent = state.suddenDeath ? t.sudden : `${t.round} ${state.round + 1}`;
-    refs.rules.textContent = state.suddenDeath ? t.suddenHint : t.rules;
-    root.classList.toggle('is-sudden-death', state.suddenDeath);
+    refs.round.textContent = `${t.round} ${state.round + 1}`;
+    refs.rules.textContent = t.rules;
   }
   function sound(type) {
     try { onSound(type); } catch { /* Optional audio must not stop the exchange. */ }
@@ -221,7 +220,7 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
     feedbackElement.innerHTML = battleFeedbackMarkup({ type: event.feedback, language: locale, variant: palette, amount: damage });
     feedbackElement.hidden = false;
     renderHp(hp);
-    sound(hit ? 'hit' : 'block');
+    sound(hit && hp[`${defender}Hp`] === 0 ? 'finisher' : hit ? 'hit' : 'block');
     refs.status.textContent = event.attacker === 'hero'
       ? (hit ? t.heroHit : t.heroBlocked)
       : (hit ? t.enemyHit : t.enemyBlocked);
@@ -251,7 +250,7 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
         refs.turnIndicator.textContent = t[`${event.side}Turn`];
         refs.turnIndicator.hidden = false;
         refs.status.textContent = t[`${event.side}Turn`];
-        refs.commitment.textContent = event.committedReply ? t.committedReply : t.roundCommitment;
+        refs.commitment.textContent = t.roundCommitment;
         root.dataset.turn = event.side;
         void animate(refs.turnBanner, [
           { opacity: 0, transform: 'translateX(-12px)' },
@@ -289,7 +288,7 @@ export function createBattle({ host, onComplete = () => {}, onSound = () => {}, 
     state = result.state;
     renderHp();
     root.classList.remove('is-resolving');
-    refs.last.textContent = `${result.heroHit ? t.heroHit : t.heroBlocked} ${result.enemyHit ? t.enemyHit : t.enemyBlocked}`;
+    refs.last.textContent = `${result.heroHit ? t.heroHit : t.heroBlocked}${result.enemyActed ? ` ${result.enemyHit ? t.enemyHit : t.enemyBlocked}` : ''}`;
     refs.enemyChoice.textContent = `${t.enemyAttack}: ${t[result.enemy.attack]}. ${t.enemyDefend}: ${t[result.enemy.defend]}.`;
     refs.previous.hidden = false;
     if (state.outcome) {
