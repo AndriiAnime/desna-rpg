@@ -8,6 +8,7 @@ export default defineConfig({
         main: "index.html",
         spritePreview: "map-sprites.html",
         uiKit: "ui-kit.html",
+        uiLab: "ui-lab.html",
         routeEditor: "route-editor.html",
       },
       output: {

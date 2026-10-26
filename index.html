@@ -9,132 +9,71 @@
       name="description"
       content="Прах над Десною — невелика пригода за мотивами фольклору Чернігівського Полісся."
     />
-    <title>Прах над Десною</title>
+    <title>Невідспівані: Прах над Десною</title>
   </head>
-  <body>
+  <body class="immersive-build">
     <main id="app">
       <section
         id="title-screen"
-        class="title-screen"
+        class="start-screen"
+        data-title-variant="unmourned"
         aria-labelledby="game-title"
       >
-        <div class="title-art" aria-hidden="true"></div>
-        <header class="brand-bar">
-          <span class="brand-mark">Д / Н</span><span>СІВЕРСЬКІ ІСТОРІЇ</span
-          ><span class="edition">ПРОТОТИП · СТЕЖКА ДО МОСТУ</span>
-        </header>
-        <div class="title-content">
-          <p class="eyebrow">ОДНА НІЧ. ОСТАННЯ ДОРОГА.</p>
-          <h1 id="game-title">Прах<br /><span>над Десною</span></h1>
-          <p class="title-description">
-            За тихою рікою чекає давній курган.<br />Донеси дідусів прах, доки
-            не зайнявся світанок.
-          </p>
-          <button id="start-button" class="primary-button" disabled>
-            <span>Готуємо стежку…</span><span aria-hidden="true">→</span>
+        <div class="start-screen__art" aria-hidden="true"></div>
+        <nav class="title-language" aria-label="Мова / Language"><button type="button" data-language="uk" aria-pressed="true">УКР</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="false">ENG</button></nav>
+        <div class="start-screen__content">
+          <h1 id="game-title" class="start-screen__title">Невідспівані</h1>
+          <p class="start-screen__subtitle">Прах над Десною</p>
+          <button id="start-button" class="start-screen__start" type="button" disabled>
+            <span>Готуємо стежку…</span><span class="start-screen__arrow" aria-hidden="true">›</span>
           </button>
-          <p class="title-hint">Стрілки · WASD · натискання на стежку</p>
-          <p class="title-hint"><a href="./map-sprites.html">Переглянути нові спрайти на мапі →</a></p>
-          <p class="title-hint"><a href="#review-workshop">Нові фони, кадрування та idle-анімації ↓</a></p>
+          <p class="title-hint start-screen__hint" aria-live="polite"></p>
         </div>
-        <footer class="title-footer">
-          <span>ФОЛЬКЛОРНА ПРИГОДА · ЧЕРНІГІВЩИНА</span>
-          <p>
-            *Світ гри натхненний
-            <a
-              href="https://nz.lviv.ua/2022-5-7/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >дослідженням Володимира Галайчука</a
-            >
-            про вірування Чернігівського Полісся. Сюжет і частина образів —
-            авторська фантазія.
-          </p>
+        <footer class="start-screen__footer">
+          <div class="start-screen__variants" role="group" aria-label="Варіант назви гри">
+            <button type="button" data-title-option="unmourned" aria-pressed="true">Невідспівані</button>
+            <span aria-hidden="true">/</span>
+            <button type="button" data-title-option="rebirth" aria-pressed="false">Друге народження богів</button>
+          </div>
+          <a class="start-screen__review" href="./ui-lab.html" data-lab-link data-copy="lab">Майстерня UI ↗</a>
         </footer>
       </section>
 
-      <section
-        id="game-screen"
-        class="game-screen"
-        hidden
-        aria-label="Ігрова карта"
-      >
-        <header class="game-header">
-          <a class="small-brand" href="#" id="home-link"
-            >Прах <em>над Десною</em></a
-          >
-          <div class="header-actions">
-            <button id="audio-toggle" class="quiet-button audio-toggle" type="button" aria-label="Вимкнути музику" aria-pressed="true" title="Вимкнути музику"><span class="speaker-icon" aria-hidden="true">◖))</span></button>
-            <span class="chapter-label">РОЗДІЛ I</span
-            ><button id="journal-button" class="quiet-button">
-              Нотатки <span class="note-count">1</span>
-            </button>
-          </div>
-        </header>
-        <div id="exploration-view">
-        <div class="game-layout">
-          <div class="map-column">
-            <div class="location-heading">
-              <div>
-                <p class="eyebrow">ОКОЛИЦІ ВЕРБОЛОЗІВ</p>
-                <h2>Наддеснянська галявина</h2>
-              </div>
-              <span class="day-badge">☀ День</span>
+      <section id="game-screen" class="game-screen immersive-game" hidden aria-label="Ігрова карта">
+        <div id="exploration-view" class="world-scene">
+          <div id="game-canvas" tabindex="0" role="img" aria-label="Лісова галявина. Рухайтесь стрілками, WASD або натисніть на стежку."></div>
+          <header class="world-hud">
+            <div class="day-phase" aria-label="Фаза дня: день"><span class="day-phase__orb" aria-hidden="true"></span><div><small data-copy="phase">ФАЗА ДНЯ</small><strong data-copy="day">День</strong></div></div>
+            <div class="world-location"><div><small data-copy="chapter">ЧЕРНІГІВСЬКЕ ПОЛІССЯ</small><strong data-copy="location">Наддеснянська галявина</strong></div><button id="audio-toggle" class="hud-circle audio-toggle" type="button" aria-label="Вимкнути музику" aria-pressed="true"><span aria-hidden="true">◖))</span></button></div>
+          </header>
+          <p id="walk-feedback" class="world-feedback" role="status" aria-live="polite"></p>
+          <div class="world-controls">
+            <div class="dpad" role="group" aria-label="Рух персонажа">
+              <button data-direction="up-left" aria-label="Рух угору ліворуч">↖</button>
+              <button data-direction="up" aria-label="Рух угору">↑</button>
+              <button data-direction="up-right" aria-label="Рух угору праворуч">↗</button>
+              <button data-direction="left" aria-label="Рух ліворуч">←</button>
+              <span class="dpad-center" aria-hidden="true">✦</span>
+              <button data-direction="right" aria-label="Рух праворуч">→</button>
+              <button data-direction="down-left" aria-label="Рух униз ліворуч">↙</button>
+              <button data-direction="down" aria-label="Рух униз">↓</button>
+              <button data-direction="down-right" aria-label="Рух униз праворуч">↘</button>
             </div>
-            <div class="map-frame">
-              <div
-                id="game-canvas"
-                tabindex="0"
-                role="img"
-                aria-label="Лісова галявина. Натисніть на стежку або рухайтесь стрілками, WASD чи екранними кнопками. Обійдіть камінь нижньою стежкою. Блуд стоїть біля мосту."
-              ></div>
-              <span class="map-corner top-left" aria-hidden="true"></span
-              ><span class="map-corner bottom-right" aria-hidden="true"></span>
-            </div>
-            <div class="map-caption">
-              <span><i class="legend-dot hero-dot"></i> Мандрівник</span
-              ><span><i class="legend-dot enemy-dot"></i> Невідоме</span
-              ><span class="coordinates" id="step-count">Кроків: 0</span>
-            </div>
+            <div class="world-utilities"><button id="help-button" class="hud-circle" type="button" aria-label="Як грати">?</button><button id="menu-button" class="hud-circle" type="button" aria-label="Меню гри">☰</button></div>
           </div>
-          <aside class="journey-panel" aria-label="Подорож">
-            <p class="eyebrow">ПЕРШИЙ ПРОХІД</p>
-            <h3>До переправи</h3>
-            <p class="objective">Камінь перекрив коротку стежку. Знайди обхід нижньою дорогою та підійди до Блуда біля мосту.</p>
-            <div class="journey-divider"></div>
-            <p id="walk-feedback" class="walk-feedback" role="status" aria-live="polite">Натисни на стежку або рушай стрілками.</p>
-            <button id="restart-walk" class="quiet-button" type="button">Почати заново</button>
-            <a class="quiet-button" href="./route-editor.html" target="_blank" rel="noopener">Показати й уточнити маршрут ↗</a>
-            <a class="quiet-button" href="#review-workshop">Порівняти нові варіанти ↓</a>
-          </aside>
-        </div>
-        <footer class="controls-panel">
-          <div class="control-help">
-            <strong>Тримайся стежки</strong
-            ><span
-              >Стрілки або <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd
-              ><kbd>D</kbd></span
-            ><small>Або натисни на стежку, щоб піти туди.</small>
-          </div>
-          <div class="dpad" role="group" aria-label="Рух персонажа">
-            <button data-direction="up-left" aria-label="Рух угору ліворуч">↖</button>
-            <button data-direction="up" aria-label="Рух угору">↑</button>
-            <button data-direction="up-right" aria-label="Рух угору праворуч">↗</button>
-            <button data-direction="left" aria-label="Рух ліворуч">←</button>
-            <span class="dpad-center" aria-hidden="true">✦</span>
-            <button data-direction="right" aria-label="Рух праворуч">→</button>
-            <button data-direction="down-left" aria-label="Рух униз ліворуч">↙</button>
-            <button data-direction="down" aria-label="Рух униз">↓</button>
-            <button data-direction="down-right" aria-label="Рух униз праворуч">↘</button>
-          </div>
-          <div class="chunk-label">
-            ЕТАП 3<span>Стежка → Лакі → бій</span>
-          </div>
-        </footer>
         </div>
         <section id="battle-host" hidden aria-label="Бій біля переправи"></section>
+        <dialog id="pause-dialog" class="scene-menu" aria-labelledby="menu-title">
+          <p class="eyebrow" data-copy="pause">ПАУЗА</p><h2 id="menu-title" data-copy="journey">Подорож</h2>
+          <p class="objective">Камінь перекрив коротку стежку. Знайди обхід нижньою дорогою та підійди до Блуда біля мосту.</p>
+          <p id="step-count">Кроків: 0</p>
+          <button id="resume-button" class="scene-menu__primary" type="button" data-copy="resume">Продовжити</button>
+          <button id="journal-button" type="button" data-copy="howTo">Як грати</button>
+          <button id="restart-walk" type="button" data-copy="restart">Почати заново</button>
+          <a href="./ui-lab.html" data-lab-link data-copy="lab">Майстерня UI</a>
+          <a href="#" id="home-link" data-copy="home">На головну</a>
+        </dialog>
       </section>
-      <section id="review-workshop" class="review-workshop" aria-label="Порівняння нових варіантів"></section>
       <dialog id="story-dialog" aria-labelledby="dialog-title">
         <div class="dialog-layout">
           <div id="dialog-speaker" class="dialog-speaker" hidden>
@@ -144,6 +83,7 @@
           <div class="dialog-content">
             <div id="dialog-ornament" class="dialog-ornament" aria-hidden="true">✦</div>
             <p id="dialog-eyebrow" class="eyebrow"></p>
+            <span id="dialog-count" class="dialog-count"></span>
             <h2 id="dialog-title"></h2>
             <div id="dialog-body"></div>
             <button id="dialog-close" class="primary-button">
