@@ -25,6 +25,7 @@ let chapterIndex = Math.max(0,CHAPTERS.findIndex(chapter => chapter.id === query
 let typingTimer, printed = 0, fullText = '', pendingTimer, transitionTimer, battle, sceneController, busy = false, mode = 'scene';
 let completed = false, newGamePlus = false, soundStarted = false;
 let riddlesSolved = 0, disposeMapSprites, titleBackground;
+let rockHintSeen = false, resumeRockWalk;
 const sceneImages = createAssetPreloader();
 let mapAssetsReady = false;
 const approachedNPCs = new Set();
@@ -71,6 +72,7 @@ function updateURL() {
   const url = new URL(location.href); url.searchParams.set('lang',language);url.searchParams.set('chapter',currentChapter().id);url.searchParams.set('dialogue',skin);url.searchParams.set('sprites',spriteMode);history.replaceState(null,'',url);
 }
 function cleanup() {
+  resumeRockWalk = undefined;
   clearInterval(typingTimer);clearTimeout(pendingTimer);clearTimeout(transitionTimer);
   sceneController?.abort();titleBackground?.destroy();titleBackground=null;disposeMapSprites?.();disposeMapSprites=null;battle?.destroy();battle=null;busy=false;const skip=app.querySelector('[data-action=skip-battle]');if(skip)skip.disabled=true;const status=app.querySelector('.skip-status');if(status)status.textContent='';
 }
@@ -156,16 +158,17 @@ async function renderBeat() {
   const stage=app.querySelector('.scene-stage');stage.className='scene-stage';
   const gateRusalka=beat.action==='battle'&&beat.enemy==='rusalka'&&!approachedNPCs.has(beat.id);
   let visual=beat.action==='clear-barrier' ? 'apprentice' : gateRusalka ? 'river' : beat.visual;
-  let visualMarkup=sceneVisualMarkup(visual,language,{tail:unlocks.tail,minion:beat.id!=='tutorial-done'});
+  let visualMarkup=sceneVisualMarkup(visual,language,{tail:unlocks.tail,minion:beat.id!=='tutorial-done',knockbackTargets:beat.targets});
   if(beat.action==='battle' && ['blud','rusalka','upyr'].includes(beat.enemy)&&!gateRusalka)visualMarkup=`<div class="scene-visual scene-visual--forest"><div class="scene-backdrop" style="background-image:url('${sceneAsset(beat.enemy==='upyr'?'scenes/v3/mountain-battle.png':'battle/forest-muted-a-v1.png')}')"></div><div class="scene-art"><img class="scene-hero battle-portrait-hero" src="${sceneAsset('battle/hero-v1.png')}" alt="${names('hero')}"><img class="scene-boss" src="${sceneAsset(beat.enemy==='blud'?'battle/blud-v1.png':beat.enemy==='rusalka'?'scenes/v3/rusalka-battle.png':'scenes/upyr-cloaked-elder-v1.png')}" alt="${names(beat.enemy)}"></div></div>`;
   const isIntro=currentChapter().id==='intro'||['lucky-finale','sequel'].includes(visual), isBoard=visualMarkup.includes('scene-visual--whiteboard');
   stage.dataset.beat=beat.id;
   const mapDialogue=!isIntro && !isBoard && beat.action!=='battle' && !['tutorial-arena','smith-proud','smith-flirt','smith-bruised','rusalka-closeup','rusalka-win','baseball','proposal','sequel','menu'].includes(visual);
   const nextLabel=beat.action==='battle' ? t('Почати бій','Begin battle') : beat.action==='riddles' ? t('Відповісти','Answer') : t('Далі','Continue');
-  stage.innerHTML=`${visualMarkup}<div class="stage-location"><span>◒ ${t('ДО СВІТАНКУ','BEFORE DAWN')}</span>${!isIntro?`<span>${esc(translated(currentChapter().title))}</span>`:''}</div>${beat.diagram ? `<div class="combat-diagram"><span>${battleChoiceIcon('attack','head')} ${t('Удар','Strike')}</span><b>↔</b><span>${battleChoiceIcon('defend','body')} ${t('Захист','Guard')}</span><small>${t('Різні зони → −1 HP','Different zones → −1 HP')}</small></div>` : ''}<div class="dialogue-dock ${mapDialogue || isIntro || isBoard ? 'persona-dialogue' : 'prebattle-dialogue'}">${mapDialogue ? `<div class="map-dialogue-portrait">${portrait(beat.speaker)}</div>` : ''}${dialogueSkinMarkup({variant:mapDialogue || isIntro || isBoard ? 'veil' : skin,speaker:names(beat.speaker),text:'',language,nextLabel,location:locationTheme()})}<button class="dialogue-advance" data-action="advance" aria-label="${nextLabel}"></button></div>`;
+  stage.innerHTML=`${visualMarkup}<div class="stage-location"><span>◒ ${t('ДО СВІТАНКУ','BEFORE DAWN')}</span>${!isIntro?`<span>${esc(translated(currentChapter().title))}</span>`:''}</div>${beat.diagram ? `<div class="combat-diagram"><span>${battleChoiceIcon('attack','head')} ${t('Удар','Strike')}</span><b>↔</b><span>${battleChoiceIcon('defend','body')} ${t('Захист','Guard')}</span><small>${t('Різні зони → −1 HP','Different zones → −1 HP')}</small></div>` : ''}<div class="dialogue-dock ${mapDialogue || isIntro || isBoard ? 'persona-dialogue' : 'prebattle-dialogue'}">${mapDialogue ? `<div class="map-dialogue-portrait">${portrait(beat.speaker)}</div>` : visual==='tutorial-arena'&&beat.speaker==='lucky' ? `<div class="briefing-portrait">${portrait('lucky')}</div>` : ''}${dialogueSkinMarkup({variant:mapDialogue || isIntro || isBoard ? 'veil' : skin,speaker:names(beat.speaker),text:'',language,nextLabel,location:locationTheme()})}<button class="dialogue-advance" data-action="advance" aria-label="${nextLabel}"></button></div>`;
   if(beat.action==='follow-smith')stage.querySelector('.scene-art')?.classList.add('walk-to-pier');
 
-  disposeMapSprites=mountMapSprites(stage);
+  stage.dataset.rockHintSeen=String(rockHintSeen);
+  disposeMapSprites=mountMapSprites(stage,{rockHintSeen});
   audio.setMode(musicMode());
   if(visual==='rusalka-dive')audio.sound('dive');
   if(beat.action==='knockback')audio.sound('hit');
@@ -198,7 +201,16 @@ function nextBeat() {
 function startFreeMap(world,targets,start,onArrive) {
   const stage=app.querySelector('.scene-stage');finishText();fullText='';printed=0;busy=true;
   stage.querySelector('.dialogue-dock').hidden=true;
-  return mountExploration(stage,{world,targets,start,onArrive,language,signal:sceneController.signal});
+  return mountExploration(stage,{world,targets,start,onArrive,language,signal:sceneController.signal,rockHintSeen,onRock:(_position,resume)=>{
+    rockHintSeen=true;stage.dataset.rockHintSeen='true';busy=false;
+    const dock=stage.querySelector('.dialogue-dock');
+    dock.className='dialogue-dock persona-dialogue';
+    const nextLabel=t('Далі','Continue');
+    dock.innerHTML=`<div class="map-dialogue-portrait">${portrait('lucky')}</div>${dialogueSkinMarkup({speaker:names('lucky'),language,nextLabel,location:'clearing'})}<button class="dialogue-advance" data-action="advance" aria-label="${nextLabel}"></button>`;
+    dock.hidden=false;
+    resumeRockWalk=()=>{dock.hidden=true;fullText='';printed=0;busy=true;resume();};
+    typeText(t('Тут не пройти.','We cannot get through here.'));
+  }});
 }
 function startNPCApproach(text,onlyRusalka=false) {
   const targets=[{id:'rusalka',selector:'.rusalka-map',x:1080,y:330,label:names('rusalka')}];
@@ -219,6 +231,7 @@ function startAltar(){
 function advance() {
   if(mode!=='scene'||busy)return;
   if(printed<fullText.length){finishText();return;}
+  if(resumeRockWalk){const resume=resumeRockWalk;resumeRockWalk=undefined;resume();return;}
   const beat=currentBeat();
   if(beat.action==='battle'){
     cleanup();busy=true;audio.setMode('battle');
@@ -257,7 +270,7 @@ function renderMenu() {
   stage.querySelectorAll('[data-menu]').forEach(button=>button.addEventListener('click',()=>{
     if(button.getAttribute('aria-disabled')==='true'){stage.querySelector('.menu-hint').textContent=button.title;return;}
     if(button.dataset.menu==='library'){renderLibrary();return;}
-    newGamePlus=button.dataset.menu==='plus';riddlesSolved=0;unlocks=newGamePlus?{lucky:true,tail:true,heal:true,weight:true,charm:true}:{lucky:false,tail:false,heal:false,weight:false,charm:false};approachedNPCs.clear();chapterIndex=newGamePlus?3:0;beatIndex=0;renderBeat();
+    newGamePlus=button.dataset.menu==='plus';riddlesSolved=0;rockHintSeen=false;unlocks=newGamePlus?{lucky:true,tail:true,heal:true,weight:true,charm:true}:{lucky:false,tail:false,heal:false,weight:false,charm:false};approachedNPCs.clear();chapterIndex=newGamePlus?3:0;beatIndex=0;renderBeat();
   }));
 }
 function libraryArt(id, early=false) {

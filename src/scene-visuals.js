@@ -31,7 +31,7 @@ function barrier(clear = false) {
 }
 
 /** Art and layout only. Input, typewriting and story state belong to the player. */
-export function sceneVisualMarkup(visual = 'lucky', language = 'uk', { tail = false, minion = true } = {}) {
+export function sceneVisualMarkup(visual = 'lucky', language = 'uk', { tail = false, minion = true, knockbackTargets = ['hero'] } = {}) {
   const t = (uk,en) => language === 'en' ? en : uk;
   let body = '', background = 'battle/forest-muted-a-v1.png', style = 'forest';
   const map = name => { background = name === 'clearing' ? 'map-sprites/map-v8.png' : `scenes/${name}-map-v1.png`; style = `map map-${name}`; };
@@ -54,7 +54,7 @@ export function sceneVisualMarkup(visual = 'lucky', language = 'uk', { tail = fa
     case 'lucky-shield':
       style = 'whiteboard'; body = board(`${art('lucky-shield-diagram','board-wide-art',t('Лакі захищає героя','Lucky shields the hero'))}<span class="board-once">${t('Я ЗАБЛОКУЮ БУДЬ-ЯКИЙ УДАР','I WILL BLOCK ANY STRIKE')}</span>`); break;
     case 'river': case 'river-empty': case 'rusalka-dive': case 'knockback':
-      map('river'); body = `${mapHero(visual==='knockback'?'map-knockback':'')}<div class="map-actor smith-map ${visual === 'knockback' ? 'map-knockback' : ''}">${sheetSprite('smith')}</div><div class="map-actor rusalka-map ${visual === 'rusalka-dive' ? 'rusalka-diving' : ''}">${visual==='river-empty'?'':visual==='rusalka-dive'?'<span class="rusalka-dive-frames" role="img" aria-label="Русалка пірнає / Rusalka diving"></span>':sheetSprite('rusalka')}</div><div class="river-ripples"></div>`; break;
+      map('river'); body = `${mapHero(visual==='knockback' && knockbackTargets.includes('hero')?'map-knockback':'')}<div class="map-actor smith-map ${visual === 'knockback' && knockbackTargets.includes('smith') ? 'map-knockback' : ''}">${sheetSprite('smith')}</div><div class="map-actor rusalka-map ${visual === 'rusalka-dive' ? 'rusalka-diving' : ''}">${visual==='river-empty'?'':visual==='rusalka-dive'?'<span class="rusalka-dive-frames" role="img" aria-label="Русалка пірнає / Rusalka diving"></span>':sheetSprite('rusalka')}</div><div class="river-ripples"></div>`; break;
     case 'smith-proud': case 'smith-flirt': case 'smith-bruised':
       map('river'); body = `<div class="reaction-cell smith-cell" style="--cell:${{'smith-proud':0,'smith-flirt':1,'smith-bruised':2}[visual]}" role="img" aria-label="${t('Коваль','Blacksmith')}"></div>${visual === 'smith-flirt' ? `<div class="flirt-rusalka"><img src="${A}scenes/v3/rusalka-battle.png" alt="${t('Русалка','Rusalka')}"></div>` : ''}`; break;
     case 'rusalka-closeup': background = 'scenes/rusalka-shocked-v1.png'; style = 'closeup'; break;

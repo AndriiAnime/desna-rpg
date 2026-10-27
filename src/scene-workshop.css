@@ -839,8 +839,11 @@ small {
 }
 .approach-target {
   cursor:pointer;
-  filter:drop-shadow(0 0 10px #c8d4ac);
-  outline:1px dashed #d9e4ab
+  filter:drop-shadow(0 0 10px #c8d4ac)
+}
+.approach-target:focus-visible {
+  filter:drop-shadow(0 0 13px #e5edcc);
+  outline:none
 }
 .preview-moving {
   animation:preview-step .25s infinite alternate
