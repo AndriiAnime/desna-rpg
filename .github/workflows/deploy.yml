@@ -24,7 +24,7 @@ jobs:
       - name: Check out reviewed alternative
         uses: actions/checkout@v4
         with:
-          ref: 8137d16363ae02420dc0cebc8deaaa842b36138f
+          ref: 259aeb8613106c2b022f64e5b36f924d4efcbaa6
           path: alternative-source
       - uses: actions/setup-node@v4
         with:
