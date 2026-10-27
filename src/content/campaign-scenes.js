@@ -7,6 +7,7 @@ export const SPEAKERS = {
   blud: pair('Блуд', 'Blud'), smith: pair('Коваль', 'Blacksmith'), rusalka: pair('Русалка', 'Rusalka'),
   lesovyk: pair('Лісовик', 'Forest Spirit'), apprentice: pair('Учень', 'Apprentice'),
   upyr: pair('Упир', 'Upyr'), grandfather: pair('Дідусь', 'Grandfather'),
+  minion: pair('Прихвостень', 'Minion'),
 };
 
 export const CAMPAIGN_RULES = {
@@ -32,6 +33,8 @@ export const CHAPTERS = [
     beat('movement-enemy', 'lucky', 'Підійди до чудища на перехресті — це Прихвостень Блуда. Потренуємося.', 'Approach the creature at the crossroads — Blud’s minion. Time for some practice.', 'tutorial', { action: 'approach', enemy: 'tutorial' }),
   ]),
   chapter('tutorial', 'Перший бій', 'Your first fight', 'Один удар: голова → захист корпусу.', 'One strike: head → guard body.', [
+    beat('tutorial-minion-threat', 'minion', 'Тут твій кінець.', 'This is where you meet your end.', 'tutorial-arena'),
+    beat('tutorial-hero-reply', 'hero', 'Ми ще подивимось.', 'We’ll see about that.', 'tutorial-arena'),
     beat('tutorial-analogy', 'lucky', 'Бій відбувається за принципом «камінь, ножиці, папір». Треба передбачити рішення суперника: обрати, куди бити й що захищати.', 'Combat follows the principle of rock, paper, scissors. Predict your opponent: choose where to strike and what to guard.', 'tutorial-arena', { diagram: 'attack-guard' }),
     beat('tutorial-health', 'lucky', 'Влучив у незахищену зону — забрав одне здоров’я. Хто перший упав, той програв. Дуже складна наука.', 'Hit an unguarded zone and take one health point. First to fall loses. Very advanced science.', 'tutorial-arena'),
     beat('tutorial-choose', 'lucky', 'Обери удар у голову. Потім захисти корпус. Інші варіанти поки залиш мені.', 'Choose a head strike. Then guard your body. Leave the other options alone for now.', 'tutorial-arena', { action: 'battle', enemy: 'tutorial', allowedAttack: 'head', allowedGuard: 'body' }),
@@ -48,7 +51,7 @@ export const CHAPTERS = [
     beat('river-arrival', 'narrator', 'За пагорбами шлях звужується до дерев’яного пірса. На ньому чекає Русалка. Біля стежки працює Коваль.', 'Beyond the hills, the path narrows to a wooden pier. A rusalka waits there. A blacksmith works beside the path.', 'river'),
     beat('river-smith-busy', 'smith', 'Справ по вуха. Зараз не допоможу.', 'I’m up to my ears in work. Can’t help you now.', 'river', { action: 'approach-smith', optional: true, condition: 'before-rusalka-rejection' }),
     beat('river-rusalka-mock', 'rusalka', 'Що це за слабак? Куди це ти зібрався?', 'Who’s this weakling? Where do you think you’re going?', 'rusalka-closeup'),
-    beat('river-first-knockback', 'narrator', 'Русалка вдарила хвостом. Герой повернувся на середину берега значно швидше, ніж прийшов.', 'The rusalka struck with her tail. The hero returned to the middle of the riverbank much faster than he arrived.', 'knockback', { action: 'knockback', flag: 'rusalka-rejected', repeatWithoutDialogue: true }),
+    beat('river-first-knockback', 'narrator', 'Русалка вдарила хвостом. Герой повернувся на середину берега значно швидше, ніж прийшов.', 'The rusalka struck with her tail. The hero returned to the middle of the riverbank much faster than he arrived.', 'knockback', { action: 'knockback', targets: ['hero'], flag: 'rusalka-rejected', repeatWithoutDialogue: true }),
     beat('river-find-help', 'lucky', 'Схоже, розмова не склалася. Може, Коваль щось придумає?', 'That conversation went well. Perhaps the blacksmith has an idea?', 'river'),
   ]),
   chapter('smith', 'Непереборний шарм', 'Irresistible charm', 'Залицяння, спільний політ і дуже важкий талісман.', 'Flirting, a shared flight, and a very heavy talisman.', [
