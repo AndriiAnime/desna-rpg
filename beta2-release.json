@@ -1,0 +1,79 @@
+{
+  "version": "0.2.0-beta.2",
+  "date": "2026-11-05",
+  "sourceArchive": "beta2-source.tar.gz",
+  "sourceSha256": "40cdf0c5b816bf5f7d07dccce931305717e8d32dbe87bb9f0917a57da298f8b4",
+  "sourceBytes": 253730602,
+  "sourceFiles": 293,
+  "parts": [
+    {
+      "file": "beta2-source.tar.gz.part-000",
+      "bytes": 20000000,
+      "sha256": "c3950b9246344883d06797fe1b0ba2a6896ae693a300a434362d948ea5d83bee"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-001",
+      "bytes": 20000000,
+      "sha256": "864704e96a2457c1aad49309d3024fdc61e360f61521c33326dbed5950d30afa"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-002",
+      "bytes": 20000000,
+      "sha256": "f01864996878bfd81c68054f5d6b0c8c7e57de6bbe2dff7ba667ad571f1bd3fb"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-003",
+      "bytes": 20000000,
+      "sha256": "3f48bafe9b87e40ab6f8441f9e1a9f40956ed92ed31d684f08b0ecce5357c859"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-004",
+      "bytes": 20000000,
+      "sha256": "95ce6b1404b2e3149fb5af723389ed8c4b218a6ea0e0d3c0b507c6663be76b17"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-005",
+      "bytes": 20000000,
+      "sha256": "f7de04075533d9ee079b35895cfabac1fd5796e073cab1ebab9d1058b35b40a8"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-006",
+      "bytes": 20000000,
+      "sha256": "18c5fdca05848dfd3ac6f629c8a9ef0451eea71924d37759092a2f6b7b54eedb"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-007",
+      "bytes": 20000000,
+      "sha256": "eae5938fd656624c704dde18373fd8534a4aa9fe64deab21d7e0630f14fe8641"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-008",
+      "bytes": 20000000,
+      "sha256": "afd19799636d76fa448fd6822608aa7546068308509e329ae70093eaffeb7450"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-009",
+      "bytes": 20000000,
+      "sha256": "97d38de8f8e4cf42dc165c54eb5b825fabbb2faefa7761e739ba11b64346d213"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-010",
+      "bytes": 20000000,
+      "sha256": "ca68724aec10089a51c3874ef4aef8707d57e27abd0c2c3fc9beab8918adfa12"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-011",
+      "bytes": 20000000,
+      "sha256": "f1f4c15f985993ae9659adc1265eff204a432f6e7b1cb928ed26e8297be8db19"
+    },
+    {
+      "file": "beta2-source.tar.gz.part-012",
+      "bytes": 13730602,
+      "sha256": "99633853a6f8bcdd30ed3749f3f061e7a479aeaac9cc277e5c71496d0b139f72"
+    }
+  ],
+  "preservedBeta1": {
+    "rootCommit": "c8ce3353e5aaa3903546f3fc3e268bee0eb7546f",
+    "gameCommit": "259aeb8613106c2b022f64e5b36f924d4efcbaa6"
+  }
+}
