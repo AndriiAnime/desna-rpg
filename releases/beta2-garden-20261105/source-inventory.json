@@ -1,0 +1,1572 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 38,
+    "sha256": "fdae294aafbc66b01ad8e307f0a9131b461886d75e81b4037900566c9aa116b3"
+  },
+  {
+    "path": ".nvmrc",
+    "bytes": 3,
+    "sha256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56"
+  },
+  {
+    "path": "index.html",
+    "bytes": 7243,
+    "sha256": "1b0da00f0c7546394ab793bf09ffa27840c447683c951344042a9b2fd96f15ec"
+  },
+  {
+    "path": "map-sprites.html",
+    "bytes": 10045,
+    "sha256": "6ac71ba174315368614963e0f59426f1b0e220a24bd96a0855a6694783618e1a"
+  },
+  {
+    "path": "package-lock.json",
+    "bytes": 24662,
+    "sha256": "acfeb6ffe13dc22e4370821f8b06148a9a32b749687dc787429e2c9dd65b0308"
+  },
+  {
+    "path": "package.json",
+    "bytes": 406,
+    "sha256": "7a5fd26606e9ff58eb484c68e77d807206d83ab0d1c0c6eeb66c6342969e73b2"
+  },
+  {
+    "path": "play.html",
+    "bytes": 420,
+    "sha256": "675d778573946ff9ac06d17f898491fb4a7beded4fabbad1125bf40511f6063a"
+  },
+  {
+    "path": "public/assets/audio-v2/battle-preview.wav",
+    "bytes": 1058444,
+    "sha256": "4f8ec51098bc90405322c6872605d81e559a9be48fedf1d5b2389e7f0583884c"
+  },
+  {
+    "path": "public/assets/audio-v2/clearing-preview.wav",
+    "bytes": 1058444,
+    "sha256": "e7db3380b54608d78a2a96662b6d3274acbe2358fac7feaca6c1f60ef8eb0dac"
+  },
+  {
+    "path": "public/assets/audio-v2/comedy-preview.wav",
+    "bytes": 1058444,
+    "sha256": "47215ed9902f6f822c39a31bb17d1b7b7637fc84f20e3a2db496772877f18bf0"
+  },
+  {
+    "path": "public/assets/audio-v2/effects-preview.wav",
+    "bytes": 661544,
+    "sha256": "9a6738e1021377a7f3d5c07144dc9c064e1eb1c1c51482c02bc0548f0a178468"
+  },
+  {
+    "path": "public/assets/audio-v2/mountain-preview.wav",
+    "bytes": 1058444,
+    "sha256": "61cdddc598e826908ff12373ca6923b4424ecbb56ae0e36017489b8d4261e4b9"
+  },
+  {
+    "path": "public/assets/audio-v2/render-checks.json",
+    "bytes": 1236,
+    "sha256": "3ca18a44f0db97fe12f59b8ccb093d59235aec3ec38449dbd31b1fe7d73a7ebc"
+  },
+  {
+    "path": "public/assets/audio-v2/river-preview.wav",
+    "bytes": 1058444,
+    "sha256": "ecc613c5960dd4bd0a108fdaf9d4ea7e65263b15b97ecb9606be1e0945ca1025"
+  },
+  {
+    "path": "public/assets/audio-v2/title-preview.wav",
+    "bytes": 1058444,
+    "sha256": "5f538b884532af5f3c6b3678e08cdefced93f2bcb1f8f134ab42a4fd73a7246c"
+  },
+  {
+    "path": "public/assets/audio-v3/battle-preview.wav",
+    "bytes": 1058444,
+    "sha256": "0affa68544eb12af956102ed5dbe02ad68f0f67bf9e4e67cb666bcb067a80f7f"
+  },
+  {
+    "path": "public/assets/audio-v3/clearing-preview.wav",
+    "bytes": 1058444,
+    "sha256": "118f195ccf0cd730271e37b2c6dd3f764f77eacdf88ee9a32969b9e2e754849c"
+  },
+  {
+    "path": "public/assets/audio-v3/comedy-preview.wav",
+    "bytes": 1058444,
+    "sha256": "2b8ebac493ce212d6298401cff7176d049892cf8f32f06ef99ce8582b3520fb1"
+  },
+  {
+    "path": "public/assets/audio-v3/effects-preview.wav",
+    "bytes": 749744,
+    "sha256": "def096eb3700d6b1dfb8eb1dd085821c1adf4eec8e2c0ffa883c33188411cddd"
+  },
+  {
+    "path": "public/assets/audio-v3/mountain-preview.wav",
+    "bytes": 1058444,
+    "sha256": "4d61650bc777c8f8a10af5677bfc2a683cb137663e0ba0c0d1728075ddeca391"
+  },
+  {
+    "path": "public/assets/audio-v3/render-checks.json",
+    "bytes": 1821,
+    "sha256": "43557f877ca4c0cd4dafda2509f62dbe31562e143573c5fdb6d7efab7e30712b"
+  },
+  {
+    "path": "public/assets/audio-v3/river-preview.wav",
+    "bytes": 1058444,
+    "sha256": "b9831ea04aef865332d8e9bcec25ac8c5750c856783108ac98da61d42988ec3d"
+  },
+  {
+    "path": "public/assets/audio-v3/title-preview.wav",
+    "bytes": 1058444,
+    "sha256": "4630a2c91868e34f8bcc56ba2d480b1b19caa91b8b380e015b17940ea012016c"
+  },
+  {
+    "path": "public/assets/audio-vn/README.md",
+    "bytes": 1078,
+    "sha256": "6b180b11c28942b31341dff3859ca14417c7a9afa408588bcd1fae9d9e9fd596"
+  },
+  {
+    "path": "public/assets/audio-vn/SAMPLE-LICENSE.txt",
+    "bytes": 7048,
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+  },
+  {
+    "path": "public/assets/audio-vn/body-fall.wav",
+    "bytes": 88244,
+    "sha256": "9c4c5480a97656820ec7970a995da78a75132f2225935362ea7862627770e3be"
+  },
+  {
+    "path": "public/assets/audio-vn/punch.wav",
+    "bytes": 63548,
+    "sha256": "2cc0182515d0b553f71f77b96e6cca3658cec9ee822914f74f75a70390fdfa32"
+  },
+  {
+    "path": "public/assets/audio-vn/render.py",
+    "bytes": 2706,
+    "sha256": "c0ae90da0ec69b187e004c202cfe626d2d6225c11c0929c5fbf201c992f528e4"
+  },
+  {
+    "path": "public/assets/audio-vn/whoosh-punch.wav",
+    "bytes": 123524,
+    "sha256": "6e4e42d3e6e76c1f27d288549ab31357d3a6e9450f949b0843bda13ece907c02"
+  },
+  {
+    "path": "public/assets/audio-vn/whoosh.wav",
+    "bytes": 63548,
+    "sha256": "eb15bda0d936ed450c11d235ac63bbf18d24daea6384fdfb1940c121cc21285f"
+  },
+  {
+    "path": "public/assets/battle/blud-v1.png",
+    "bytes": 1585318,
+    "sha256": "48b43b70ef9208a9e67af404ee293cb650416a73f613b9d3b368bf7f37affc5f"
+  },
+  {
+    "path": "public/assets/battle/forest-mist-b-v1.png",
+    "bytes": 1868479,
+    "sha256": "2cb11f7d2450051306227c1c5b897eb4e80284740938259ef706a1c72d53fd5b"
+  },
+  {
+    "path": "public/assets/battle/forest-muted-a-v1.png",
+    "bytes": 2174573,
+    "sha256": "a0d571cb72b7ab90c1becdd113f0d4091bb2c78ce38ab83318ebaab6c4240a83"
+  },
+  {
+    "path": "public/assets/battle/forest-uncanny-c-v1.png",
+    "bytes": 2131504,
+    "sha256": "b619ffbc0ed1ee7b0a425a9ddfb318ba2c3f75a0be1144ee24fdffd1cbd9b59e"
+  },
+  {
+    "path": "public/assets/battle/forest-v1.png",
+    "bytes": 1889494,
+    "sha256": "f824a329e884f410968e1a1f0505f44cc75b1f3ae2141c27bb26d56ee6f5bbc5"
+  },
+  {
+    "path": "public/assets/battle/forest-v2.png",
+    "bytes": 1899945,
+    "sha256": "256dee70f9204d941a63483330d838429688f4d42cbc9001fa5470f4ae6d446a"
+  },
+  {
+    "path": "public/assets/battle/generation.json",
+    "bytes": 2920,
+    "sha256": "953097ae9275e79b881596e7772688ee3c551e723e771c633ab278fcbbdd791e"
+  },
+  {
+    "path": "public/assets/battle/hero-standing-v5.webp",
+    "bytes": 251012,
+    "sha256": "913480405860094218f2a0169eaf66ec9ad17991c722f314b232ec36a4024116"
+  },
+  {
+    "path": "public/assets/battle/hero-sway-v6.webp",
+    "bytes": 359042,
+    "sha256": "8f7e207e59db5c0adb44aaea3e30cf526d6f95bde9d03cbefee38039ae545bb7"
+  },
+  {
+    "path": "public/assets/battle/hero-v1.png",
+    "bytes": 1807474,
+    "sha256": "e85efa44fe01880cbe97cfd8554c8098cf7ac9bbcf68799a5750cb3b5ff687e7"
+  },
+  {
+    "path": "public/assets/battle/references/sky.png",
+    "bytes": 10190,
+    "sha256": "489335fd95ff8af0010c8907752d3e0bf9be06e380498db6b93ada17f58148c9"
+  },
+  {
+    "path": "public/assets/battle/references/terrain-1.png",
+    "bytes": 120970,
+    "sha256": "8dd5a3013b5819c5d2dae08145464c970233633206a4ddb8b80f22be1d6065a3"
+  },
+  {
+    "path": "public/assets/battle/references/terrain-2.png",
+    "bytes": 147878,
+    "sha256": "669f7d73d46c630c080a97458e193e95b5ab6474e3397a41bf90d2a079eda0df"
+  },
+  {
+    "path": "public/assets/battle/studies/lucky-shield.webp",
+    "bytes": 503438,
+    "sha256": "f7395f8dd436b59cc01c9797b7a7498d740181c665786fdda2f6a81171d7628b"
+  },
+  {
+    "path": "public/assets/desna-key-art-v1.webp",
+    "bytes": 410496,
+    "sha256": "cff9cd32deec8ac752ed36d2f3ef0be233df01c0642052d570454f042c5fe337"
+  },
+  {
+    "path": "public/assets/map-sprites/apprentice-idle-v1.json",
+    "bytes": 2465,
+    "sha256": "3f431445bdcdfcf27c0a55ad0887eeca226098847482f277d5c4742f572d7512"
+  },
+  {
+    "path": "public/assets/map-sprites/apprentice-idle-v1.png",
+    "bytes": 670167,
+    "sha256": "e1a0cedb82a55d18c8ed7c55abd2abb230b5809ff6df339b87499d51f13625f1"
+  },
+  {
+    "path": "public/assets/map-sprites/blud-calm-idle-v1.png",
+    "bytes": 1064521,
+    "sha256": "290e9f0006f94e808d633072540f5e34c807c005155db501f7179f8d3e78b5c4"
+  },
+  {
+    "path": "public/assets/map-sprites/blud-idle-v1.json",
+    "bytes": 2471,
+    "sha256": "94d56e5edc2b4a5f31a01ec134ef329eb2fcb3960e1ce9638f2d8ba5b829108d"
+  },
+  {
+    "path": "public/assets/map-sprites/blud-idle-v1.png",
+    "bytes": 981695,
+    "sha256": "169c4dbf11e4d2c3ead13a3b2f80e9b46177e26a2ac7025ce84598d335279fdd"
+  },
+  {
+    "path": "public/assets/map-sprites/character-states-v1.json",
+    "bytes": 5828,
+    "sha256": "1fbeb9b4dba64a097a45dd265b0914f9cd228be1a65a36b3ab518e2ce6f95a37"
+  },
+  {
+    "path": "public/assets/map-sprites/elder-idle-v1.json",
+    "bytes": 2458,
+    "sha256": "13d5f6d8681c9edfff349dd344aad6d76461caa13b5b005b8c3f64d9fa5c9496"
+  },
+  {
+    "path": "public/assets/map-sprites/elder-idle-v1.png",
+    "bytes": 884215,
+    "sha256": "08a71ba8332a436348a656cb812e4661f8175fccef3d8ff895cdb93ef4f54146"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-idle-quiet-candidate-v1.png",
+    "bytes": 967851,
+    "sha256": "b6574bfe132b6abe036873011b8ec5ab63a5f9dcb19994f01d2fcd177142157e"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-idle-tap-candidate-v1.png",
+    "bytes": 964241,
+    "sha256": "be044ff157598b4040bdec0e6396366ba68a12d5fbc55841f6bc5ad3745d1b4b"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-ne-walk-v3.png",
+    "bytes": 970709,
+    "sha256": "f06faec8b8349405e523cc9795a7414b830fcfeec88c09e0b72b8a2ce9de8302"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-standing-idle-v1.png",
+    "bytes": 891737,
+    "sha256": "c55d5f9fc14051cd9768ac816c60222d34e02cd8a10a69d273d71fb45591d698"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-standing-idle-v2.png",
+    "bytes": 1749855,
+    "sha256": "0a4a7d204c23a3e0fb767f0e65fadbef9114799d15a2bd69a92565f28d9e69b4"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-walk-v1.json",
+    "bytes": 1332,
+    "sha256": "462f628f799c70a0c5b4a85b0e4f45e794d3bcd28823d61554e551f6b9f7e579"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-walk-v1.png",
+    "bytes": 1126818,
+    "sha256": "7956969c8642485a264bf73042a3beeaae17362462e30f8e67485f2668149775"
+  },
+  {
+    "path": "public/assets/map-sprites/hero-walk-v2.png",
+    "bytes": 1368677,
+    "sha256": "458ce4c6d5180645e846f73d547b4d82fd376be6440220865dbcfd0026b4aef8"
+  },
+  {
+    "path": "public/assets/map-sprites/idle-candidates-v1.json",
+    "bytes": 9210,
+    "sha256": "0c4c8d2bdfc02b46ab1fc82af929ec18fdec9ff8febf1c6180f9e16f8e081bdd"
+  },
+  {
+    "path": "public/assets/map-sprites/lucky-idle-curious-candidate-v1.png",
+    "bytes": 1224042,
+    "sha256": "f889aa0aac673242c83db9b6f473462ba8015bc2f6ea99b213212a42a8e8e083"
+  },
+  {
+    "path": "public/assets/map-sprites/lucky-idle-perched-candidate-v1.png",
+    "bytes": 1157708,
+    "sha256": "d5484adb5dcfc5d2e27958ded434f5432a15ae5cc4089c15b978a8ca84ed1f1d"
+  },
+  {
+    "path": "public/assets/map-sprites/manifest.json",
+    "bytes": 8287,
+    "sha256": "5430dde19c6cffa6e9a665af6c73b462f045609f1c70d02ca20dfa0557c5c59d"
+  },
+  {
+    "path": "public/assets/map-sprites/map-v6.png",
+    "bytes": 2481695,
+    "sha256": "d589f754925b2c2c727968784b26c62b54082f480dcb84fdad2685e19f89750b"
+  },
+  {
+    "path": "public/assets/map-sprites/map-v7.png",
+    "bytes": 2490883,
+    "sha256": "ce7cb995e73aba1d1f617b0db666393b4749e162e309c315fee9bce499971c42"
+  },
+  {
+    "path": "public/assets/map-sprites/map-v8.png",
+    "bytes": 2437067,
+    "sha256": "0c28d6533e55dc87365d000b75970ca3b15ffe11d3c1f04ee10021f829ff4644"
+  },
+  {
+    "path": "public/assets/map-sprites/moth-idle-v1.json",
+    "bytes": 2572,
+    "sha256": "5cd073c492087a8adcd4d207b69d1a160609e097304379bb7ff4d8baf02e7761"
+  },
+  {
+    "path": "public/assets/map-sprites/moth-idle-v1.png",
+    "bytes": 1196491,
+    "sha256": "230e02ad8a20d3abfda0b2d28dc54b9cd92854c3b61ae9a2ad6cac42abaf06f4"
+  },
+  {
+    "path": "public/assets/map-sprites/moth-idle-v2.json",
+    "bytes": 2887,
+    "sha256": "5e68eef70e90773b4b380b5e104854e9659c9ed423ff29df1d0f8f444282e853"
+  },
+  {
+    "path": "public/assets/map-sprites/moth-idle-v2.png",
+    "bytes": 1006658,
+    "sha256": "6b4f3a97e99641af2df5c6324b39569545c79d74d9f980ad8e10ad76bc696e9f"
+  },
+  {
+    "path": "public/assets/map-sprites/rusalka-idle-v1.json",
+    "bytes": 2655,
+    "sha256": "398b0dc142253f88483db1b6b5ed35f9c056454181d4bf907b165d3a3717cbe6"
+  },
+  {
+    "path": "public/assets/map-sprites/rusalka-idle-v1.png",
+    "bytes": 1522905,
+    "sha256": "4a8d9ea647a44c74320451674626f36351c22aa025ca02f8bbca1bb96f19435e"
+  },
+  {
+    "path": "public/assets/map-sprites/smith-idle-v1.json",
+    "bytes": 2611,
+    "sha256": "3fb3b9a23d430c7ae24e250b69b3772de6195af09f51cb9bd382e1d14de7c217"
+  },
+  {
+    "path": "public/assets/map-sprites/smith-idle-v1.png",
+    "bytes": 617430,
+    "sha256": "03e86b23456414b31f5a4877bad5066b09951ad1cf9e5f9daefeba9337dffa6b"
+  },
+  {
+    "path": "public/assets/map-sprites/upyr-idle-v1.json",
+    "bytes": 2467,
+    "sha256": "66f3c532a58f0a0227ba838d96cd9f48c151b3b2a4349a77a0e650c992c455c6"
+  },
+  {
+    "path": "public/assets/map-sprites/upyr-idle-v1.png",
+    "bytes": 1926739,
+    "sha256": "f42ed48ab9e5d435ac6a6d95c9ce474784c20ced096a30a2a4ecdbdc89f7667a"
+  },
+  {
+    "path": "public/assets/moth-narrator-v1.png",
+    "bytes": 1412602,
+    "sha256": "0c5b300330d6bc57c45551ff83b5202820654986b33f7090dceb8a73672df1c2"
+  },
+  {
+    "path": "public/assets/music/between-worlds.flac",
+    "bytes": 2854086,
+    "sha256": "210cc6aa173d8a9742e475e265ddabb014f762a0975ba639d9b8c975e91f2ee8"
+  },
+  {
+    "path": "public/assets/music/desna-bank.flac",
+    "bytes": 5028956,
+    "sha256": "187d55f261597b3793b1306bd8e949eda0d97553b5307ff0145498b2cb9bd95c"
+  },
+  {
+    "path": "public/assets/music/desna-glade.mp3",
+    "bytes": 4801964,
+    "sha256": "ddb784fd1a99150393cc2aad0326e7dde0bae0ab16ffa815ad7572f98e05f8f7"
+  },
+  {
+    "path": "public/assets/music/on-air-loop-v2-two-cycles.mp3",
+    "bytes": 4801964,
+    "sha256": "e6a6922c2d365926824329c55332e8dfc8ddd4e703452a5bd24552ca2b20ae96"
+  },
+  {
+    "path": "public/assets/music/on-air-loop-v2.wav",
+    "bytes": 17280102,
+    "sha256": "af7472acd2c1093df50e900930d9ae4f319186909b2c6471b97292e1f2019810"
+  },
+  {
+    "path": "public/assets/music/on-air.mp3",
+    "bytes": 2402006,
+    "sha256": "f1e3baeb0aa776624eaae26f04290ca262cef1e50ee89c9724f0b9f5f8931cc3"
+  },
+  {
+    "path": "public/assets/portraits/lucky-dialogue-v1.png",
+    "bytes": 1539623,
+    "sha256": "6191557caacb26fb90ee08237afb663f9be7439245112e02792d7458dc901372"
+  },
+  {
+    "path": "public/assets/references/DESNA_CHARACTER_STYLE.md",
+    "bytes": 10357,
+    "sha256": "ef72fd1cc8af3408cbae491dc5f986589141189ff5bc1f8d3c36fbcbb9e9da96"
+  },
+  {
+    "path": "public/assets/references/desna-character-style-kit.zip",
+    "bytes": 173960,
+    "sha256": "e541ef364b1642999969a7faaed4b6f79750c2d4d398a9553238e279114caeb7"
+  },
+  {
+    "path": "public/assets/scenes/credits-baseball-v1.png",
+    "bytes": 3108052,
+    "sha256": "7a10afc07ebf9564300e53266c17220b7be19e7eac074494eb59f4f9365803e2"
+  },
+  {
+    "path": "public/assets/scenes/credits-proposal-v1.png",
+    "bytes": 3122436,
+    "sha256": "500dd2bd70bf113b27cfa0622ff1889aaba0b06ca5ea49b1c319851eb67ae036"
+  },
+  {
+    "path": "public/assets/scenes/designs/blud-early.png",
+    "bytes": 1704212,
+    "sha256": "e6707ec2d1b417ce90f3cebeec4f13c0b88ebffe85d8c5bdca65c16d77ef9bfc"
+  },
+  {
+    "path": "public/assets/scenes/designs/blud.png",
+    "bytes": 1671703,
+    "sha256": "c692cc045d0ecae706108c842015f4ca7b12ae0e9a65607a214ddcaef0096bcf"
+  },
+  {
+    "path": "public/assets/scenes/designs/cast-first.png",
+    "bytes": 2121397,
+    "sha256": "dfd1a7f1bb49abf968826e9537c29b99dda31e732c9e7e174bd8be6e064b4d95"
+  },
+  {
+    "path": "public/assets/scenes/designs/cast-full.png",
+    "bytes": 2385498,
+    "sha256": "717589f7f37c8acc5591c392719071a058d471873ecea0b1f95ced482ae03d6d"
+  },
+  {
+    "path": "public/assets/scenes/designs/rusalka-early.png",
+    "bytes": 2396869,
+    "sha256": "2cefe6f95d7442693832330fb4642ab95eb545407f685f42ac0d5309cb3dfef3"
+  },
+  {
+    "path": "public/assets/scenes/designs/rusalka.png",
+    "bytes": 2488851,
+    "sha256": "bc7c922203f592fed1dc9abcc03e36d589d4354cc516dde9e9364096d597b911"
+  },
+  {
+    "path": "public/assets/scenes/designs/smith.png",
+    "bytes": 1907740,
+    "sha256": "8b64055fff1d907e7298f5ca0c5fe2b8f5343fe630092532bf5976413d582257"
+  },
+  {
+    "path": "public/assets/scenes/designs/upyr-early.png",
+    "bytes": 2150149,
+    "sha256": "f62d34c5d12ced5879a6f4f660805586ce76fb901aff0c9014272c8370450a5f"
+  },
+  {
+    "path": "public/assets/scenes/designs/upyr.png",
+    "bytes": 2288493,
+    "sha256": "b632eec66eba803f0c7c9eaee8f26a8735735b7e6bae733e33801c2d0194930b"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v5/blud-wayward.webp",
+    "bytes": 169222,
+    "sha256": "bd5e425d23f9ae011bc50598d02edbeacae5687fa9d1db1235c33c94d804b1c0"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v5/rusalka-vodianyk.webp",
+    "bytes": 318632,
+    "sha256": "9ac9790ef0cbeab989fdd771f6a5e5395e3694ce35697a9a8f07d494b468b4ef"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v5/upyr-elder.webp",
+    "bytes": 130554,
+    "sha256": "fa6560c3faca0ae8fe9f3f023573f744ca6711066e41a4b52d4656309385a0ad"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v5/upyr-revealed.webp",
+    "bytes": 327216,
+    "sha256": "144b272fda550ad33d41a71a1aa25c8034ee757d13a36cde9a0b0b3103ffba7e"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v6/blud-crossroads.webp",
+    "bytes": 105920,
+    "sha256": "8e1330ee8151c6686850966fe8c3a4f86f2caf3121dff24319f3a222a79c2c86"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v6/rusalka-rivercourt.webp",
+    "bytes": 191132,
+    "sha256": "791ca77ca0e86f7023c60c4e3b3c0a2611204feccf41db36cb7ed07d21db3097"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v6/upyr-bodybuilder.webp",
+    "bytes": 223132,
+    "sha256": "00c1d0b9d4fb991b2a41d2eb266a753f3887eff30ac13c5b92ca799c0edeb3b2"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v6/upyr-powerlifter.webp",
+    "bytes": 253170,
+    "sha256": "49f9368e38b14d7f1fa99683f291e5a2a0150139bd0b11f89e8e0c8ad95be39f"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v7/blud-mycotic-guide.webp",
+    "bytes": 1260778,
+    "sha256": "ffcc7d947ae7d0e93d9632c4acca5f387284ac3f61091d0f968b3a354f3571b5"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v7/rusalka-rivercourt-hair-fix.webp",
+    "bytes": 166444,
+    "sha256": "27dbbf55d81c372e0734e3a18d02086956a8402fc76c9c71b53a519775c70bb7"
+  },
+  {
+    "path": "public/assets/scenes/enemies-v8/upyr-otherworldly.webp",
+    "bytes": 1361040,
+    "sha256": "baf359b2f787c56e1a6c81e9a32007494eeccd7782c0ea901c0c489e07677147"
+  },
+  {
+    "path": "public/assets/scenes/garden-map-v1.png",
+    "bytes": 3684548,
+    "sha256": "7f9eb36b55d69132f41d0f2d5dd163fa154418b6a3de8d1edb8d3530afee14ea"
+  },
+  {
+    "path": "public/assets/scenes/grandfather-states-v1.png",
+    "bytes": 1650374,
+    "sha256": "f8b1e0e930b67472a9c9758a5ecde51027cc98e881eddede918b089601ece950"
+  },
+  {
+    "path": "public/assets/scenes/mountain-map-thawed-v1.png",
+    "bytes": 3760413,
+    "sha256": "d0a9d464e1ff31efc45d1f2a8870141665b698b9369466621814eb1f98d29594"
+  },
+  {
+    "path": "public/assets/scenes/mountain-map-v1.png",
+    "bytes": 4045394,
+    "sha256": "c0de8ec7603979f37ba1a31a3478328360c21b04008cda81fd9e3f281e68b981"
+  },
+  {
+    "path": "public/assets/scenes/mountain-map-v2.png",
+    "bytes": 3133454,
+    "sha256": "f0cf61d1f197218eda9058fdfd440377982c1ab7f70e638fbac11e921c68da48"
+  },
+  {
+    "path": "public/assets/scenes/mountain-map-v3.png",
+    "bytes": 3745420,
+    "sha256": "11dc55c179f0e8abbbaf8994bd130c18930925237cb833855113763c7d4a8103"
+  },
+  {
+    "path": "public/assets/scenes/mountain-map-v4.png",
+    "bytes": 3779812,
+    "sha256": "2bdeb863f7da5111b312c4cec1111b5b1286a17e44f7f62e4f1013f13db72ed9"
+  },
+  {
+    "path": "public/assets/scenes/mountain-map-v5.png",
+    "bytes": 3542484,
+    "sha256": "01274a02e812e53364bd612878c8b3b4e9b0f5176481c0022465bf76dcbed200"
+  },
+  {
+    "path": "public/assets/scenes/quiz-v1/apprentice-salute.png",
+    "bytes": 1570209,
+    "sha256": "d7a57bdb927e448463831f6e6aeb993935610c9e5e94f1783bab07afb0e04887"
+  },
+  {
+    "path": "public/assets/scenes/quiz-v1/forest-background.png",
+    "bytes": 2910313,
+    "sha256": "42d0ea6a76c0e9104d2712c7935fc68ad4988dbca42e2408d90be658156da064"
+  },
+  {
+    "path": "public/assets/scenes/quiz-v1/quiz-failure.png",
+    "bytes": 2731773,
+    "sha256": "e0211acb147d763ab65bed062bc97c7b77053eca98994f096100180afd6c7a4c"
+  },
+  {
+    "path": "public/assets/scenes/quiz-v1/quiz-studio.png",
+    "bytes": 2270576,
+    "sha256": "b9e3a6fb4dad5056093d30d310f8695c1c8ff388ff68aa6530ecbb4f0efab71c"
+  },
+  {
+    "path": "public/assets/scenes/quiz-v1/show-point.png",
+    "bytes": 2946473,
+    "sha256": "746c4cee59be596bea5b5d6dffdfc44af06562a17769cf098532c712527a6e97"
+  },
+  {
+    "path": "public/assets/scenes/river-map-v1.png",
+    "bytes": 3848088,
+    "sha256": "740520e8d89c9b6ef235253f043926c23b6757a159481615508587fffc4859d7"
+  },
+  {
+    "path": "public/assets/scenes/river-map-v2.png",
+    "bytes": 3251033,
+    "sha256": "9caa996e31ba8f08b9ff166f133bfd3d51d57a4250a7686c55b5f93a928dd2c6"
+  },
+  {
+    "path": "public/assets/scenes/rusalka-shocked-v1.png",
+    "bytes": 2557554,
+    "sha256": "03c3752a15f32902096b9193b52f496d8048f3d26af51f2f91246f74644fa64e"
+  },
+  {
+    "path": "public/assets/scenes/smith-reactions-v1.png",
+    "bytes": 1875035,
+    "sha256": "41742a9824ce978a8769a31c70721823d75206d453f31cbf5231c48ddda36a58"
+  },
+  {
+    "path": "public/assets/scenes/training-v2/boxing-child-closeup.png",
+    "bytes": 1832786,
+    "sha256": "68b00223690c45eeea1ce06fef03820948e288b45af6c34e0cdbd3ec6fa2160c"
+  },
+  {
+    "path": "public/assets/scenes/training-v2/boxing-child-memory.png",
+    "bytes": 1456885,
+    "sha256": "93e2de3c871357f7dcdd2167d5e87237008409593782c87b4bc571b46977c8db"
+  },
+  {
+    "path": "public/assets/scenes/training-v2/training-post-ragged.png",
+    "bytes": 1849318,
+    "sha256": "2bab4db61509769d8c76aaee1d57c717140262a81d09c11a2fbe48239c25845b"
+  },
+  {
+    "path": "public/assets/scenes/training-v2/training-post-villain.png",
+    "bytes": 1704768,
+    "sha256": "acf71ec95b6eaa62322266aa107ec09c8c39f0ba5e0e481470236f8cabae1d74"
+  },
+  {
+    "path": "public/assets/scenes/training-v2/training-post-weathered.png",
+    "bytes": 1655892,
+    "sha256": "43611b3c61f5cccbbb10106af651986fa7c4a6b5c2653cae4e1dac1e9387e9e0"
+  },
+  {
+    "path": "public/assets/scenes/upyr-cloaked-elder-v1.png",
+    "bytes": 2212895,
+    "sha256": "863dc3b6e41aee2796e90428f973e4a50c2d2ff0ea0b170a03939498c780a15b"
+  },
+  {
+    "path": "public/assets/scenes/upyr-revealed-v1.png",
+    "bytes": 2444325,
+    "sha256": "35ecd465edf2c0fdf9eeea7e8b62188c92c60989e5eb637effa6d4a91269ef85"
+  },
+  {
+    "path": "public/assets/scenes/v2/grandfather-urn.png",
+    "bytes": 1637175,
+    "sha256": "4d052dc88be99416c755c39b626ec5425b942e6f97a18d85cd83132bc30214fa"
+  },
+  {
+    "path": "public/assets/scenes/v2/lucky-hiker.png",
+    "bytes": 1021922,
+    "sha256": "5d36de370a57432e765cd53dec81810247581eca8bf27b8360c94af3ca312e0e"
+  },
+  {
+    "path": "public/assets/scenes/v2/lucky-shield-diagram.png",
+    "bytes": 1735917,
+    "sha256": "9b10ead2c0b4ec78ceddaaebf7aca4742cd4d9327f62eb694d77b365f5b19b46"
+  },
+  {
+    "path": "public/assets/scenes/v2/lucky-teacher.png",
+    "bytes": 1282321,
+    "sha256": "391bd0657322ebaf14690df8eaa29c209d6cc3f72a7f300e6d27a091b8564935"
+  },
+  {
+    "path": "public/assets/scenes/v2/lucky-victory.png",
+    "bytes": 1593772,
+    "sha256": "0113ad0639335ad90cd6beed73276dd5ecec75893e156d4d79f6dba859cdc34a"
+  },
+  {
+    "path": "public/assets/scenes/v2/minion-battle.png",
+    "bytes": 1801774,
+    "sha256": "9e66ce4cec26285ac177a25a2d6fbc38803c1f50facdde7b015300c6f9030466"
+  },
+  {
+    "path": "public/assets/scenes/v2/minion-map.png",
+    "bytes": 1723733,
+    "sha256": "701a99f92af7e5b51f090cb3f18553b22c417085d23f55e7a161651fc65d4413"
+  },
+  {
+    "path": "public/assets/scenes/v2/portraits-allies.png",
+    "bytes": 1893495,
+    "sha256": "d10c924951e3819d6f3dab2992a338bb85c340e443b3f6ea921716c2d15e0fcb"
+  },
+  {
+    "path": "public/assets/scenes/v2/rusalka-charm.png",
+    "bytes": 1402172,
+    "sha256": "847b7047afc7a3b3046722c1a3583feba7e0b7c78ef9b57c1a60d69109117943"
+  },
+  {
+    "path": "public/assets/scenes/v2/rusalka-dive.png",
+    "bytes": 922199,
+    "sha256": "271a6acfa8d5b113cb3c884346c0740d25fb0604367c10dc29058074d0e4baca"
+  },
+  {
+    "path": "public/assets/scenes/v2/rusalka-win.png",
+    "bytes": 2368912,
+    "sha256": "9b5eb00ce60e28e100e8b7ae0f537f8820622e7b3f0fa03bffad354a0205400e"
+  },
+  {
+    "path": "public/assets/scenes/v2/weight-diagram.png",
+    "bytes": 1349251,
+    "sha256": "b96cf115e88c2bb5af74f7d7588540ff2efd8b61d9b3317873ff157026d1dc0e"
+  },
+  {
+    "path": "public/assets/scenes/v3/altar-map.png",
+    "bytes": 1506946,
+    "sha256": "ff516f3fe08de2d20a91cf0c850afdbc1d01830984657e638571b2ad6234da23"
+  },
+  {
+    "path": "public/assets/scenes/v3/apprentice-cast.png",
+    "bytes": 2238302,
+    "sha256": "b73151663fd96235ac4672ce71a962273f52db0e7892002b5b8e6adb05289a03"
+  },
+  {
+    "path": "public/assets/scenes/v3/credits-sunrise.png",
+    "bytes": 3285323,
+    "sha256": "c38b7ae824958b99f8d297de312771ce0575bc253e331ddfdabaad0c95cb369e"
+  },
+  {
+    "path": "public/assets/scenes/v3/lucky-shield.png",
+    "bytes": 1218198,
+    "sha256": "a33e90389c26e3e16792d69cc813de5802ba5e3a3113421847228a90774c2948"
+  },
+  {
+    "path": "public/assets/scenes/v3/mountain-battle.png",
+    "bytes": 3600520,
+    "sha256": "cb315ceea9787d693deb6d2a55ccc947aac5568ff74c119ef3c0be9932d3dcb6"
+  },
+  {
+    "path": "public/assets/scenes/v3/rusalka-battle.png",
+    "bytes": 2826379,
+    "sha256": "f4ce065f54633ca331841da34ee92919b381e32adc6f99eeb9e88fe3c72c708b"
+  },
+  {
+    "path": "public/assets/scenes/v3/weight-wind-diagram.png",
+    "bytes": 1229793,
+    "sha256": "424196624fb331d25abbf43fcb0f8fb24ed7eba8dbdd6440478a9aaf079cefb2"
+  },
+  {
+    "path": "public/assets/scenes/v4/rusalka-chibi-attack.png",
+    "bytes": 3022710,
+    "sha256": "657b3ef7b9d74dbe1a61378ccc30372c46040c4eb0b72208b2c74f465884b1a2"
+  },
+  {
+    "path": "public/assets/scenes/v4/smith-chibi-charm.png",
+    "bytes": 1311910,
+    "sha256": "1fa0e08f2be461f1ae40110b9f076fbeb0fc4584f2405cce718128c32014bccc"
+  },
+  {
+    "path": "public/assets/scenes/v5/upyr-guard-battle-small.webp",
+    "bytes": 48020,
+    "sha256": "0a832c767a782a819d66863dc06e047f662595e8f036ce9e5dcc68f0a6b625b2"
+  },
+  {
+    "path": "public/assets/scenes/v5/upyr-guard-hostile.webp",
+    "bytes": 324872,
+    "sha256": "22da12efdc816dcc6c375c1182061abafb46b0ad128b9f9610fb9ae928b59d52"
+  },
+  {
+    "path": "public/assets/scenes/v5/upyr-guard-idle.webp",
+    "bytes": 93984,
+    "sha256": "b4c443a5cf03e216acefad1af4b113ee41a6041769d032d829b52c7276a1b12e"
+  },
+  {
+    "path": "public/assets/scenes/v5/upyr-guard-upright.webp",
+    "bytes": 143910,
+    "sha256": "2d0aefb572b1c6607cd4dfd3596963b784c45b51e426837744a44de2c6a547f0"
+  },
+  {
+    "path": "public/assets/scenes/v6/upyr-guard-hunched-idle.png",
+    "bytes": 1685019,
+    "sha256": "53a2df2da8499d5c5a83cd89c07fe3690cb13d269af6f10c1fa35eee540c32f7"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/boxing-exam.png",
+    "bytes": 2817204,
+    "sha256": "ff1f1bdfdd7d64dcece8160bfe9d18c6cc5f2dd5ed1737c5e3a20bc8c75fbb75"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/boxing-memory.png",
+    "bytes": 2482834,
+    "sha256": "c364da4cd9f7127dc042e7a363e742e92a8450443e4755c1b8c6802889e577f3"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/bridge-travel.png",
+    "bytes": 2744049,
+    "sha256": "82475cdaa3b12cd02c3ad864b7f6c57207c2f30ab4e729a7909478f71bc87a2e"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/forge-background.png",
+    "bytes": 2900920,
+    "sha256": "4fde7ac1330953dec1d115bdeaf445086cbbd91d745fc9bbbe3bb92a1058ac84"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/hero-kettlebell-tail-hit-v2.png",
+    "bytes": 2771451,
+    "sha256": "16e498132030a2a750c1db4732adb1dce62925cbe14f1289a73b46b18075ffee"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/pond-survivor.png",
+    "bytes": 6859944,
+    "sha256": "0feaccfc28dbd759acf8d83b7315e41f412061a3411f79ab87fb56c1ac0d73bf"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/river-hybrid.png",
+    "bytes": 2239064,
+    "sha256": "4d0d803fd304f1429c9805af7413fdc2c6e80f35de3ed177498393ba273919f2"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/rusalka-angry-party.png",
+    "bytes": 3136821,
+    "sha256": "d9545f064843ad3f1d679b95e045010f8b067a821d9dce4a1163a8fa58629f0b"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/rusalka-angry.png",
+    "bytes": 2593044,
+    "sha256": "a14ed0a8c29f79b740817b85ba6f83fa418c7a23c8ed9b74dd8ddd0bda7488e4"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/rusalka-koval-strike-close-v2.png",
+    "bytes": 2138091,
+    "sha256": "e5729859d57377e37b9c14fa72ce14fee4e7eba56c3ea2f2a30ca01b1dfc8706"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/rusalka-smith-impact.png",
+    "bytes": 2846503,
+    "sha256": "a377fb7189f54e5579c8c066a44e0514da65745a64c0bb68d6dded705bc06fd6"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/rusalka-weight-impact.png",
+    "bytes": 3153632,
+    "sha256": "555e925da6411b2310e33b70d9bcf9bfd79d7ab99aafbba96f96a842a27f96bf"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/shocked-party.png",
+    "bytes": 1984955,
+    "sha256": "2c5c0a35c8ab1533b53a5f76afa37a2ff433df74791ded551dd55e35caa9eb08"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/smith-fantasy-background.png",
+    "bytes": 1511567,
+    "sha256": "7e487d05c8ba20b43e30c7b347d768bca6624d5a67e85331dda8f022c83faf02"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/star-slayers.png",
+    "bytes": 6788788,
+    "sha256": "48a52939ee812106a48e733aa7c29b1db9c1a52b6b81835835995a885230740a"
+  },
+  {
+    "path": "public/assets/scenes/vn-v1/training-post.png",
+    "bytes": 1719850,
+    "sha256": "72b3d80431470a186c786a04456d770908d59c7dee031045ef526b927777b970"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/approved.png",
+    "bytes": 2608465,
+    "sha256": "9be7bb5723485e036d97e56a20073dda2f902d7f1080b248722c5ba812b8f193"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/map-sprite.png",
+    "bytes": 1024458,
+    "sha256": "1df93cee15c2d5cf65a284b3e9370e7a74a9d9d8dd24f05668f6a74774f44507"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/phase-heart.png",
+    "bytes": 2916554,
+    "sha256": "81db65128b7eaf35a624e90e01018717c0101f6f8682c2f3bc1436fd76c32239"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/phase-seal-hexagram-v2.png",
+    "bytes": 2972826,
+    "sha256": "6f92ba0dc3af084dd439632c753d883e10a11f3421e74d7c22e10adeaa0635bb"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/phase-seal.png",
+    "bytes": 3096855,
+    "sha256": "af7dcc11eb8e3dafc309007e1ed63fa07d5ad64b1a20ed7fb09bbd7fe6fc829c"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/seal-hexagram-v2.png",
+    "bytes": 2021001,
+    "sha256": "ad87c4f8068de31c116b9b00c90105775d036f843eab37b9be0af52d27b65044"
+  },
+  {
+    "path": "public/assets/studies/upyr-phases-20261105/staff-sheet.png",
+    "bytes": 1202732,
+    "sha256": "cc42bb177863bd69e5583fc706249806078373fc1703a9f54ad0a922927ca6bc"
+  },
+  {
+    "path": "public/assets/title/ps2-allies-title-space-v1.png",
+    "bytes": 2410771,
+    "sha256": "bc05f428699af479016b84b4febac399451024af30d5c39391ea9c35484cfcb9"
+  },
+  {
+    "path": "public/assets/title/ps2-hero-lucky-portrait-v1.png",
+    "bytes": 2637533,
+    "sha256": "0211ae41c100f6b486a76385f37fd87a6c23c5155b632dfccc8b2e072466c600"
+  },
+  {
+    "path": "public/assets/title/shooting-star-landscape-poster-v1.webp",
+    "bytes": 200360,
+    "sha256": "5d5ef96e84ad80d293e4a90adea064e96d2e57a370ea23f502d40d350bb211dd"
+  },
+  {
+    "path": "public/assets/title/shooting-star-landscape-v1.mp4",
+    "bytes": 1236037,
+    "sha256": "ac3bd3033dbac2d87d78efd4946b4284c86a1bc4570d1ba10cc1ab6fb18db2ab"
+  },
+  {
+    "path": "public/assets/title/shooting-star-portrait-poster-v1.webp",
+    "bytes": 131778,
+    "sha256": "0aaaaf1d09b5facb3b178b2778b5840ba3af530c2009e40e40ddb72e30db7426"
+  },
+  {
+    "path": "public/assets/title/shooting-star-portrait-v1.mp4",
+    "bytes": 881550,
+    "sha256": "1812c45f5e145cd277eec9073ff5e674176abb6b692ba7ac78aaedfa3805f077"
+  },
+  {
+    "path": "public/assets/ui/cursor-arrow.svg",
+    "bytes": 226,
+    "sha256": "4a9b56dc69b80d9ca9d7e01cc7f17a786404b0c56f50c109b399e90977a29bd4"
+  },
+  {
+    "path": "public/assets/ui/cursor-question.svg",
+    "bytes": 351,
+    "sha256": "aaad279f2c9e77973b04b3f4ec2f2d8685d9e6bc266e01167478730d1f810903"
+  },
+  {
+    "path": "public/assets/ui/cursor-sword.svg",
+    "bytes": 394,
+    "sha256": "bf142c135c8553eafa6a409e9f240ee07ec2d6f7f691763968b0b9ddab5f7a80"
+  },
+  {
+    "path": "public/fonts/roboto-condensed/OFL.txt",
+    "bytes": 4393,
+    "sha256": "0e4cc6ece88573545be2ed25835363662a6182ba4a4c1b5c8feda52add30e8a6"
+  },
+  {
+    "path": "public/fonts/roboto-condensed/RobotoCondensed-Variable.woff2",
+    "bytes": 169216,
+    "sha256": "697fed973774d46c63e00b8155fcc8834ae4f96200fde1a1656e6f8d597b28b1"
+  },
+  {
+    "path": "public/fonts/roboto/OFL.txt",
+    "bytes": 4394,
+    "sha256": "061402327a96aadb0bfb694a960ed289ecd38d383e396243831ab81feb109c41"
+  },
+  {
+    "path": "public/fonts/roboto/Roboto-Variable.woff2",
+    "bytes": 222568,
+    "sha256": "f1c3c80f3026c0aea26bcbb91e6dd40941f5e1c09495029dda02ab5285ea428a"
+  },
+  {
+    "path": "public/fonts/verification.json",
+    "bytes": 2215,
+    "sha256": "9dca0adac9d483e91cf2ba22b693c770beca4aba183130320d82be2d13e67636"
+  },
+  {
+    "path": "public/reviews/anime-scenes-20261104.html",
+    "bytes": 12726,
+    "sha256": "1d92691d0a2165e87a8442f838e563cb2b2d4517110defb0c482598f7ff23cac"
+  },
+  {
+    "path": "public/reviews/forest-show-20261105.html",
+    "bytes": 4670,
+    "sha256": "49493661401ffede846745e45d2a5744311afee1e56a556fdeae52d65ae568d5"
+  },
+  {
+    "path": "public/reviews/training-v2-20261105.html",
+    "bytes": 3817,
+    "sha256": "87b22bdfaed18779d431981698258dbdc81b760447bf31bfac30ba4c32012eda"
+  },
+  {
+    "path": "public/reviews/upyr-phases-20261105.html",
+    "bytes": 38757,
+    "sha256": "cabfd9e1881cad7b6f10d312d3c2d101454148b5b663089311347654cea4360d"
+  },
+  {
+    "path": "public/reviews/visual-novel-v1.html",
+    "bytes": 15539,
+    "sha256": "958d8abe5cc803e6b77bd29c2e2f487bd61b7ab7f9500d0bc1658f9ba8d3b595"
+  },
+  {
+    "path": "public/reviews/vn-v1/grandfather-occult-study.png",
+    "bytes": 3098018,
+    "sha256": "355a77516956acadba9fd5f1953573fa386b2f59098739375854136552edb1ad"
+  },
+  {
+    "path": "route-editor.html",
+    "bytes": 4836,
+    "sha256": "940ff37016e437334d5e0d65502dea22596c66c50be9592b9c64bc45da77505d"
+  },
+  {
+    "path": "scenes.html",
+    "bytes": 403,
+    "sha256": "9f8795ecb47b3eb442d3420d4641e7c2a08a70adb23a9618a3f958333b1afd9c"
+  },
+  {
+    "path": "scripts/package-beta-release.mjs",
+    "bytes": 5131,
+    "sha256": "145887f46e2743351f0ff9c766c55981982f4aabdc7a215da0961af7f14b96b4"
+  },
+  {
+    "path": "scripts/package-pages.mjs",
+    "bytes": 5907,
+    "sha256": "75b09b52ec5dfd81da5cfeb5296fbde3891748bdf06b0d7a067d2f31abba04f1"
+  },
+  {
+    "path": "src/asset-preloader.js",
+    "bytes": 3009,
+    "sha256": "b8dd0501c4d5e4e3f3b87ddb77666e03585500b9ca8290b8da752371fa031e83"
+  },
+  {
+    "path": "src/assets/lucky-loader.webp",
+    "bytes": 156242,
+    "sha256": "ed4e45962637780ddf829fdb86ad6fae44fdd76c693163beeefbe6731abc01a2"
+  },
+  {
+    "path": "src/audio-engine.js",
+    "bytes": 11972,
+    "sha256": "d29cea6e7a49d208373209908b0bed9378707a57dbff43ad4758e319a6fde31e"
+  },
+  {
+    "path": "src/audio.js",
+    "bytes": 7136,
+    "sha256": "17eadfa559ecbb83b531e5acb62f5d517fbf6a695a3001706035a6771de18de2"
+  },
+  {
+    "path": "src/battle-feedback.css",
+    "bytes": 4677,
+    "sha256": "42326b2ede19f3a94d0ed04c23fada7513969d41ab008a57f8f33b057fc88b79"
+  },
+  {
+    "path": "src/battle-feedback.js",
+    "bytes": 1860,
+    "sha256": "3e6df71685dcae8086e4c1faa0e874a1945341b18b8fa3148f42e94bbd75b65c"
+  },
+  {
+    "path": "src/battle-icons.css",
+    "bytes": 2554,
+    "sha256": "e3045113d2bdd70f98f63cf8fad61484d7c42bf37e702e7729de80537983741e"
+  },
+  {
+    "path": "src/battle-icons.js",
+    "bytes": 1822,
+    "sha256": "873d17f237fb1ee1ec686a8d233d39458d772b848622aa8b306776525df0d9c8"
+  },
+  {
+    "path": "src/battle-transition.js",
+    "bytes": 4749,
+    "sha256": "e8b9d7360841390a6d96294a43cd87c3785e837c0d8884607e4dc38021d13411"
+  },
+  {
+    "path": "src/battle.css",
+    "bytes": 21486,
+    "sha256": "75702e08f8333c261d10d627327f5df2abc4ab619ec151353e2949ba45001bc4"
+  },
+  {
+    "path": "src/battle.js",
+    "bytes": 23389,
+    "sha256": "a012d4eb9b0d6c26e51f84bebb0128e07d8f7569d9e1026c08b03a5bdb1da343"
+  },
+  {
+    "path": "src/character-art.js",
+    "bytes": 936,
+    "sha256": "54a5289f519756a58486b7cfc616fd70a154023c738618ea252b3ac9b2f690b2"
+  },
+  {
+    "path": "src/character-studies.js",
+    "bytes": 5556,
+    "sha256": "202182ef87e4163a4d31c478763cae8913fbe8f86eb4ec3108f2e6568d59e7c2"
+  },
+  {
+    "path": "src/content/battle-presentation.js",
+    "bytes": 2148,
+    "sha256": "0b0a7e672eb1e77acf2ed0fd067019d181cb7f0dc0206bbbd6ae2626b0901108"
+  },
+  {
+    "path": "src/content/blud-encounter.js",
+    "bytes": 492,
+    "sha256": "aae0da21d28fff946e2fefb4b18221d62788b800648fd2c4bbc42acbaee7834c"
+  },
+  {
+    "path": "src/content/campaign-scenes.js",
+    "bytes": 37682,
+    "sha256": "654112c796324534de963091e8acb423042a378bed2f108294f3dc577a3a5dbc"
+  },
+  {
+    "path": "src/content/clearing-navigation.js",
+    "bytes": 2700,
+    "sha256": "c233e0f97e045c8b6f493a458415d761689d0cbb09aae34ec6e56dbdc7614025"
+  },
+  {
+    "path": "src/content/clearing.js",
+    "bytes": 1661,
+    "sha256": "fda06231e819cb322b8f0620a59061cbed8de879621bb4582e66da1826d9d7aa"
+  },
+  {
+    "path": "src/content/movement.js",
+    "bytes": 1510,
+    "sha256": "1a3ec27da4f42d7f7e61ba59158b8ebed5fd672de23ee8a6d34b881e96da557e"
+  },
+  {
+    "path": "src/content/music-score.js",
+    "bytes": 4647,
+    "sha256": "2c3959a16504fea10ea54dd975eabc2ad0bc34a39938254c5250786b3a1dfd0a"
+  },
+  {
+    "path": "src/content/recorded-music.js",
+    "bytes": 347,
+    "sha256": "99a5fc68363ab384f2791bc7461283130c8ed849b60390de66e4386d87811bd4"
+  },
+  {
+    "path": "src/content/story.js",
+    "bytes": 1135,
+    "sha256": "457e5e682ca033e6c592a706e9aea8dc598c00a5d0ac2774df009d89e3adf393"
+  },
+  {
+    "path": "src/content/vn-art.js",
+    "bytes": 1129,
+    "sha256": "74be19ba4b1864962a62b96f81d2204b7042acfe659f4fda9383d0e2db064d9b"
+  },
+  {
+    "path": "src/content/world.js",
+    "bytes": 1962,
+    "sha256": "cc49ce0b5ccebda14271d20674adc834f0599685530ca1c9151c392ec40fff6c"
+  },
+  {
+    "path": "src/dialogue-skins.css",
+    "bytes": 5087,
+    "sha256": "2a98236dfe79cc78c43b2624572ac5011e2ab5613f6a79dad52390b833724848"
+  },
+  {
+    "path": "src/dialogue-skins.js",
+    "bytes": 1370,
+    "sha256": "69fd3a015bf353b724fbabfc910dfac92eca40b6c39fc4aa4dae10b9bf4446af"
+  },
+  {
+    "path": "src/domain/battle.js",
+    "bytes": 1681,
+    "sha256": "44931da6a2e7070988e77e35cfc00b9263d6367245222e9a35a7199a1ed629ed"
+  },
+  {
+    "path": "src/domain/campaign-demo.js",
+    "bytes": 4995,
+    "sha256": "b2767450d64d38efd055b566907ce9bfc04c35ab9adc1757968ccd5420015ff7"
+  },
+  {
+    "path": "src/domain/clearing.js",
+    "bytes": 14474,
+    "sha256": "07283c451e264f8293a73b8b345b620bf767db947a9baf80c95d5733bcffd03c"
+  },
+  {
+    "path": "src/domain/garden-finale.js",
+    "bytes": 255,
+    "sha256": "dccd354bdd0e7e0d26ff54627a6b9830f1b890ab83438a311a860e691be926ea"
+  },
+  {
+    "path": "src/domain/idle-behavior.js",
+    "bytes": 3478,
+    "sha256": "6bd8595d7d04defcf8ad708c8de77d5cf6a56434970e9a97a577e3aba9531273"
+  },
+  {
+    "path": "src/domain/map-interactions.js",
+    "bytes": 1612,
+    "sha256": "066e4c7c30881e844fb4cdc919afff7cd9f3df30ef5b7c27c78b0512d70060aa"
+  },
+  {
+    "path": "src/domain/map-knockback.js",
+    "bytes": 722,
+    "sha256": "ff97ab531c6f301d932ef2093c3048262876cb10eea44db5f69580d023f49bba"
+  },
+  {
+    "path": "src/domain/polygon-navigation.js",
+    "bytes": 4147,
+    "sha256": "0abc0d63dafdba69c9afb0ff9ed66ed640a154e82f1cfa560a6c23845b0c741d"
+  },
+  {
+    "path": "src/domain/sprite-layout.js",
+    "bytes": 1709,
+    "sha256": "76f73b00e3e19ada64abc17ff0a2132986c58ebb2de1dfe81efbe7713f7fc889"
+  },
+  {
+    "path": "src/domain/timed-quiz.js",
+    "bytes": 1054,
+    "sha256": "8fb1a7375af5266ecf7a575d3439016a3d17eb754863f46509ccd1ec2132fc39"
+  },
+  {
+    "path": "src/domain/walk-cycle.js",
+    "bytes": 547,
+    "sha256": "72a7a00893085379317494636be69239a58e2ed458eac7a4e93017e9644f3d3d"
+  },
+  {
+    "path": "src/domain/world.js",
+    "bytes": 1894,
+    "sha256": "c8ce52fe01aae1c1438b3991cdcc48902cafa22574091c01eaeba3845dcd9ffc"
+  },
+  {
+    "path": "src/gameplay.css",
+    "bytes": 5149,
+    "sha256": "0e2b36a14f2191c32a9158ae5a38b5abfb43a9b2e0684e7f29ba058b74ad2272"
+  },
+  {
+    "path": "src/immersive.css",
+    "bytes": 11015,
+    "sha256": "5903f2eef3765ed3855ec8ddf9bb42e35d62fb8597da0f65c3a771fd92fc67cf"
+  },
+  {
+    "path": "src/input.js",
+    "bytes": 4523,
+    "sha256": "f4f07299a48c90100a7eee4a1bfcb43b25b8a2fd27abbb092eabea9582dc405a"
+  },
+  {
+    "path": "src/location-amulets.js",
+    "bytes": 844,
+    "sha256": "caae8ae0488aba12a743e897ed794f969a6fcb14eef6c8a8fa09cf0e0963707f"
+  },
+  {
+    "path": "src/lucky-loader.js",
+    "bytes": 479,
+    "sha256": "bfdb62467868f8abc29cd8f82c66855cf3a34bef7c7ccfc226eadf3a298cb672"
+  },
+  {
+    "path": "src/main.js",
+    "bytes": 16436,
+    "sha256": "b016c728f16986eebdd0625e2bc06e7f2d6eb259b3542f8b7d50289aff88c1e9"
+  },
+  {
+    "path": "src/map-sword.css",
+    "bytes": 1001,
+    "sha256": "9879f014c66e628e61b18af48c7680646abd55eb764c8f80483122b9999cacc4"
+  },
+  {
+    "path": "src/map-sword.js",
+    "bytes": 1786,
+    "sha256": "b9eaa92169ce48411639b09c95974fe2fbaa77f32c48c595372231010820820a"
+  },
+  {
+    "path": "src/review-workshop.css",
+    "bytes": 4156,
+    "sha256": "60881052e27d98e8ed06cdde3a02d1add614492a904f8194da44ecfa611cc2bf"
+  },
+  {
+    "path": "src/review-workshop.js",
+    "bytes": 11373,
+    "sha256": "eb3d24c10f2251d2004d26f1305194ae3eddec67ee48eb8a5b31cbd8a1d8b377"
+  },
+  {
+    "path": "src/route-editor.css",
+    "bytes": 4202,
+    "sha256": "20d2ddb2b439294ac19ce71bf90dbf6a91732b6c8261bbf1e422e2b613410b73"
+  },
+  {
+    "path": "src/route-editor.js",
+    "bytes": 13768,
+    "sha256": "ce7dc2d7761603547e29127a5e3b1865fe95771611288408a687e4fc4ded79f4"
+  },
+  {
+    "path": "src/scene-assets.js",
+    "bytes": 4230,
+    "sha256": "480cf59809c91b2a4b99ef2993fe554f96922351a23da015600a3040dcfde9c6"
+  },
+  {
+    "path": "src/scene-battle-demo.js",
+    "bytes": 19915,
+    "sha256": "cc6bbd3cfbfe214bdcced87f3c3145d6317e071faccc8494d4f9460027b362a0"
+  },
+  {
+    "path": "src/scene-battle-v2.css",
+    "bytes": 17499,
+    "sha256": "6ab7cee60729c5edf30f8df22539dfeb7995c88d46c2500fb5f6c8de4c3f89b1"
+  },
+  {
+    "path": "src/scene-companion-walk.js",
+    "bytes": 2182,
+    "sha256": "61665917a1f1ad2c50c1e419a8d9c0207432205482dc894f40e607e68bd00f4e"
+  },
+  {
+    "path": "src/scene-debug.css",
+    "bytes": 1004,
+    "sha256": "9adeb876cedd65148e1f328c1db5a16555106dd67138390897f8580165102aa6"
+  },
+  {
+    "path": "src/scene-exploration.js",
+    "bytes": 15248,
+    "sha256": "d21365c019c54e2ae7e54dc9bf2b38d8e24b1dfaf378bcf20c7a5a800af4598d"
+  },
+  {
+    "path": "src/scene-garden-finale.css",
+    "bytes": 4019,
+    "sha256": "8725189e2bb1ad6f564facbb5991b52cd3f0937ecf6acfd34fde8316f0298aa1"
+  },
+  {
+    "path": "src/scene-loading.css",
+    "bytes": 2450,
+    "sha256": "07dd524a5b5d4542b0fd9b2a9c79214a1448f1ee16345240a3cf604b55459387"
+  },
+  {
+    "path": "src/scene-map-sprites.js",
+    "bytes": 8992,
+    "sha256": "f2e2701caaa291a3d435f06b1704a84b21b5d3be2eea92ede97e783135d3c6e3"
+  },
+  {
+    "path": "src/scene-quiz.css",
+    "bytes": 2885,
+    "sha256": "dd7f3b293bb09a822b630b6be10af087e600594103183c46f4282a04809cb8e0"
+  },
+  {
+    "path": "src/scene-quiz.js",
+    "bytes": 4712,
+    "sha256": "6ff54b2abc9f152d14197a3d429c166072e2b8ce3579e86c9e111c641c3adaa0"
+  },
+  {
+    "path": "src/scene-revision-v2.css",
+    "bytes": 11885,
+    "sha256": "8ca7acba3af064f975a6942af7a1235aa4983b1850ed4fcb24f6f4638942b912"
+  },
+  {
+    "path": "src/scene-revision-v3.css",
+    "bytes": 11567,
+    "sha256": "4e011e7612a803b764951b9c7ac98c94877c9ccc45532cc99a2cd221dd7e5c19"
+  },
+  {
+    "path": "src/scene-visuals.js",
+    "bytes": 16941,
+    "sha256": "13ecdad50cb468cc836aa0ad715ea9a81ef8ef9da557c477cf9dcfeef407afb4"
+  },
+  {
+    "path": "src/scene-vn.css",
+    "bytes": 5676,
+    "sha256": "249372980a977500b08e1950215fb0e702794d47d4b5ddd035b9f347c44f2928"
+  },
+  {
+    "path": "src/scene-workshop.css",
+    "bytes": 36680,
+    "sha256": "25fcbc4c635b548e6b034a85642e1d78a763ca611676aafdb3dc221ba859bed7"
+  },
+  {
+    "path": "src/scene-workshop.js",
+    "bytes": 47199,
+    "sha256": "41a8a1830b289d88ce7d11da6f0b50876f19faf494a8337961c6b7bff9abe905"
+  },
+  {
+    "path": "src/scenes/ClearingScene.js",
+    "bytes": 16014,
+    "sha256": "1b4978b3c8c3c481b456b98df2412144a1055a5fca04d1768171379d911e5dc4"
+  },
+  {
+    "path": "src/scenes/WorldScene.js",
+    "bytes": 12108,
+    "sha256": "52d4426815cb47ab42d183157b01f02355efc8b897dffaa16b01076f97758a63"
+  },
+  {
+    "path": "src/sprite-preview.css",
+    "bytes": 7299,
+    "sha256": "94b2f07c671cc8e8adb66e0760e7a6357f5ba170699b9d8b1adbdcf9cc1aebf3"
+  },
+  {
+    "path": "src/sprite-preview.js",
+    "bytes": 19355,
+    "sha256": "f9496ec450bbb6045c550c1871483bb215c05c72258e6c9e2557ee44cb19bffa"
+  },
+  {
+    "path": "src/star-title-background.css",
+    "bytes": 3236,
+    "sha256": "d7bf8c63410c10960aa08ab2ee97e6a7ad2525b316c8f6b00ca88279495e0077"
+  },
+  {
+    "path": "src/star-title-background.js",
+    "bytes": 930,
+    "sha256": "cf72c8d91e66779d49dbae5bdcae45e496dced02086536ae0e410ca3efccc996"
+  },
+  {
+    "path": "src/style.css",
+    "bytes": 15266,
+    "sha256": "bbaeee93ba184626ea181adb490029c0a5a2a0b0c92c7a141b049f37478d29e0"
+  },
+  {
+    "path": "src/title-screen.css",
+    "bytes": 5368,
+    "sha256": "d07590a587f755fc8a77df304a39c852696ece0ff9b3c27b9008924e86f543d1"
+  },
+  {
+    "path": "src/title-screen.js",
+    "bytes": 3109,
+    "sha256": "11dfbcc53d165a8398be5041de928f44e1cb1d62045ece300c777f4a9556b3fd"
+  },
+  {
+    "path": "src/ui-fonts.css",
+    "bytes": 1548,
+    "sha256": "f9e42ff477498a40ad22f236c13ab3c70e7340d25a1b7d128320ff94f3bf056e"
+  },
+  {
+    "path": "src/ui-kit.css",
+    "bytes": 10808,
+    "sha256": "727a9b41adfb7b288e897dc377f78dc284775ac0e086e46455f576167681909b"
+  },
+  {
+    "path": "src/ui-kit.js",
+    "bytes": 13120,
+    "sha256": "f565900743a28810ae5b3aa7e1e2258d5337b02b6caec25b9911f07b56ff9f18"
+  },
+  {
+    "path": "src/ui-lab-notes.js",
+    "bytes": 16956,
+    "sha256": "0418469a42d08003df32577f3e769a603cdab40bfab6d045e3be5036017322d7"
+  },
+  {
+    "path": "src/ui-lab.css",
+    "bytes": 26214,
+    "sha256": "4587097adb906c2711b2d556aa3ce72ead5212fe3d0190e2278e165de2a48553"
+  },
+  {
+    "path": "src/ui-lab.js",
+    "bytes": 29563,
+    "sha256": "87d8b98c102c575cc1c30f0518897f0b318a4c88746ccd152ff4dfda341d3733"
+  },
+  {
+    "path": "src/ui-preferences.js",
+    "bytes": 6708,
+    "sha256": "1eee5c6520f3202242f9d6f073e62684408f4230f285e8e79a19b2e48ffc4a13"
+  },
+  {
+    "path": "src/vn-motion.css",
+    "bytes": 2278,
+    "sha256": "d82708b7438b26ea12867f4fc6b124f993d7ea3308577427817a93194fa9e282"
+  },
+  {
+    "path": "src/vn-motion.js",
+    "bytes": 8199,
+    "sha256": "0e66f3b07a7c952dc9e4509854721b59d6d6d295354137d0d77e126376874cfe"
+  },
+  {
+    "path": "tests/asset-preloader.test.js",
+    "bytes": 7522,
+    "sha256": "8123c9cb14fae6f774e2b54815303266d0598d8c6025a46ce82163532bd4851f"
+  },
+  {
+    "path": "tests/battle-presentation.test.js",
+    "bytes": 3495,
+    "sha256": "26b9d8e6b73c9856e19695f2c52159ace6a76c5a7de2e83946389fab7d150bb3"
+  },
+  {
+    "path": "tests/battle.test.js",
+    "bytes": 3575,
+    "sha256": "104f0d693d0c513c8a3c9fef2448041c237a9927886cf2461b8a26e2690efdc5"
+  },
+  {
+    "path": "tests/campaign-demo.test.js",
+    "bytes": 12791,
+    "sha256": "9b3eee306a77f2c7636e25a47d71f74e5028a955748e37287f1614551adf6e2d"
+  },
+  {
+    "path": "tests/campaign-scene-flow.test.js",
+    "bytes": 5545,
+    "sha256": "62ac6ff14b5228dc015e6e9231463400a840e69047cb7982a5705b2be60f17ea"
+  },
+  {
+    "path": "tests/clearing.test.js",
+    "bytes": 18900,
+    "sha256": "4485e4d2fde384d0c8def68c3a9f3b3f20922d5db94dd3587f613bdc90d9389c"
+  },
+  {
+    "path": "tests/idle-behavior.test.js",
+    "bytes": 6220,
+    "sha256": "1f43e50e1d9efe53eeede7eee263779d3ea43b0aa111676631b351a8b3956b4f"
+  },
+  {
+    "path": "tests/input.test.js",
+    "bytes": 9862,
+    "sha256": "c1e6928b75642ef3630076a1bca7ac0b1b3e3de15a925a7dd3ba0c2fce787bfe"
+  },
+  {
+    "path": "tests/map-interactions.test.js",
+    "bytes": 2039,
+    "sha256": "f4e2f28ec9264be63f7029d63aead81c7f5c316add45ccbc88568fa6b9164817"
+  },
+  {
+    "path": "tests/map-knockback.test.js",
+    "bytes": 1795,
+    "sha256": "7fbb7712e3c7fd767b3a0054197e37db3bbc4a6ea0baf64edbbfaa320df1081c"
+  },
+  {
+    "path": "tests/pages-package.test.js",
+    "bytes": 5249,
+    "sha256": "7c7815d7a433b5196c9a9c28ee2d96902a4a4cf707eba73871592c2c9a83fa80"
+  },
+  {
+    "path": "tests/recorded-music.test.js",
+    "bytes": 2575,
+    "sha256": "4d39cefdb3c66ff31cb2dc64ec4b734fccf5506970e3b75a61056d91b9af197c"
+  },
+  {
+    "path": "tests/scene-exploration.test.js",
+    "bytes": 10700,
+    "sha256": "d2849d92ea7056b2662ec904cb9c22acd1b07117aa6313822a08c59dd7acdb32"
+  },
+  {
+    "path": "tests/sprite-layout.test.js",
+    "bytes": 2872,
+    "sha256": "4453cb2c9b5b2166851daa580ab80d905c21d60ba1da90052dc90805dd5723a3"
+  },
+  {
+    "path": "tests/timed-quiz.test.js",
+    "bytes": 3314,
+    "sha256": "887106d88443f92edb8320517991a58a9c2ec7b46514a46e10a25b52b8e40a04"
+  },
+  {
+    "path": "tests/walk-cycle.test.js",
+    "bytes": 2319,
+    "sha256": "82359fbab5363e0b96f8dbb7dd65da61e3dc31c651dca479529fcbed5a400f3a"
+  },
+  {
+    "path": "tests/world.test.js",
+    "bytes": 6679,
+    "sha256": "45cb468ae65cb80629dd49acab6f6f0858362f1e08363bdc6d8f47719d954607"
+  },
+  {
+    "path": "tools/render-audio-v2.mjs",
+    "bytes": 4108,
+    "sha256": "7a46c82b91d5ab47ffefbac3e1ec704fb207ceb8a92c103153d9d7479a391d93"
+  },
+  {
+    "path": "tools/render-audio-v3.mjs",
+    "bytes": 4566,
+    "sha256": "0af7c177d42a89d91a4bdc006ab6fac96b93c85186c7e357b1188598d60d5593"
+  },
+  {
+    "path": "ui-kit.html",
+    "bytes": 571,
+    "sha256": "14a8b5b491d361af2aea04b0461b326dfea19e02d48c21c785126dd8ba94ed3f"
+  },
+  {
+    "path": "ui-lab.html",
+    "bytes": 660,
+    "sha256": "aa60b09dfdac359f5ae141395ecc3758f0a784949a7fdfcb590eae6f328a4cc1"
+  },
+  {
+    "path": "vite.config.js",
+    "bytes": 518,
+    "sha256": "ffc011fba60a0760e79bb7b858aab8a1b4d5894453f7965d841ae9301a09d450"
+  }
+]

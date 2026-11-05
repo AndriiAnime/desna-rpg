@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "format": "desna-source-overlay-json-gzip",
+  "version": "0.2.0-beta.2",
+  "update": "garden-finale-20261105",
+  "frozenBundleCommit": "28d3ee16e3a59085c9aeab9a7d55749a688b2e90",
+  "frozenSourceArchiveSha256": "40cdf0c5b816bf5f7d07dccce931305717e8d32dbe87bb9f0917a57da298f8b4",
+  "baselineFiles": 293,
+  "baselineTreeSha256": "be9de04fe2dd798062617e015c5374082e18fbc9ea3c0f6f2d161a9f1f3ad4d8",
+  "targetFiles": 314,
+  "targetTreeSha256": "9d215ec18bc9ae1f0ccfdb7ed82a933dd73de83ec58104430ad25cf89406b8b7",
+  "changedFiles": 33,
+  "removedFiles": 0,
+  "overlayBytes": 43706801,
+  "overlaySha256": "225192aac031e45577fd0f490e580ddfdb6dd5e8ceccd82bb0a8b7e34a0a17db",
+  "parts": [
+    {
+      "file": "beta2-garden-overlay.json.gz.part-000",
+      "bytes": 20000000,
+      "sha256": "b006286b3dd17a2cb49c55af41f020682d9fb1a2d2dfb2ccc76205a01f5c37f7"
+    },
+    {
+      "file": "beta2-garden-overlay.json.gz.part-001",
+      "bytes": 20000000,
+      "sha256": "cab0c5988f6b37816a2437ecc210596066a9b6d5ec2ef75d25cf7d533eabc84c"
+    },
+    {
+      "file": "beta2-garden-overlay.json.gz.part-002",
+      "bytes": 3706801,
+      "sha256": "085e848ce183e53140356cae9502b0973e625d34cc030582aa1db67c0ed49809"
+    }
+  ]
+}
