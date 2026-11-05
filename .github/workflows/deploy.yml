@@ -1,17 +1,19 @@
-# Reviewed campaign revision 3: 190 runtime/source files verified against local build.
-# The root checkout remains the existing Alpha 2 source; no game source is replaced on main.
-name: Deploy Alpha 2 and UI alternative to GitHub Pages
+name: Publish Beta 2 and preserve Beta 1
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: github-pages
   cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,35 +23,50 @@ jobs:
     steps:
       - name: Check out preserved root
         uses: actions/checkout@v4
-      - name: Check out reviewed alternative
+        with:
+          ref: c8ce3353e5aaa3903546f3fc3e268bee0eb7546f
+          path: baseline-source
+
+      - name: Check out frozen Beta 1
         uses: actions/checkout@v4
         with:
           ref: 259aeb8613106c2b022f64e5b36f924d4efcbaa6
-          path: alternative-source
+          path: beta1-source
+
+      - name: Check out Beta 2 source archive
+        uses: actions/checkout@v4
+        with:
+          ref: 28d3ee16e3a59085c9aeab9a7d55749a688b2e90
+          path: beta2-bundle
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            alternative-source/package-lock.json
-      - name: Install baseline dependencies
-        run: npm ci
-      - name: Test baseline
-        run: npm test
-      - name: Build baseline
-        run: npm run build
-      - name: Install alternative dependencies
-        working-directory: alternative-source
-        run: npm ci
-      - name: Test alternative
-        working-directory: alternative-source
-        run: npm test
-      - name: Build alternative
-        working-directory: alternative-source
-        run: npm run build
-      - name: Package both versions and UI Kit
-        run: node alternative-source/scripts/package-pages.mjs dist alternative-source/dist _site
+
+      - name: Restore and verify Beta 2 source and assets
+        run: node beta2-bundle/restore-beta2.mjs beta2-source
+
+      - name: Build preserved root
+        working-directory: baseline-source
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build frozen Beta 1
+        working-directory: beta1-source
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build Beta 2
+        working-directory: beta2-source
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package all versions and verify preservation
+        run: node beta2-source/scripts/package-beta-release.mjs baseline-source/dist beta1-source/dist beta2-source/dist _site
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
