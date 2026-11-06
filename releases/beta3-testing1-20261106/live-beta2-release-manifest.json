@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-11-06T01:24:15.252Z",
+  "currentRelease": "Beta 2",
+  "currentVersion": "0.2.0-beta.2",
+  "routes": [
+    "/",
+    "/alternative/",
+    "/ui-kit/",
+    "/ui-kit/reference/",
+    "/beta1/",
+    "/beta2/"
+  ],
+  "releases": {
+    "alpha2": {
+      "path": "/",
+      "preserved": true,
+      "files": 71,
+      "bytes": 46702980,
+      "treeSha256": "d8b63d36825baff093d7b03ea3e64f28ae8a72a416123fc822350bf260de3150"
+    },
+    "beta1": {
+      "path": "/beta1/",
+      "existingPath": "/alternative/",
+      "preserved": true,
+      "files": 147,
+      "bytes": 151536193,
+      "treeSha256": "2293e6ac27a1c14fd472961842cc1d9c485a5a8903332c5d2bc77f2006115c1e"
+    },
+    "beta2": {
+      "path": "/beta2/",
+      "files": 257,
+      "bytes": 361872606,
+      "treeSha256": "d64ffec8a18df9aaeb5a9e2205b541e2a3fd561f2067e8384b30ebdff7c5744f"
+    }
+  }
+}

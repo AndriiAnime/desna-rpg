@@ -1,4 +1,4 @@
-name: Publish verified Beta 2 and preserve Beta 1
+name: Publish Beta 3 and Stas testing build, preserve earlier releases
 
 on:
   push:
@@ -77,6 +77,29 @@ jobs:
 
       - name: Package all versions and verify preservation
         run: node beta2-source/scripts/package-beta-release.mjs baseline-source/dist beta1-source/dist beta2-source/dist _site
+
+      - name: Check out the frozen Beta 3 release
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: current-release
+          sparse-checkout: |
+            releases/beta3-testing1-20261106
+          sparse-checkout-cone-mode: true
+
+      - name: Restore and verify Beta 3 source
+        run: |
+          release=current-release/releases/beta3-testing1-20261106
+          cd "$release"
+          sha256sum --check SHA256SUMS
+          cd "$GITHUB_WORKSPACE"
+          node "$release/source-overlay.mjs" apply beta2-fixes-bundle/releases/beta2-bugfix-20261106b/restore-beta2-bugfix.mjs beta2-source "$release/source-overlay.json.gz"
+
+      - name: Build Beta 3 and the separate Stas testing route
+        run: |
+          release=current-release/releases/beta3-testing1-20261106
+          node "$release/build-routes.mjs" beta2-source _site/beta2 new-routes "$release/stas-card.png"
+          node "$release/verify-and-install.mjs" _site new-routes "$release/live-beta2-release-manifest.json" "$release/expected-build.json"
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
