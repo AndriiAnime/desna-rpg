@@ -1,4 +1,4 @@
-name: Publish Beta 2 garden and preserve Beta 1
+name: Publish verified Beta 2 and preserve Beta 1
 
 on:
   push:
@@ -39,11 +39,11 @@ jobs:
           ref: 28d3ee16e3a59085c9aeab9a7d55749a688b2e90
           path: beta2-bundle
 
-      - name: Check out verified garden update
+      - name: Check out verified Beta 2 update
         uses: actions/checkout@v4
         with:
-          ref: 9db331e3051c43477ab913d19ea444aa76970d06
-          path: beta2-garden-bundle
+          ref: 7c90549a922eb304a4d8ec87e6dac356f3eca7ac
+          path: beta2-fixes-bundle
 
       - uses: actions/setup-node@v4
         with:
@@ -52,8 +52,8 @@ jobs:
       - name: Restore and verify Beta 2 source and assets
         run: node beta2-bundle/restore-beta2.mjs beta2-source
 
-      - name: Apply and verify Beta 2 garden overlay
-        run: node beta2-garden-bundle/releases/beta2-garden-20261105/restore-beta2-garden.mjs beta2-source
+      - name: Apply and verify Beta 2 scene, combat and map fixes
+        run: node beta2-fixes-bundle/releases/beta2-bugfix-20261106b/restore-beta2-bugfix.mjs beta2-source
 
       - name: Build preserved root
         working-directory: baseline-source
