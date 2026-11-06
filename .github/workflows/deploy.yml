@@ -72,6 +72,8 @@ jobs:
         run: |
           npm ci
           npm run build
+          # Unapproved storyboard artwork is only available in the local workshop.
+          rm -rf -- dist/reviews/bugfix-20261106b
 
       - name: Package all versions and verify preservation
         run: node beta2-source/scripts/package-beta-release.mjs baseline-source/dist beta1-source/dist beta2-source/dist _site
