@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "format": "desna-source-overlay-json-gzip",
+  "version": "0.2.0-beta.2",
+  "update": "bugfix-20261106b",
+  "frozenBundleCommit": "28d3ee16e3a59085c9aeab9a7d55749a688b2e90",
+  "frozenSourceArchiveSha256": "40cdf0c5b816bf5f7d07dccce931305717e8d32dbe87bb9f0917a57da298f8b4",
+  "baselineFiles": 293,
+  "baselineTreeSha256": "be9de04fe2dd798062617e015c5374082e18fbc9ea3c0f6f2d161a9f1f3ad4d8",
+  "targetFiles": 353,
+  "targetTreeSha256": "0068f03238f8a2a11b8f74a964316f7eb0b46b460e7e9b91490e6164fabc590f",
+  "changedFiles": 79,
+  "removedFiles": 0,
+  "overlayBytes": 104292525,
+  "overlaySha256": "4bd4f8b759658b50d39a7ba7d5ce50ce1d936614dbf4ba223811a7c010035428",
+  "parts": [
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-000",
+      "bytes": 4000000,
+      "sha256": "0133e137c315830a915936002460d67ad84ea12130045d960ba622621ee9d1f9"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-001",
+      "bytes": 4000000,
+      "sha256": "0c525bc58056b9a580e78b1130bf89500a90847ade0f5512ebb73a1824e05ef1"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-002",
+      "bytes": 4000000,
+      "sha256": "03a32ac138769dd217b84f57685a243da63fb53ab2b26ad02d1648a5ad0ad627"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-003",
+      "bytes": 4000000,
+      "sha256": "ac878929b5e260dd37a88c9fa52b680f817ba72bff3c1cab81d0b2880aad611e"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-004",
+      "bytes": 4000000,
+      "sha256": "3b87a4bdf7610d4482dbe61084584ff2b28f34f44908f4f5e424e313139d5c52"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-005",
+      "bytes": 4000000,
+      "sha256": "1203cba51c83653bcbf22236b6cce508bff9a98a38e094851655b568098ba50a"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-006",
+      "bytes": 4000000,
+      "sha256": "572fd4382709ecb709c3e25367b6ebe18855d88c4de1177bfb7a22e41e49a7d1"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-007",
+      "bytes": 4000000,
+      "sha256": "ff5f098c8b23a35a4e920922fe8da29e985487e1d378bca59adcea77a58557f6"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-008",
+      "bytes": 4000000,
+      "sha256": "859ed0875bdb9108be34069bded17f45c526f68c58ac95e5db2461b19b085bdd"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-009",
+      "bytes": 4000000,
+      "sha256": "30a820cddc4dac00274421931928b529076a582c181ae3543d07554df44d1475"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-010",
+      "bytes": 4000000,
+      "sha256": "a4cc31262fffac7ed770d68016b8ae77206ab7b25e7b37cd1111aab937223f82"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-011",
+      "bytes": 4000000,
+      "sha256": "67e048a2d792f7d6c5edfbb57d377570a92e1e55cc695263416c87cd2900f396"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-012",
+      "bytes": 4000000,
+      "sha256": "5f6d4f9c0154ee11cb4699ae61f9786743dc2291269e4382242342953fb73121"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-013",
+      "bytes": 4000000,
+      "sha256": "12d0155a824b1d63a52f9e79b3db8f59d15d3f186d25763519d970b42a275728"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-014",
+      "bytes": 4000000,
+      "sha256": "02c27c7cfc9046f39f126054a1ee718eece9025010c8f74d0d450a2c96daaccd"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-015",
+      "bytes": 4000000,
+      "sha256": "67e672032f69c2a70b6bc4fa8a61b6c4125d437d0df745dd52c8ea67c82fae72"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-016",
+      "bytes": 4000000,
+      "sha256": "eb92464a229b13ae7ff8abf32a2e7cbe7b83a4801949c6a68e7d45ecd98526e9"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-017",
+      "bytes": 4000000,
+      "sha256": "257fc990b6f271b93c439f212459bd39d588b4ae22b3b81e143d7c8f0e6eca79"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-018",
+      "bytes": 4000000,
+      "sha256": "770ade483b8acd605aea18f26cd4052347b1ce2178a99f0b22b0edee19cb1dd3"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-019",
+      "bytes": 4000000,
+      "sha256": "35452c15b85f18bf2adb2ec77aefebf790a6fbe9763d8a12447dea02a82baf82"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-020",
+      "bytes": 4000000,
+      "sha256": "fd81861e1303ff13d7b80d2ac73dc5144ffbd171491f27608e6d890319717cba"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-021",
+      "bytes": 4000000,
+      "sha256": "af52b193b34fcd0d36634cb6fde2e791d2c05caa749ada2bfb1f7b2aba4637d3"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-022",
+      "bytes": 4000000,
+      "sha256": "bea68b35bb2c83987f9b7f6cf6518035a28fb991d75994a944e35c389427d1e6"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-023",
+      "bytes": 4000000,
+      "sha256": "88e6437c275fba9a3993752f7cd93bce575f6390afc8f3b8d609d09f524610f5"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-024",
+      "bytes": 4000000,
+      "sha256": "a82f7219c5dd0b0367b520bbb1e902836fff2a723e68bda83da21abf26404f0c"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-025",
+      "bytes": 4000000,
+      "sha256": "c376aadbc0b549862d31cdfc73c743da169698898683a7a0f3311c4a1cb388c4"
+    },
+    {
+      "file": "beta2-bugfix-overlay.json.gz.part-026",
+      "bytes": 292525,
+      "sha256": "d2b9e6e7c00b4d905588542baaa5d6655c566dba20542904a281e632e31d7293"
+    }
+  ]
+}
